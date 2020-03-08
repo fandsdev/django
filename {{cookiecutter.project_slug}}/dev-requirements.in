@@ -1,0 +1,19 @@
+-c requirements.txt
+
+ipython
+
+pytest-django>=3.8
+pytest-env
+pytest-freezegun
+pytest-mock
+
+freezegun
+mixer
+
+jedi
+flake8-bugbear
+flake8-commas
+flake8-isort
+flake8-print
+
+django-debug-toolbar
