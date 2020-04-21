@@ -28,6 +28,9 @@ ALLOWED_HOSTS = ['*']  # host validation is not necessary in 2020
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
+    'rest_framework.authtoken',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -88,6 +91,27 @@ USE_i18N = True
 USE_TZ = True
 
 
+# Django REST Framework
+# https://www.django-rest-framework.org/api-guide/settings/
+
+MAX_PAGE_SIZE = env('MAX_PAGE_SIZE', cast=int, default=1000)
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_RENDERER_CLASSES': [
+        'app.renderers.AppJSONRenderer',
+    ],
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning',
+    'DEFAULT_PAGINATION_CLASS': 'app.pagination.AppPagination',
+    'PAGE_SIZE': env('PAGE_SIZE', cast=int, default=20),
+}
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
@@ -96,6 +120,7 @@ STATIC_ROOT = env('STATIC_ROOT', cast=str, default='static')
 
 if not DEBUG and not CI:
     MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+
 
 # Sentry
 # https://sentry.io/for/django/
