@@ -11,7 +11,8 @@ python -m venv venv
 
 pip install --upgrade pip
 pip install pip-tools
-pip-sync requirements.txt dev-requirements.txt
+
+./update-deps.sh
 
 cd src && ./manage.py migrate
 

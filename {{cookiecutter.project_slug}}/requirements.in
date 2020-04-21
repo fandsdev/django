@@ -11,3 +11,4 @@ djangorestframework-simplejwt
 django-healthchecks
 
 redis
+sentry-sdk
