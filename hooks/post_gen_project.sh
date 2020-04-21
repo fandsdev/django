@@ -14,6 +14,6 @@ pip install pip-tools
 
 ./update-deps.sh
 
-cd src && ./manage.py migrate
+cd src && ./manage.py collectstatic && ./manage.py migrate
 
 echo Done
