@@ -15,5 +15,3 @@ flake8-bugbear
 flake8-commas
 flake8-isort
 flake8-print
-
-django-debug-toolbar
