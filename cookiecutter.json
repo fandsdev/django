@@ -1,3 +1,6 @@
 {
-    "project_slug": "django"
+    "project_slug": "django",
+    "_copy_without_render": [
+        ".circleci/config.yml"
+    ]
 }

@@ -1,0 +1,75 @@
+version: 2.1
+
+defaults: &defaults
+  docker:
+    - image: circleci/python:3.7-stretch
+      environment:
+        - DATABASE_URL=sqlite:////tmp/prj.sqlite
+        - CELERY_BACKEND=redis://redis:6379
+
+    - image: circleci/redis:4.0.14-alpine3.10
+      name: redis
+
+jobs:
+  build:
+    <<: *defaults
+
+    steps:
+      - checkout
+      - restore_cache:
+          key: deps-{{ checksum "requirements.txt" }}-{{ checksum "dev-requirements.txt" }}
+
+      - run:
+          command: sudo apt-get --no-install-recommends install -y locales-all gettext
+
+      - run:
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install pip-tools
+            pip-sync requirements.txt dev-requirements.txt
+
+      - save_cache:
+          key: deps-{{ checksum "requirements.txt" }}-{{ checksum "dev-requirements.txt" }}
+          paths:
+            - "venv"
+
+      - run:
+          command: mv src/app/.env.ci src/app/.env
+
+      - run:
+          name: Run linters
+          command: |
+            . venv/bin/activate
+            cd src && flake8
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - "venv"
+            - "src"
+            - ".circleci"
+
+  test:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+
+      - run:
+          name: Install locale stuff
+          command: sudo apt-get update && sudo apt-get --no-install-recommends install -y locales-all gettext
+
+      - run:
+          command: |
+            . venv/bin/activate
+            cd src && py.test -x
+
+workflows:
+  version: 2
+  continuous-delivery:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
