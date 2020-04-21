@@ -110,7 +110,7 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'app.renderers.AppJSONRenderer',
     ],
-    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning',
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
     'DEFAULT_PAGINATION_CLASS': 'app.pagination.AppPagination',
     'PAGE_SIZE': env('PAGE_SIZE', cast=int, default=20),
 }
@@ -137,3 +137,12 @@ if not DEBUG and len(SENTRY_DSN):
         dsn=SENTRY_DSN,
         integrations=[DjangoIntegration()],
     )
+
+
+# Django Healthchecks
+# http://django-healthchecks.readthedocs.io
+
+HEALTH_CHECKS_ERROR_CODE = 503
+HEALTH_CHECKS = {
+    'db': 'django_healthchecks.contrib.check_database',
+}
