@@ -11,6 +11,8 @@ SITE_ROOT = root()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Disable built-in ./manage.py test command in favor of pytest
+TEST_RUNNER = 'app.test.disable_test_command_runner.DisableTestCommandRunner'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
