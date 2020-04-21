@@ -8,12 +8,13 @@
 ## What is in the box
 
 * API-only django (checkout [this post](https://t.me/pmdaily/257) in Russian) based on Django REST Framework
-* [pip-tools](https://github.com/jazzband/pip-tools) with separate dev-dependencies
-* pytest
-* Pre-installed Circle CI configuration
+* Starter Circle CI configuration
+* pytest with usefull stuff like freezegun, pytest-mock and super convinient [DRF test client](https://github.com/f213/django/blob/master/%7B%7Bcookiecutter.project_slug%7D%7D/src/app/tests/tests_health.py#L9)
+* flake8 with ton of plugins (contact me if you know more)
+* [pip-tools](https://github.com/jazzband/pip-tools) with separate development-time dependencies
 * Custom [user model](https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#specifying-a-custom-user-model)
-* [Whitenoise](http://whitenoise.evans.io) for effortless staticfiles hosting
-* Sentry (set `SENTRY_DSN` environment variable)
+* [Whitenoise](http://whitenoise.evans.io) for effortless static files hosting
+* Sentry. Set `SENTRY_DSN` env var if you need it.
 
 ## Installation
 
