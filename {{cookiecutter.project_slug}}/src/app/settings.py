@@ -30,6 +30,8 @@ ALLOWED_HOSTS = ['*']  # host validation is not necessary in 2020
 # Application definition
 
 INSTALLED_APPS = [
+    'users',
+
     'rest_framework',
     'rest_framework.authtoken',
 
@@ -51,8 +53,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
 ROOT_URLCONF = 'app.urls'
+AUTH_USER_MODEL = 'users.User'
 
 TEMPLATES = [
     {
