@@ -5,7 +5,6 @@ echo Running pip-compile...
 
 for dep in 'requirements.in' 'dev-requirements.in';
 do
-
     pip-compile -q --generate-hashes $dep
 done
 

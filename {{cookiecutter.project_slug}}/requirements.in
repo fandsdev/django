@@ -3,6 +3,7 @@ django-behaviors
 django-environ
 whitenoise
 
+django-environ
 djangorestframework>=3.11.0
 django-filter
 djangorestframework-simplejwt

@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-echo -ne Running with
+echo -ne "Running with "
 
 python --version
 
@@ -13,5 +13,6 @@ pip install --upgrade pip
 pip install pip-tools
 pip-sync requirements.txt dev-requirements.txt
 
+cd src && ./manage.py migrate
 
 echo Done
