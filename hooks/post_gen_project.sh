@@ -16,8 +16,16 @@ pip install pip-tools
 
 cd src
 
+echo Collecting static assets...
 ./manage.py collectstatic
+
+echo Running initial migrations...
 ./manage.py migrate
+
+echo Running flake8..
+flake8
+
+echo Running pytest...
 pytest -x
 
 echo Done
