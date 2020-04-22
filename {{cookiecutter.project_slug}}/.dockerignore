@@ -1,0 +1,4 @@
+venv/
+.circleci/
+db.sqlite
+__pycache__/
