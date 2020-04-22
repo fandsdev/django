@@ -19,6 +19,13 @@ jobs:
           name: Bootstrap the project
           command: ./test.sh
 
+      - setup_remote_docker
+      - run:
+          name: Build test docker image
+          command: |
+            cd testing/django
+            docker build -t f213/django .
+
 workflows:
   version: 2
   ci:
