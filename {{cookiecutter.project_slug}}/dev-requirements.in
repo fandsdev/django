@@ -2,10 +2,13 @@
 
 ipython
 
-pytest-django>=3.8
+pytest-django>=3.9
+pytest-deadfixtures
 pytest-env
 pytest-freezegun
 pytest-mock
+pytest-randomly
+
 
 freezegun
 mixer
