@@ -7,7 +7,7 @@
 
 ## What is in the box
 
-* API-only django (checkout [this post](https://t.me/pmdaily/257) in Russian) based on Django REST Framework
+* API-only django (checkout [this post](https://t.me/pmdaily/257) in Russian) based on Django REST Framework with JWT support
 * Starter Circle CI configuration
 * pytest with usefull stuff like freezegun, pytest-mock and super convinient [DRF test client](https://github.com/f213/django/blob/master/%7B%7Bcookiecutter.project_slug%7D%7D/src/app/tests/tests_health.py#L9)
 * flake8 with ton of plugins (contact me if you know more)

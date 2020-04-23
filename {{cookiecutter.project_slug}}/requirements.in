@@ -5,8 +5,8 @@ whitenoise
 
 django-environ
 djangorestframework>=3.11.0
+drf-jwt
 django-filter
-djangorestframework-simplejwt
 
 django-healthchecks
 
