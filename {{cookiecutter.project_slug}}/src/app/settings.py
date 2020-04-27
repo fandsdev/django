@@ -1,3 +1,9 @@
+#
+# This file was generated using http://github.com/f213/django starter template.
+#
+# If your project growth to more then 3 apps, consider http://github.com/sobolevn/django-split-settings
+# for organizing django settings into multiple files
+#
 import os
 
 import environ
