@@ -35,6 +35,7 @@ class MultiSerializerMixin:
         except (KeyError, AttributeError):
             return super().get_serializer_class()
 
+
 class ReadOnlyAppViewSet(MultiSerializerMixin, _ReadOnlyModelViewSet):
     pass
 
