@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ['*']  # host validation is not necessary in 2020
 # Application definition
 
 INSTALLED_APPS = [
+    'app',
     'users',
 
     'rest_framework',
