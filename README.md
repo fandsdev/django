@@ -27,5 +27,5 @@ You definetely should consider this steps after installation:
 
 ```
 $ pip install cookiecutter
-$ cookicutter gh:f213/django
+$ cookiecutter gh:f213/django
 ```
