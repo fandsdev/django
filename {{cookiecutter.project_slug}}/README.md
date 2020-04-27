@@ -1,4 +1,7 @@
-# pmdaily-backend
+# Django project
+
+This project was bootstrapped using [f213/django](http://github.com/f213/django) template.
+
 
 ## Configuration
 Configuration is stored in `src/app/.env`, for examples see `src/app/.env.ci`
