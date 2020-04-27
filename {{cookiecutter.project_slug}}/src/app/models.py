@@ -70,6 +70,13 @@ class DefaultModel(models.Model):
     class Meta:
         abstract = True
 
+    def __str__(self):
+        """Default name for all models"""
+        if hasattr(self, 'name'):
+            return str(self.name)
+
+        return super().__str__()
+
     @classmethod
     def get_contenttype(cls) -> ContentType:
         return ContentType.objects.get_for_model(cls)
