@@ -21,11 +21,17 @@ You definetely should consider this steps after installation:
 * Install [django-split-settings](https://github.com/sobolevn/django-split-settings) if your projects grows for more then 2 apps
 * Install [pytest-xdist](https://github.com/pytest-dev/pytest-xdist) if you plan to have more then 500 unittests
 * If you are into docker, check out this [docker-compose.yml](https://gist.github.com/f213/be15dc3d3607b55f56147cd154ed27c1) which is compatible with bundled dockerfile
-* 
+
 
 ## Installation
 
 ```
-$ pip install cookiecutter
+$ pip install --upgrade cookiecutter
 $ cookiecutter gh:f213/django
 ```
+
+## FAQ
+
+### I have got an error «'random_ascii_string' is undefined»
+
+You should upgrade cookiecutter to the latest version: `pip install --upgrade cookiecutter`
