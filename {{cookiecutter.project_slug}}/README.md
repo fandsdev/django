@@ -57,9 +57,9 @@ $ ./manage.py runserver
 
 * KISS and DRY.
 * Obey [django best practices](http://django-best-practices.readthedocs.io/en/latest/index.html).
-* Make models fat. **No logic is allowed within the views or templates**. Only models.
+* **No logic is allowed within the views or serializers**. Only models and services. When a model grows for more then 500 lines of code — create a service for that.
 * Use PEP-484 [type hints](https://www.python.org/dev/peps/pep-0484/) when possible.
-* Prefer composition and [GenericRelations](https://docs.djangoproject.com/en/3.0/ref/contrib/contenttypes/) over inheritance.
-* Prefer [Manager](https://docs.djangoproject.com/en/3.0/topics/db/managers/) methods over static methods.
-* Do not use [signals](https://docs.djangoproject.com/en/3.0/topics/signals/) for business logic. Signals are good only for notification purposes.
+* Prefer composition over inheritance.
+* Prefer [Manager](https://docs.djangoproject.com/en/3.0/topics/db/managers/) methods over static models methods.
+* Do not use [signals](https://docs.djangoproject.com/en/3.0/topics/signals/) or [GenericRelations](https://docs.djangoproject.com/en/3.0/ref/contrib/contenttypes/) in your own code.
 * No l10n is allowed in python code, use [django translation](https://docs.djangoproject.com/en/3.0/topics/i18n/translation/).
