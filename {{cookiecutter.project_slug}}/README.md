@@ -59,7 +59,7 @@ $ ./manage.py runserver
 * Obey [django best practices](http://django-best-practices.readthedocs.io/en/latest/index.html).
 * Make models fat. **No logic is allowed within the views or templates**. Only models.
 * Use PEP-484 [type hints](https://www.python.org/dev/peps/pep-0484/) when possible.
-* Prefer composition and [GenericRelations](https://docs.djangoproject.com/en/1.10/ref/contrib/contenttypes/) over inheritance.
-* Prefer [Manager](https://docs.djangoproject.com/en/1.10/topics/db/managers/) methods over static methods.
-* Do not use [signals](https://docs.djangoproject.com/en/1.10/topics/signals/) for business logic. Signals are good only for notification purposes.
-* No l10n is allowed in python code, use [django translation](https://docs.djangoproject.com/en/1.10/topics/i18n/translation/).
+* Prefer composition and [GenericRelations](https://docs.djangoproject.com/en/3.0/ref/contrib/contenttypes/) over inheritance.
+* Prefer [Manager](https://docs.djangoproject.com/en/3.0/topics/db/managers/) methods over static methods.
+* Do not use [signals](https://docs.djangoproject.com/en/3.0/topics/signals/) for business logic. Signals are good only for notification purposes.
+* No l10n is allowed in python code, use [django translation](https://docs.djangoproject.com/en/3.0/topics/i18n/translation/).
