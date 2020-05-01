@@ -110,3 +110,5 @@ dmypy.json
 
 venv
 static
+.env
+db.sqlite
