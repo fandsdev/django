@@ -20,8 +20,8 @@ Install requirements:
 
 ```sh
 pip install pip-tools
-cd src && pip-sync requirements.txt dev-requirements.txt
-cp app/.env.ci app/.env  # default environment variables
+pip-sync requirements.txt dev-requirements.txt
+cd src && cp app/.env.ci app/.env  # default environment variables
 ```
 
 ```sh
