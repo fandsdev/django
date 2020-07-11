@@ -1,4 +1,5 @@
-
+from rest_framework import status
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.viewsets import ReadOnlyModelViewSet as _ReadOnlyModelViewSet
 
@@ -41,35 +42,44 @@ class ReadOnlyAppViewSet(MultiSerializerMixin, _ReadOnlyModelViewSet):
 
 
 class AppViewSet(MultiSerializerMixin, ModelViewSet):
-    def update(self, request, *args, **kwargs):
-        """
-        Always serialize response with the default serializer.
-        CAUTION: we are loosing serializer context here!
-        If you need it, feel free to rewrite this method with http://www.cdrf.co/3.6/rest_framework.mixins/UpdateModelMixin.html
-        """
-        response = super().update(request, *args, **kwargs)
+    """
+    This AppViewSet uses MultiSerializerMixin's serializer_action_classes
+    to create and update instances with corresponding create and update serializers,
+    but always serialize response with serializer_class detail serializer.
 
-        Serializer = self.get_serializer_class(action='retrieve')
-        response.data = Serializer(self.get_object()).data
+    Copy-pasted from DRF create and update mixins with comments near edits.
+    """
 
-        return response
+    def response(self, serializer, instance, status):
+        detail_serializer_class = self.get_serializer_class(action='detail')
+        detail_serializer = detail_serializer_class(instance)  # Detail-serialize instance
+        headers = self.get_success_headers(serializer.data)
+        return Response(detail_serializer.data, status=status, headers=headers)
 
     def create(self, request, *args, **kwargs):
-        """
-        Always serialize response with the default serializer.
-        CAUTION: we are loosing serializer context here!
-        If you need it, feel free to rewrite this method with http://www.cdrf.co/3.6/rest_framework.mixins/CreateModelMixin.html
-        """
-        response = super().create(request, *args, **kwargs)
+        create_serializer = self.get_serializer(data=request.data)
+        create_serializer.is_valid(raise_exception=True)
+        instance = self.perform_create(create_serializer)  # Here we grab our created instance
+        return self.response(create_serializer, instance, status=status.HTTP_201_CREATED)  # Return detail-serialized created instance
 
-        lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
+    def perform_create(self, serializer):
+        serializer.save()
+        return serializer.instance  # Here we return created instance
 
-        try:
-            self.kwargs[lookup_url_kwarg] = response.data.get(self.lookup_field) or response.data['id']
-        except KeyError:
-            return response  # if you want to mangle with response serializing, please provide ID or lookup_url_kwarg in your serializer
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        update_serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        update_serializer.is_valid(raise_exception=True)
+        instance = self.perform_update(update_serializer)  # Here we grab our updated instance
 
-        Serializer = self.get_serializer_class(action='retrieve')
-        response.data = Serializer(self.get_object()).data
+        if getattr(instance, '_prefetched_objects_cache', None):  # ↓ DRF comment
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
 
-        return response
+        return self.response(update_serializer, instance, status=status.HTTP_200_OK)  # Return detail-serialized updated instance
+
+    def perform_update(self, serializer):
+        serializer.save()
+        return serializer.instance  # Here we return updated instance

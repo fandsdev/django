@@ -38,6 +38,7 @@ ALLOWED_HOSTS = ['*']  # host validation is not necessary in 2020
 INSTALLED_APPS = [
     'app',
     'users',
+    'sepulkas',
 
     'rest_framework',
     'rest_framework.authtoken',

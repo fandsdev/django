@@ -45,6 +45,9 @@ class DRFClient(APIClient):
     def get(self, *args, **kwargs):
         return self._api_call('get', kwargs.get('expected_status_code', 200), *args, **kwargs)
 
+    def patch(self, *args, **kwargs):
+        return self._api_call('patch', kwargs.get('expected_status_code', 200), *args, **kwargs)
+
     def post(self, *args, **kwargs):
         return self._api_call('post', kwargs.get('expected_status_code', 201), *args, **kwargs)
 
