@@ -4,9 +4,8 @@
 # If your project growth to more then 3 apps, consider http://github.com/sobolevn/django-split-settings
 # for organizing django settings into multiple files
 #
-import os
-
 import environ
+import os
 
 root = environ.Path(__file__) - 2        # three folder back (/a/b/c/ - 3 = /)
 env = environ.Env(DEBUG=(bool, False))  # set default values and casting
