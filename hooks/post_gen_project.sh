@@ -9,10 +9,8 @@ echo Creating and populating virtualenv..
 python -m venv venv
 . venv/bin/activate
 
-pip install --upgrade pip
 pip install pip-tools
-
-./update-deps.sh
+make
 
 cd src
 
