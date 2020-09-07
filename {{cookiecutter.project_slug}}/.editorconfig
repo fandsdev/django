@@ -4,15 +4,15 @@
     max_line_length = 0
 
 [*.py]
-    indent_size      = 4
+    indent_size     = 4
 
 [*.json]
     indent_style    = space
     indent_size     = 2
 
-[*.coffee]
-    indent_style    = space
-    indent_size     = 2
+[{Makefile,**.mk}]
+    indent_style = tab
+    indent_size = 4
 
 [*.yaml]
     indent_size = 2

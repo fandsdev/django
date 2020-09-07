@@ -18,15 +18,15 @@ This project requires python 3.7. Deps are managed by [pip-tools](https://github
 
 Install requirements:
 
-```sh
-pip install pip-tools
-pip-sync requirements.txt dev-requirements.txt
-cd src && cp app/.env.ci app/.env  # default environment variables
+```bash
+$ pip install pip-tools
+$ make
+$ cd src && cp app/.env.ci app/.env  # default environment variables
 ```
 
-```sh
-./manage.py migrate
-./manage.py createsuperuser
+```bash
+$ ./manage.py migrate
+$ ./manage.py createsuperuser
 ```
 
 Testing:
@@ -57,7 +57,7 @@ $ ./manage.py runserver
 
 * KISS and DRY.
 * Obey [django best practices](http://django-best-practices.readthedocs.io/en/latest/index.html).
-* **No logic is allowed within the views or serializers**. Only models and services. When a model grows for more then 500 lines of code — create a service for that.
+* **No logic is allowed within the views or serializers**. Only models and services. When a model grows beyond 500 lines of code — create a service for that.
 * Use PEP-484 [type hints](https://www.python.org/dev/peps/pep-0484/) when possible.
 * Prefer composition over inheritance.
 * Prefer [Manager](https://docs.djangoproject.com/en/3.0/topics/db/managers/) methods over static models methods.
