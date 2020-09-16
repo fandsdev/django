@@ -48,7 +48,7 @@ pyflakes==2.2.0           # via flake8
 pygments==2.7.0           # via ipython
 pyparsing==2.4.7          # via packaging
 pytest-deadfixtures==2.2.1  # via -r dev-requirements.in
-pytest-django==3.9.0      # via -r dev-requirements.in
+pytest-django==3.10.0     # via -r dev-requirements.in
 pytest-env==0.6.2         # via -r dev-requirements.in
 pytest-freezegun==0.4.2   # via -r dev-requirements.in
 pytest-mock==3.3.1        # via -r dev-requirements.in
