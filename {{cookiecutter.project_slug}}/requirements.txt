@@ -15,7 +15,7 @@ django-filter==2.3.0      # via -r requirements.in
 django-healthchecks==1.4.2  # via -r requirements.in
 django==3.1.1             # via -r requirements.in, django-filter, django-healthchecks, djangorestframework, drf-jwt
 djangorestframework==3.11.1  # via -r requirements.in, drf-jwt
-drf-jwt==1.17.1           # via -r requirements.in
+drf-jwt==1.17.2           # via -r requirements.in
 idna==2.10                # via requests
 pycparser==2.20           # via cffi
 pyjwt[crypto]==1.7.1      # via drf-jwt
