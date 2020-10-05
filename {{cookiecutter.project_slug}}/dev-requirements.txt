@@ -52,7 +52,7 @@ pytest-env==0.6.2         # via -r dev-requirements.in
 pytest-freezegun==0.4.2   # via -r dev-requirements.in
 pytest-mock==3.3.1        # via -r dev-requirements.in
 pytest-randomly==3.4.1    # via -r dev-requirements.in
-pytest==6.1.0             # via pytest-deadfixtures, pytest-django, pytest-env, pytest-freezegun, pytest-mock, pytest-randomly
+pytest==6.1.1             # via pytest-deadfixtures, pytest-django, pytest-env, pytest-freezegun, pytest-mock, pytest-randomly
 python-dateutil==2.8.1    # via faker, freezegun
 six==1.15.0               # via -c requirements.txt, faker, flake8-print, packaging, python-dateutil
 testfixtures==6.14.2      # via flake8-isort
