@@ -10,6 +10,7 @@ __all__ = [
     'models',
     'DefaultManager',
     'DefaultModel',
+    'DefaultQuerySet',
     'TimestampedModel',
 ]
 
