@@ -58,7 +58,7 @@ six==1.15.0               # via -c requirements.txt, faker, flake8-print, packag
 testfixtures==6.15.0      # via flake8-isort
 text-unidecode==1.2       # via faker
 toml==0.10.1              # via pytest
-traitlets==5.0.4          # via ipython
+traitlets==5.0.5          # via ipython
 wcwidth==0.2.5            # via prompt-toolkit
 zipp==3.3.1               # via importlib-metadata
 
