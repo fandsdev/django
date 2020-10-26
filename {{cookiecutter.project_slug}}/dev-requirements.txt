@@ -60,7 +60,7 @@ text-unidecode==1.2       # via faker
 toml==0.10.1              # via pytest
 traitlets==5.0.5          # via ipython
 wcwidth==0.2.5            # via prompt-toolkit
-zipp==3.3.1               # via importlib-metadata
+zipp==3.4.0               # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
