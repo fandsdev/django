@@ -29,7 +29,7 @@ freezegun==1.0.0          # via -r dev-requirements.in, pytest-freezegun
 importlib-metadata==2.0.0  # via flake8-printf-formatting
 iniconfig==1.1.1          # via pytest
 ipython-genutils==0.2.0   # via traitlets
-ipython==7.18.1           # via -r dev-requirements.in
+ipython==7.19.0           # via -r dev-requirements.in
 isort==5.5.4              # via flake8-isort
 jedi==0.17.2              # via -r dev-requirements.in, ipython
 mccabe==0.6.1             # via flake8
