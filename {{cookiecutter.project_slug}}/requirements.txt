@@ -22,7 +22,7 @@ pyjwt[crypto]==1.7.1      # via drf-jwt
 pytz==2020.1              # via django
 redis==3.5.3              # via -r requirements.in
 requests==2.24.0          # via django-healthchecks
-sentry-sdk==0.19.1        # via -r requirements.in
+sentry-sdk==0.19.2        # via -r requirements.in
 six==1.15.0               # via cryptography, django-healthchecks
 sqlparse==0.4.1           # via django
 urllib3==1.25.11          # via requests, sentry-sdk
