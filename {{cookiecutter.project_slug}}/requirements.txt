@@ -19,7 +19,7 @@ drf-jwt==1.17.2           # via -r requirements.in
 idna==2.10                # via requests
 pycparser==2.20           # via cffi
 pyjwt[crypto]==1.7.1      # via drf-jwt
-pytz==2020.1              # via django
+pytz==2020.4              # via django
 redis==3.5.3              # via -r requirements.in
 requests==2.24.0          # via django-healthchecks
 sentry-sdk==0.19.2        # via -r requirements.in
