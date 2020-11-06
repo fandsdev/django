@@ -4,7 +4,7 @@
 #
 #    pip-compile dev-requirements.in
 #
-attrs==20.2.0             # via flake8-bugbear, flake8-eradicate, pytest
+attrs==20.3.0             # via flake8-bugbear, flake8-eradicate, pytest
 backcall==0.2.0           # via ipython
 decorator==4.4.2          # via ipython
 eradicate==2.0.0          # via flake8-eradicate
