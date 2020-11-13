@@ -25,5 +25,5 @@ requests==2.25.0          # via django-healthchecks
 sentry-sdk==0.19.2        # via -r requirements.in
 six==1.15.0               # via cryptography, django-healthchecks
 sqlparse==0.4.1           # via django
-urllib3==1.25.11          # via requests, sentry-sdk
+urllib3==1.26.2           # via requests, sentry-sdk
 whitenoise==5.2.0         # via -r requirements.in
