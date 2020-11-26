@@ -1,7 +1,8 @@
 import json
+from unittest.mock import MagicMock
+
 import pytest
 from mixer.backend.django import mixer as _mixer
-from unittest.mock import MagicMock
 
 from app.test.api_client import DRFClient
 
