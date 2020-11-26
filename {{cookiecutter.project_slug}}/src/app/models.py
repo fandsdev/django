@@ -1,6 +1,7 @@
 from copy import copy
 
 from behaviors.behaviors import Timestamped
+
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.db.models import F
