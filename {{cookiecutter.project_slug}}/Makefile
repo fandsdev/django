@@ -10,4 +10,5 @@ deps:
 dev-deps: deps
 	pip-compile dev-requirements.in
 
-
+lint:
+	flake8 src
