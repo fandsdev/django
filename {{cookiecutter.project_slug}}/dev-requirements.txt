@@ -34,7 +34,7 @@ isort==5.6.4              # via flake8-isort
 jedi==0.17.2              # via -r dev-requirements.in, ipython
 mccabe==0.6.1             # via flake8
 mixer==6.1.3              # via -r dev-requirements.in
-packaging==20.4           # via pytest
+packaging==20.7           # via pytest
 parso==0.7.1              # via jedi
 pexpect==4.8.0            # via ipython
 pickleshare==0.7.5        # via ipython
@@ -54,7 +54,7 @@ pytest-mock==3.3.1        # via -r dev-requirements.in
 pytest-randomly==3.5.0    # via -r dev-requirements.in
 pytest==6.1.2             # via pytest-deadfixtures, pytest-django, pytest-env, pytest-freezegun, pytest-mock, pytest-randomly
 python-dateutil==2.8.1    # via faker, freezegun
-six==1.15.0               # via -c requirements.txt, faker, flake8-print, packaging, python-dateutil
+six==1.15.0               # via -c requirements.txt, faker, flake8-print, python-dateutil
 testfixtures==6.15.0      # via flake8-isort
 text-unidecode==1.2       # via faker
 toml==0.10.2              # via pytest
