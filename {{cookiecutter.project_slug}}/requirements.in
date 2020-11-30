@@ -1,4 +1,4 @@
-Django>3.0
+Django>3.1
 django-behaviors
 django-environ
 whitenoise
@@ -8,6 +8,7 @@ djangorestframework>=3.11.0
 drf-jwt
 django-filter
 
+django-split-settings
 django-healthchecks
 
 redis

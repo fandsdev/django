@@ -1,6 +1,6 @@
 # Django project
 
-This project was bootstrapped using [f213/django](http://github.com/f213/django) template. [Drop a line](https://github.com/f213/django/issues) if you have some issues.
+This project is bootstrapped using [f213/django](http://github.com/f213/django) template. [Drop a line](https://github.com/f213/django/issues) if you have some issues.
 
 ## Project structure
 
@@ -19,7 +19,7 @@ This project requires python 3.8. Deps are managed by [pip-tools](https://github
 Install requirements:
 
 ```bash
-$ pip install pip-tools
+$ pip install --upgrade pip pip-tools
 $ make
 $ cd src && cp app/.env.ci app/.env  # default environment variables
 ```
