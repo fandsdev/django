@@ -29,7 +29,7 @@ class DRFClient(APIClient):
         user_opts = dict()
         if god_mode:
             user_opts = {
-                'is_staff': False,
+                'is_staff': True,
                 'is_superuser': True,
             }
         user = mixer.blend('users.User', **user_opts)

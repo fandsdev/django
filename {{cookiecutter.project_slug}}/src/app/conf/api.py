@@ -23,4 +23,7 @@ REST_FRAMEWORK = {
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
     'DEFAULT_PAGINATION_CLASS': 'app.pagination.AppPagination',
     'PAGE_SIZE': env('PAGE_SIZE', cast=int, default=20),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon-auth': '10/min',
+    },
 }

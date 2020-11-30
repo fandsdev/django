@@ -1,5 +1,6 @@
 {
     "project_slug": "django",
+    "email": "",
     "_copy_without_render": [
         "*.py-tpl",
         ".circleci/config.yml"
