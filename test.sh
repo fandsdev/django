@@ -8,4 +8,12 @@ mkdir -p testing
 cd testing
 
 rm -Rf django
-echo |cookiecutter ../
+cookiecutter --no-input ../
+
+# Smoke-testing custom ./manage.py commands
+
+source django/venv/bin/activate
+cd django/src
+
+./manage.py startapp test_app
+./manage.py makemigrations -n testappmigration01

@@ -18,7 +18,6 @@
 
 ## Optional next steps
 You definetely should consider this steps after installation:
-* Install [django-split-settings](https://github.com/sobolevn/django-split-settings) if have more than 2 apps
 * Install [pytest-xdist](https://github.com/pytest-dev/pytest-xdist) if you plan to grow beyond 500 unittests
 * If you are into docker, check out this [docker-compose.yml](https://gist.github.com/f213/be15dc3d3607b55f56147cd154ed27c1) which is compatible with bundled dockerfile
 

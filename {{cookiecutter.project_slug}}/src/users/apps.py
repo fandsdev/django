@@ -1,4 +1,4 @@
-from django.apps import AppConfig
+from app.config import AppConfig
 
 
 class UsersConfig(AppConfig):
