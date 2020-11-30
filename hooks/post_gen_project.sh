@@ -9,7 +9,7 @@ echo Creating and populating virtualenv..
 python -m venv venv
 . venv/bin/activate
 
-pip install pip-tools
+pip install --upgrade pip pip-tools
 make
 
 cd src
