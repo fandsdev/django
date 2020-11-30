@@ -2,6 +2,7 @@
 
 INSTALLED_APPS = [
     'app',
+    'a12n',
     'users',
 
     'rest_framework',
