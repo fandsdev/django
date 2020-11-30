@@ -6,6 +6,7 @@ whitenoise
 django-environ
 djangorestframework>=3.11.0
 drf-jwt
+drf-yasg
 django-filter
 
 django-split-settings
