@@ -15,5 +15,7 @@ cookiecutter --no-input ../
 source django/venv/bin/activate
 cd django/src
 
+./manage.py makemigrations --check
 ./manage.py startapp test_app
-./manage.py makemigrations -n testappmigration01
+
+echo OK
