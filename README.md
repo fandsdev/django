@@ -19,7 +19,7 @@
 ## Optional next steps
 You definetely should consider this steps after installation:
 * Install [pytest-xdist](https://github.com/pytest-dev/pytest-xdist) if you plan to grow beyond 500 unittests
-* If you are into docker, check out this [docker-compose.yml](https://gist.github.com/f213/be15dc3d3607b55f56147cd154ed27c1) which is compatible with bundled dockerfile
+* If you are into docker, check out [bundled docker-compose.yml](https://github.com/f213/django/blob/master/%7B%7Bcookiecutter.project_slug%7D%7D/.docker-compose.yml) to run on your machine
 
 
 ## Installation
