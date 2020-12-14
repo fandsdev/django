@@ -1,4 +1,4 @@
-FROM python:3.8.6-slim
+FROM python:3.8.6-slim-buster
 LABEL maintainer="fedor@borshev.com"
 
 LABEL com.datadoghq.ad.logs='[{"source": "uwsgi", "service": "django"}]'
@@ -15,7 +15,7 @@ VOLUME /static
 
 EXPOSE 8000
 
-RUN echo deb http://deb.debian.org/debian stretch contrib non-free > /etc/apt/sources.list.d/debian-contrib.list \
+RUN echo deb http://deb.debian.org/debian buster contrib non-free > /etc/apt/sources.list.d/debian-contrib.list \
     && apt-get update \
     && apt-get --no-install-recommends install -y gettext locales-all wget imagemagick tzdata \
     && rm -rf /var/lib/apt/lists/*
