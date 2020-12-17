@@ -55,7 +55,7 @@ pytest-randomly==3.5.0    # via -r dev-requirements.in
 pytest==6.2.1             # via pytest-deadfixtures, pytest-django, pytest-env, pytest-freezegun, pytest-mock, pytest-randomly
 python-dateutil==2.8.1    # via faker, freezegun
 six==1.15.0               # via -c requirements.txt, faker, flake8-print, python-dateutil
-testfixtures==6.16.0      # via flake8-isort
+testfixtures==6.17.0      # via flake8-isort
 text-unidecode==1.2       # via faker
 toml==0.10.2              # via pytest
 traitlets==5.0.5          # via ipython
