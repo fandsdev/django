@@ -31,7 +31,7 @@ pyjwt[crypto]==1.7.1      # via drf-jwt
 pyparsing==2.4.7          # via packaging
 pytz==2020.4              # via django
 redis==3.5.3              # via -r requirements.in
-requests==2.25.0          # via coreapi, django-healthchecks
+requests==2.25.1          # via coreapi, django-healthchecks
 ruamel.yaml==0.16.12      # via drf-yasg
 sentry-sdk==0.19.5        # via -r requirements.in
 six==1.15.0               # via cryptography, django-healthchecks
