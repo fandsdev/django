@@ -7,7 +7,7 @@
 asgiref==3.3.1            # via django
 certifi==2020.12.5        # via requests, sentry-sdk
 cffi==1.14.4              # via cryptography
-chardet==3.0.4            # via requests
+chardet==4.0.0            # via requests
 coreapi==2.3.3            # via drf-yasg
 coreschema==0.0.4         # via coreapi, drf-yasg
 cryptography==3.3.1       # via pyjwt
