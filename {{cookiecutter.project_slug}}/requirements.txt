@@ -29,7 +29,7 @@ packaging==20.7           # via drf-yasg
 pycparser==2.20           # via cffi
 pyjwt[crypto]==1.7.1      # via drf-jwt
 pyparsing==2.4.7          # via packaging
-pytz==2020.4              # via django
+pytz==2020.5              # via django
 redis==3.5.3              # via -r requirements.in
 requests==2.25.1          # via coreapi, django-healthchecks
 ruamel.yaml==0.16.12      # via drf-yasg
