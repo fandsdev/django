@@ -31,11 +31,11 @@ iniconfig==1.1.1          # via pytest
 ipython-genutils==0.2.0   # via traitlets
 ipython==7.19.0           # via -r dev-requirements.in
 isort==5.6.4              # via flake8-isort
-jedi==0.17.2              # via -r dev-requirements.in, ipython
+jedi==0.18.0              # via -r dev-requirements.in, ipython
 mccabe==0.6.1             # via flake8
 mixer==6.1.3              # via -r dev-requirements.in
 packaging==20.7           # via -c requirements.txt, pytest
-parso==0.7.1              # via jedi
+parso==0.8.1              # via jedi
 pexpect==4.8.0            # via ipython
 pickleshare==0.7.5        # via ipython
 pluggy==0.13.1            # via pytest
