@@ -1,6 +1,6 @@
 # My personal (very) opinionated django template
 
-[![CircleCI](https://circleci.com/gh/f213/django.svg?style=svg&circle-token=8ce8cbe93d81d60af6b67c82a82563d93da0cb03)](https://circleci.com/gh/f213/django) ![Shields.io](https://img.shields.io/github/last-commit/f213/django?style=flat-square)
+[![CircleCI](https://circleci.com/gh/f213/django.svg?style=svg&circle-token=8ce8cbe93d81d60af6b67c82a82563d93da0cb03)](https://circleci.com/gh/f213/django) ![Shields.io](https://img.shields.io/github/last-commit/f213/django?style=flat-square) [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=f213/django)](https://dependabot.com)
 
 ![Easy peasy](https://user-images.githubusercontent.com/1592663/79918184-93bca100-8434-11ea-9902-0ff726a864a3.gif)
 
