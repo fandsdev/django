@@ -6,7 +6,7 @@ pytestmark = pytest.mark.django_db
 
 @pytest.fixture
 def get_token(api):
-    def _get_token(username, password, expected_status_code=200):
+    def _get_token(username, password, expected_status_code=201):
         return api.post('/api/v1/auth/token/', {
             'username': username,
             'password': password,
