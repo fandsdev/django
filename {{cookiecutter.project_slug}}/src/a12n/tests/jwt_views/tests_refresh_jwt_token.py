@@ -12,7 +12,7 @@ pytestmark = [
 
 @pytest.fixture
 def refresh_token(api):
-    def _refresh_token(token, expected_status_code=200):
+    def _refresh_token(token, expected_status_code=201):
         return api.post('/api/v1/auth/token/refresh/', {
             'token': token,
         }, format='json', expected_status_code=expected_status_code)
