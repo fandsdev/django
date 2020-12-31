@@ -33,7 +33,7 @@ ipython==7.19.0           # via -r dev-requirements.in
 isort==5.7.0              # via flake8-isort
 jedi==0.18.0              # via -r dev-requirements.in, ipython
 mccabe==0.6.1             # via flake8
-mixer==6.1.3              # via -r dev-requirements.in
+mixer==7.0.2              # via -r dev-requirements.in
 packaging==20.7           # via -c requirements.txt, pytest
 parso==0.8.1              # via jedi
 pexpect==4.8.0            # via ipython
