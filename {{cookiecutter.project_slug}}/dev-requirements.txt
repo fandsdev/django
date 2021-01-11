@@ -26,7 +26,7 @@ flake8-quotes==3.2.0      # via -r dev-requirements.in
 flake8-variables-names==0.0.3  # via -r dev-requirements.in
 flake8==3.8.4             # via flake8-absolute-import, flake8-bugbear, flake8-commas, flake8-django, flake8-eradicate, flake8-isort, flake8-print, flake8-printf-formatting, flake8-pytest, flake8-quotes
 freezegun==1.0.0          # via -r dev-requirements.in, pytest-freezegun
-importlib-metadata==3.3.0  # via flake8-printf-formatting
+importlib-metadata==3.4.0  # via flake8-printf-formatting
 iniconfig==1.1.1          # via pytest
 ipython-genutils==0.2.0   # via traitlets
 ipython==7.19.0           # via -r dev-requirements.in
