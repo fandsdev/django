@@ -8,7 +8,7 @@ attrs==20.3.0             # via flake8-bugbear, flake8-eradicate, pytest
 backcall==0.2.0           # via ipython
 decorator==4.4.2          # via ipython
 eradicate==2.0.0          # via flake8-eradicate
-faker==4.0.0              # via mixer
+faker==5.5.0              # via mixer
 flake8-absolute-import==1.0  # via -r dev-requirements.in
 flake8-bugbear==20.11.1   # via -r dev-requirements.in
 flake8-commas==2.0.0      # via -r dev-requirements.in
@@ -33,7 +33,7 @@ ipython==7.19.0           # via -r dev-requirements.in
 isort==5.7.0              # via flake8-isort
 jedi==0.18.0              # via -r dev-requirements.in, ipython
 mccabe==0.6.1             # via flake8
-mixer==7.0.6              # via -r dev-requirements.in
+mixer==7.1.2              # via -r dev-requirements.in
 packaging==20.7           # via -c requirements.txt, pytest
 parso==0.8.1              # via jedi
 pexpect==4.8.0            # via ipython
