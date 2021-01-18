@@ -8,7 +8,7 @@ attrs==20.3.0             # via flake8-bugbear, flake8-eradicate, pytest
 backcall==0.2.0           # via ipython
 decorator==4.4.2          # via ipython
 eradicate==2.0.0          # via flake8-eradicate
-faker==5.6.0              # via mixer
+faker==5.6.1              # via mixer
 flake8-absolute-import==1.0  # via -r dev-requirements.in
 flake8-bugbear==20.11.1   # via -r dev-requirements.in
 flake8-commas==2.0.0      # via -r dev-requirements.in
