@@ -59,7 +59,7 @@ flake8==3.8.4
     #   flake8-printf-formatting
     #   flake8-pytest
     #   flake8-quotes
-freezegun==1.0.0
+freezegun==1.1.0
     # via
     #   -r dev-requirements.in
     #   pytest-freezegun
