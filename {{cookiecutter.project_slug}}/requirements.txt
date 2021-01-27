@@ -4,38 +4,94 @@
 #
 #    pip-compile requirements.in
 #
-asgiref==3.3.1            # via django
-certifi==2020.12.5        # via requests, sentry-sdk
-cffi==1.14.4              # via cryptography
-chardet==4.0.0            # via requests
-coreapi==2.3.3            # via drf-yasg
-coreschema==0.0.4         # via coreapi, drf-yasg
-cryptography==3.3.1       # via pyjwt
-django-behaviors==0.5.1   # via -r requirements.in
-django-environ==0.4.5     # via -r requirements.in
-django-filter==2.4.0      # via -r requirements.in
-django-healthchecks==1.4.2  # via -r requirements.in
-django-split-settings==1.0.1  # via -r requirements.in
-django==3.1.5             # via -r requirements.in, django-filter, django-healthchecks, djangorestframework, drf-jwt, drf-yasg
-djangorestframework==3.12.2  # via -r requirements.in, drf-jwt, drf-yasg
-drf-jwt==1.17.3           # via -r requirements.in
-drf-yasg==1.20.0          # via -r requirements.in
-idna==2.10                # via requests
-inflection==0.5.1         # via drf-yasg
-itypes==1.2.0             # via coreapi
-jinja2==2.11.2            # via coreschema
-markupsafe==1.1.1         # via jinja2
-packaging==20.7           # via drf-yasg
-pycparser==2.20           # via cffi
-pyjwt[crypto]==1.7.1      # via drf-jwt
-pyparsing==2.4.7          # via packaging
-pytz==2020.5              # via django
-redis==3.5.3              # via -r requirements.in
-requests==2.25.1          # via coreapi, django-healthchecks
-ruamel.yaml==0.16.12      # via drf-yasg
-sentry-sdk==0.19.5        # via -r requirements.in
-six==1.15.0               # via cryptography, django-healthchecks
-sqlparse==0.4.1           # via django
-uritemplate==3.0.1        # via coreapi, drf-yasg
-urllib3==1.26.2           # via requests, sentry-sdk
-whitenoise==5.2.0         # via -r requirements.in
+asgiref==3.3.1
+    # via django
+certifi==2020.12.5
+    # via
+    #   requests
+    #   sentry-sdk
+cffi==1.14.4
+    # via cryptography
+chardet==4.0.0
+    # via requests
+coreapi==2.3.3
+    # via drf-yasg
+coreschema==0.0.4
+    # via
+    #   coreapi
+    #   drf-yasg
+cryptography==3.3.1
+    # via pyjwt
+django-behaviors==0.5.1
+    # via -r requirements.in
+django-environ==0.4.5
+    # via -r requirements.in
+django-filter==2.4.0
+    # via -r requirements.in
+django-healthchecks==1.4.2
+    # via -r requirements.in
+django-split-settings==1.0.1
+    # via -r requirements.in
+django==3.1.5
+    # via
+    #   -r requirements.in
+    #   django-filter
+    #   django-healthchecks
+    #   djangorestframework
+    #   drf-jwt
+    #   drf-yasg
+djangorestframework==3.12.2
+    # via
+    #   -r requirements.in
+    #   drf-jwt
+    #   drf-yasg
+drf-jwt==1.17.3
+    # via -r requirements.in
+drf-yasg==1.20.0
+    # via -r requirements.in
+idna==2.10
+    # via requests
+inflection==0.5.1
+    # via drf-yasg
+itypes==1.2.0
+    # via coreapi
+jinja2==2.11.2
+    # via coreschema
+markupsafe==1.1.1
+    # via jinja2
+packaging==20.7
+    # via drf-yasg
+pycparser==2.20
+    # via cffi
+pyjwt[crypto]==1.7.1
+    # via drf-jwt
+pyparsing==2.4.7
+    # via packaging
+pytz==2020.5
+    # via django
+redis==3.5.3
+    # via -r requirements.in
+requests==2.25.1
+    # via
+    #   coreapi
+    #   django-healthchecks
+ruamel.yaml==0.16.12
+    # via drf-yasg
+sentry-sdk==0.19.5
+    # via -r requirements.in
+six==1.15.0
+    # via
+    #   cryptography
+    #   django-healthchecks
+sqlparse==0.4.1
+    # via django
+uritemplate==3.0.1
+    # via
+    #   coreapi
+    #   drf-yasg
+urllib3==1.26.3
+    # via
+    #   requests
+    #   sentry-sdk
+whitenoise==5.2.0
+    # via -r requirements.in
