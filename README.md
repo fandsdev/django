@@ -16,6 +16,7 @@
 * Custom [user model](https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#specifying-a-custom-user-model)
 * [Whitenoise](http://whitenoise.evans.io) for effortless static files hosting
 * Sentry. Set `SENTRY_DSN` env var if you need it.
+* cloudflare-ready with [django-ipware](https://github.com/un33k/django-ipware)
 
 ## Optional next steps
 You definetely should consider this steps after installation:
