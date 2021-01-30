@@ -1,9 +1,9 @@
 Django>3.1
 django-behaviors
 django-environ
+django-ipware
 whitenoise
 
-django-environ
 djangorestframework>=3.11.0
 drf-jwt
 drf-yasg
