@@ -17,7 +17,9 @@ jobs:
 
       - run:
           name: Bootstrap the project
-          command: ./test.sh
+          command: |
+            . venv/bin/activate
+            make
 
       - setup_remote_docker
       - run:
