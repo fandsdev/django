@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  docker: circleci/docker@1.5.0
 
 jobs:
   build:
@@ -21,15 +23,52 @@ jobs:
             . venv/bin/activate
             make
 
-      - setup_remote_docker
+      - persist_to_workspace:
+          root: .
+          paths:
+            - "venv"
+            - "testing"
+
+  coverage:
+    docker:
+      - image: circleci/python:3.8
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
       - run:
-          name: Build test docker image
+          name: Install Codeclimate helper
           command: |
-            cd testing/django
-            docker build -t f213/django .
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+      - run:
+          name: Run tests
+          command: |
+            . venv/bin/activate
+            ./cc-test-reporter before-build
+            make coverage
+
+      - run:
+          name: Upload coverage to codeclimate
+          command: |
+            cd testing/django/src && ../../../cc-test-reporter after-build -t coverage.py
 
 workflows:
   version: 2
   ci:
     jobs:
       - build
+      - coverage:
+          name: Measure test coverage
+          requires:
+            - build
+
+      - docker/publish:
+          name: Make sure docker image is buildable
+          requires:
+            - build
+          image: f213/django
+          path: testing/django
+          docker-context: testing/django
+          deploy: false
+          attach-at: .
