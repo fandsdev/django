@@ -8,3 +8,7 @@ bootstrap:
 	rm -Rf testing
 	mkdir -p testing
 	cd testing && cookiecutter --no-input ../
+
+coverage:
+	$(VENV) -m pip install pytest-cov
+	$(VENV) -m pytest --cov-report=xml --cov=app --cov=users --cov=a12n
