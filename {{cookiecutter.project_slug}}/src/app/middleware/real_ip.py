@@ -2,13 +2,12 @@ from ipware import get_client_ip
 
 
 def real_ip_middleware(get_response):
-    """Set REMOTE_ADDR for ip guessed by django-middleware.
+    """Set request.META['REMOTE_ADDR'] to ip guessed by django-middleware.
 
-    We need this to make sure all apps using remote ip are usable behind any kind of
-    reverse proxy.
+    We need this to make sure all apps using ip detection in django way stay usable behind
+    any kind of reverse proxy.
 
-    If this does not work as you exepcted, check out django-ipware docs to configure it
-    for your local needs: https://github.com/un33k/django-ipware
+    For custom proxy configuration check out django-ipware docs at https://github.com/un33k/django-ipware
     """
     def middleware(request):
         request.META['REMOTE_ADDR'] = get_client_ip(request)[0]
