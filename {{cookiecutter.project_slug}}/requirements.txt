@@ -20,7 +20,7 @@ coreschema==0.0.4
     # via
     #   coreapi
     #   drf-yasg
-cryptography==3.3.1
+cryptography==3.4.1
     # via pyjwt
 django-behaviors==0.5.1
     # via -r requirements.in
@@ -79,14 +79,18 @@ requests==2.25.1
     #   django-healthchecks
 ruamel.yaml==0.16.12
     # via drf-yasg
+semantic-version==2.8.5
+    # via setuptools-rust
 sentry-sdk==0.19.5
     # via -r requirements.in
+setuptools-rust==0.11.6
+    # via cryptography
 six==1.15.0
-    # via
-    #   cryptography
-    #   django-healthchecks
+    # via django-healthchecks
 sqlparse==0.4.1
     # via django
+toml==0.10.2
+    # via setuptools-rust
 uritemplate==3.0.1
     # via
     #   coreapi
