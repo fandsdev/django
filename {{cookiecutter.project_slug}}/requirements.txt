@@ -79,7 +79,7 @@ requests==2.25.1
     #   django-healthchecks
 ruamel.yaml==0.16.12
     # via drf-yasg
-sentry-sdk==0.20.1
+sentry-sdk==0.20.2
     # via -r requirements.in
 six==1.15.0
     # via django-healthchecks
