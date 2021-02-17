@@ -11,8 +11,6 @@ ENV STATIC_ROOT /static
 ENV _UWSGI_VERSION 2.0.18
 ENV DOCKERIZE_VERSION v0.6.1
 
-VOLUME /static
-
 EXPOSE 8000
 
 RUN echo deb http://deb.debian.org/debian buster contrib non-free > /etc/apt/sources.list.d/debian-contrib.list \
