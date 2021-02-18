@@ -1,3 +1,4 @@
+import contextlib
 import importlib
 
 from django.apps.config import AppConfig as BaseAppConfig
@@ -15,7 +16,5 @@ class AppConfig(BaseAppConfig):
     """
     def ready(self):
         """Import a module with handlers if it exists to avoid boilerplate code."""
-        try:
+        with contextlib.suppress(ModuleNotFoundError):
             importlib.import_module('.signals.handlers', self.module.__name__)
-        except ModuleNotFoundError:
-            pass
