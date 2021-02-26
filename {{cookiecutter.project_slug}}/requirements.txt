@@ -34,6 +34,8 @@ django-ipware==3.0.2
     # via -r requirements.in
 django-split-settings==1.0.1
     # via -r requirements.in
+django-storages==1.10.1
+    # via -r requirements.in
 django==3.1.7
     # via
     #   -r requirements.in

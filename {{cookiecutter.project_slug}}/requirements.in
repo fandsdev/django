@@ -3,15 +3,13 @@ django-behaviors
 django-environ
 django-ipware
 whitenoise
-
+django-storages==1.10.1
 djangorestframework>=3.11.0
 djangorestframework-camel-case
 drf-jwt
 drf-yasg
 django-filter
-
 django-split-settings
 django-healthchecks
-
 redis
 sentry-sdk
