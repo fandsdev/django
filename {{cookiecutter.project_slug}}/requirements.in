@@ -13,3 +13,4 @@ django-split-settings
 django-healthchecks
 redis
 sentry-sdk
+Pillow==8.0.1

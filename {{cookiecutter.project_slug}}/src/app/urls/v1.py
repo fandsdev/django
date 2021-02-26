@@ -12,7 +12,7 @@ schema_view = get_schema_view(
         contact=openapi.Contact(email='{{ cookiecutter.email }}'),
     ),
     public=True,
-    permission_classes=[permissions.IsAdminUser],
+    permission_classes=[permissions.IsAuthenticatedOrReadOnly],
 )
 
 
