@@ -1,8 +1,8 @@
 from django.urls import path
 
-from users.api import views
+from users.api import viewsets
 
 app_name = 'users'
 urlpatterns = [
-    path('me/', views.SelfView.as_view()),
+    path('me/', viewsets.SelfView.as_view()),
 ]

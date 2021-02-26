@@ -11,4 +11,4 @@ bootstrap:
 
 coverage:
 	$(VENV) -m pip install pytest-cov
-	$(VENV) -m pytest --cov-report=xml --cov=app --cov=users --cov=a12n
+	$(VENV) -m pytest --cov-report=xml --cov=app --cov=users --cov=a12n --cov=sepulkas
