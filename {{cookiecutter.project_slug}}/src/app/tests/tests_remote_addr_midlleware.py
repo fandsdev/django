@@ -25,4 +25,4 @@ def api():
 def test(api):
     got = api.get('/api/v1/users/me/')
 
-    assert got['remote_addr'] == '100.200.250.150'
+    assert got['remoteAddr'] == '100.200.250.150'

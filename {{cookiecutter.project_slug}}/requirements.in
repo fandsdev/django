@@ -5,6 +5,7 @@ django-ipware
 whitenoise
 
 djangorestframework>=3.11.0
+djangorestframework-camel-case
 drf-jwt
 drf-yasg
 django-filter

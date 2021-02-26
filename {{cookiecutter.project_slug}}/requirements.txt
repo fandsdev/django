@@ -42,6 +42,8 @@ django==3.1.7
     #   djangorestframework
     #   drf-jwt
     #   drf-yasg
+djangorestframework-camel-case==1.2.0
+    # via -r requirements.in
 djangorestframework==3.12.2
     # via
     #   -r requirements.in

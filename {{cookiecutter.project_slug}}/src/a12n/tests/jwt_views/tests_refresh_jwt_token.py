@@ -47,14 +47,14 @@ def test_refreshed_token_is_new_one(initial_token, refresh_token):
 def test_refresh_token_fails_with_incorrect_previous_token(refresh_token):
     got = refresh_token('some-invalid-previous-token', expected_status_code=400)
 
-    assert 'non_field_errors' in got
+    assert 'nonFieldErrors' in got
 
 
 def test_token_is_not_allowed_to_refresh_if_expired(initial_token, refresh_token):
     with freeze_time('2049-02-05'):
         got = refresh_token(initial_token, expected_status_code=400)
 
-    assert 'expired' in got['non_field_errors'][0]
+    assert 'expired' in got['nonFieldErrors'][0]
 
 
 def test_received_token_works(anon, refresh_token, initial_token):

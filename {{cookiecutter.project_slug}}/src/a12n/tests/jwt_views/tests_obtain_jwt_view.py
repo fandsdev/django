@@ -34,7 +34,7 @@ def test_getting_token_is_token(api, get_token):
 def test_getting_token_with_incorrect_password(api, get_token):
     got = get_token(api.user.username, 'z3r0c00l', expected_status_code=400)
 
-    assert 'non_field_errors' in got
+    assert 'nonFieldErrors' in got
 
 
 @pytest.mark.parametrize(('extract_token', 'status_code'), [
