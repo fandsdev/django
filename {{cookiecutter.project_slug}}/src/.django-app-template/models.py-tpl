@@ -1,3 +1,5 @@
-from app.models import models
+from django.db import models
+
+from app.models import DefaultModel
 
 # Create your models here.

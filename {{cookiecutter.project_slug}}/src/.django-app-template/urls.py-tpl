@@ -1,3 +1,12 @@
-# from django.urls import path
+from rest_framework.routers import SimpleRouter
 
-app_name = '{{ app_name }}'
+from django.urls import include
+from django.urls import path
+
+from {{ app_name }}.api import viewsets
+
+router = SimpleRouter()
+
+urlpatterns = [
+    path('', include(router.urls)),
+]
