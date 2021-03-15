@@ -8,5 +8,5 @@ from sepulkas.models import Sepulka
 class SepulkaAdmin(ModelAdmin):
     fields = [
         'title',
-        'image',
+        'cover_image',
     ]

@@ -8,7 +8,7 @@ class SepulkaCreateSerializer(serializers.ModelSerializer):
         model = Sepulka
         fields = [
             'title',
-            'image',
+            'cover_image',
         ]
 
 
@@ -17,7 +17,7 @@ class SepulkaUpdateSerializer(serializers.ModelSerializer):
         model = Sepulka
         fields = [
             'title',
-            'image',
+            'cover_image',
         ]
 
 
@@ -27,5 +27,5 @@ class SepulkaSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'title',
-            'image',
+            'cover_image',
         ]

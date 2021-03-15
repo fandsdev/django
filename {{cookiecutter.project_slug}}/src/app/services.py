@@ -11,5 +11,5 @@ class BaseService:
         for validator in validators:
             validator()
 
-    def action(self):
+    def act(self):
         return

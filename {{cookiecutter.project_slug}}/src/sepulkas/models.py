@@ -5,7 +5,7 @@ from app.models import DefaultModel
 
 class Sepulka(DefaultModel):
     title = models.CharField(max_length=255)
-    image = models.ImageField()
+    cover_image = models.ImageField()
 
     class Meta:
         ordering = ['id']

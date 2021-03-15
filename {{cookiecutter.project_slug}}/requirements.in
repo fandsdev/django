@@ -3,7 +3,7 @@ django-behaviors
 django-environ
 django-ipware
 whitenoise
-django-storages==1.10.1
+django-storages
 djangorestframework>=3.11.0
 djangorestframework-camel-case
 drf-jwt
@@ -13,4 +13,4 @@ django-split-settings
 django-healthchecks
 redis
 sentry-sdk
-Pillow==8.0.1
+Pillow

@@ -41,6 +41,7 @@ django==3.1.7
     #   -r requirements.in
     #   django-filter
     #   django-healthchecks
+    #   django-storages
     #   djangorestframework
     #   drf-jwt
     #   drf-yasg
@@ -67,6 +68,8 @@ markupsafe==1.1.1
     # via jinja2
 packaging==20.7
     # via drf-yasg
+pillow==8.1.2
+    # via -r requirements.in
 pycparser==2.20
     # via cffi
 pyjwt[crypto]==1.7.1
@@ -81,6 +84,8 @@ requests==2.25.1
     # via
     #   coreapi
     #   django-healthchecks
+ruamel.yaml.clib==0.2.2
+    # via ruamel.yaml
 ruamel.yaml==0.16.12
     # via drf-yasg
 sentry-sdk==0.20.3
