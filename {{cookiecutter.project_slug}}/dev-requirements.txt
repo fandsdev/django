@@ -94,7 +94,7 @@ packaging==20.7
     # via
     #   -c requirements.txt
     #   pytest
-parso==0.8.1
+parso==0.8.2
     # via jedi
 pexpect==4.8.0
     # via ipython
