@@ -13,6 +13,8 @@ attrs==20.3.0
     #   pytest
 backcall==0.2.0
     # via ipython
+backports.entry-points-selectable==1.0.2
+    # via pytest-randomly
 decorator==4.4.2
     # via ipython
 eradicate==2.0.0
@@ -130,7 +132,7 @@ pytest-freezegun==0.4.2
     # via -r dev-requirements.in
 pytest-mock==3.5.1
     # via -r dev-requirements.in
-pytest-randomly==3.5.0
+pytest-randomly==3.6.0
     # via -r dev-requirements.in
 pytest==6.2.2
     # via
