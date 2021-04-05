@@ -134,7 +134,7 @@ pytest-mock==3.5.1
     # via -r dev-requirements.in
 pytest-randomly==3.6.0
     # via -r dev-requirements.in
-pytest==6.2.2
+pytest==6.2.3
     # via
     #   pytest-deadfixtures
     #   pytest-django
