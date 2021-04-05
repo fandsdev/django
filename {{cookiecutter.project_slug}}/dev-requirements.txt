@@ -15,7 +15,7 @@ backcall==0.2.0
     # via ipython
 backports.entry-points-selectable==1.0.2
     # via pytest-randomly
-decorator==4.4.2
+decorator==5.0.5
     # via ipython
 eradicate==2.0.0
     # via flake8-eradicate
