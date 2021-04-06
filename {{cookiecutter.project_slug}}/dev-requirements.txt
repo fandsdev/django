@@ -19,7 +19,7 @@ decorator==5.0.5
     # via ipython
 eradicate==2.0.0
     # via flake8-eradicate
-faker==7.0.1
+faker==8.0.0
     # via mixer
 flake8-absolute-import==1.0
     # via -r dev-requirements.in
