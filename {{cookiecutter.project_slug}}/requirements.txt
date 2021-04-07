@@ -4,7 +4,7 @@
 #
 #    pip-compile requirements.in
 #
-asgiref==3.3.2
+asgiref==3.3.4
     # via django
 certifi==2020.12.5
     # via
