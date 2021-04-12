@@ -13,8 +13,6 @@ attrs==20.3.0
     #   pytest
 backcall==0.2.0
     # via ipython
-backports.entry-points-selectable==1.0.2
-    # via pytest-randomly
 decorator==5.0.6
     # via ipython
 eradicate==2.0.0
@@ -76,6 +74,8 @@ freezegun==1.1.0
     # via
     #   -r dev-requirements.in
     #   pytest-freezegun
+importlib-metadata==3.10.0
+    # via pytest-randomly
 iniconfig==1.1.1
     # via pytest
 ipython-genutils==0.2.0
@@ -132,7 +132,7 @@ pytest-freezegun==0.4.2
     # via -r dev-requirements.in
 pytest-mock==3.5.1
     # via -r dev-requirements.in
-pytest-randomly==3.6.0
+pytest-randomly==3.7.0
     # via -r dev-requirements.in
 pytest==6.2.3
     # via
@@ -161,6 +161,8 @@ traitlets==5.0.5
     # via ipython
 wcwidth==0.2.5
     # via prompt-toolkit
+zipp==3.4.1
+    # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
