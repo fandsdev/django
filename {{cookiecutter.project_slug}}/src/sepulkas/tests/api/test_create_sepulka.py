@@ -13,7 +13,7 @@ def test_create_sepulka_instance(as_user, uploaded_image):
 
     sepulka = Sepulka.objects.last()
     assert sepulka.title == 'The Sepulka'
-    assert sepulka.cover_image.name.endswith('.jpg')
+    assert sepulka.cover_image.name.endswith('.gif')
 
 
 def test_create_sepulka_response(as_user, uploaded_image):
@@ -23,4 +23,4 @@ def test_create_sepulka_response(as_user, uploaded_image):
     }, format='multipart')
 
     assert got['title'] == 'The Sepulka'
-    assert got['coverImage'].endswith('.jpg')
+    assert got['coverImage'].endswith('.gif')

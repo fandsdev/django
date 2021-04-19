@@ -11,7 +11,7 @@ def test_partial_update_sepulka_instance(as_user, sepulka, new_cover_image):
 
     sepulka.refresh_from_db()
     assert sepulka.title == 'The New Sepulka'
-    assert sepulka.cover_image.name.endswith('.jpg')
+    assert sepulka.cover_image.name.endswith('.gif')
 
 
 def test_partial_update_sepulka_response(as_user, sepulka, new_cover_image):
@@ -21,4 +21,4 @@ def test_partial_update_sepulka_response(as_user, sepulka, new_cover_image):
     }, format='multipart')
 
     assert got['title'] == 'The New Sepulka'
-    assert got['coverImage'].endswith('.jpg')
+    assert got['coverImage'].endswith('.gif')
