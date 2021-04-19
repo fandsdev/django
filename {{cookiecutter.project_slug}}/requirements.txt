@@ -4,7 +4,7 @@
 #
 #    pip-compile requirements.in
 #
-asgiref==3.3.1
+asgiref==3.3.4
     # via django
 certifi==2020.12.5
     # via
@@ -20,7 +20,7 @@ coreschema==0.0.4
     # via
     #   coreapi
     #   drf-yasg
-cryptography==3.4.6
+cryptography==3.4.7
     # via pyjwt
 django-behaviors==0.5.1
     # via -r requirements.in
@@ -47,12 +47,12 @@ django==3.1.7
     #   drf-yasg
 djangorestframework-camel-case==1.2.0
     # via -r requirements.in
-djangorestframework==3.12.2
+djangorestframework==3.12.4
     # via
     #   -r requirements.in
     #   drf-jwt
     #   drf-yasg
-drf-jwt==1.17.3
+drf-jwt==1.19.0
     # via -r requirements.in
 drf-yasg==1.20.0
     # via -r requirements.in
@@ -88,7 +88,7 @@ ruamel.yaml.clib==0.2.2
     # via ruamel.yaml
 ruamel.yaml==0.16.12
     # via drf-yasg
-sentry-sdk==0.20.3
+sentry-sdk==1.0.0
     # via -r requirements.in
 six==1.15.0
     # via django-healthchecks
@@ -98,7 +98,7 @@ uritemplate==3.0.1
     # via
     #   coreapi
     #   drf-yasg
-urllib3==1.26.3
+urllib3==1.26.4
     # via
     #   requests
     #   sentry-sdk
