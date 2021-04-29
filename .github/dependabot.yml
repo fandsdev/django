@@ -1,0 +1,17 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/{{cookiecutter.project_slug}}"
+  schedule:
+    interval: daily
+    time: "02:00"
+  open-pull-requests-limit: 10
+  allow:
+  - dependency-type: direct
+  - dependency-type: indirect
+  ignore:
+  - dependency-name: flake8-pie
+    versions:
+    - 0.7.1
+    - 0.7.2
+    - 0.7.4
