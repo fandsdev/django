@@ -6,7 +6,7 @@
 #
 astor==0.8.1
     # via flake8-simplify
-attrs==20.3.0
+attrs==21.1.0
     # via
     #   flake8-bugbear
     #   flake8-eradicate
