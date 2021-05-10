@@ -27,7 +27,7 @@ jobs:
           root: .
           paths:
             - "venv"
-            - "testing"
+            - "testproject"
 
   coverage:
     docker:
@@ -51,7 +51,7 @@ jobs:
       - run:
           name: Upload coverage to codeclimate
           command: |
-            cd testing/django/src && ../../../cc-test-reporter after-build -t coverage.py
+            cd testproject/django/src && ../../../cc-test-reporter after-build -t coverage.py
 
 workflows:
   version: 2
@@ -68,7 +68,7 @@ workflows:
           requires:
             - build
           image: f213/django
-          path: testing/django
-          docker-context: testing/django
+          path: testproject/django
+          docker-context: testproject/django
           deploy: false
           attach-at: .

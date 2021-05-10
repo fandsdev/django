@@ -12,7 +12,7 @@ schema_view = get_schema_view(
         contact=openapi.Contact(email='{{ cookiecutter.email }}'),
     ),
     public=True,
-    permission_classes=[permissions.IsAdminUser],
+    permission_classes=[permissions.IsAuthenticatedOrReadOnly],
 )
 
 
@@ -20,6 +20,7 @@ app_name = 'api_v1'
 urlpatterns = [
     path('auth/', include('a12n.urls')),
     path('users/', include('users.urls')),
+    path('sepulkas/', include('sepulkas.urls')),
     path('docs/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('swagger<str:format>', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('healthchecks/', include('django_healthchecks.urls')),

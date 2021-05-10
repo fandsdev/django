@@ -6,7 +6,7 @@ pytestmark = [
 ]
 
 
-def test(api):
-    got = api.get('/api/v1/healthchecks/db/')
+def test(as_anon):
+    got = as_anon.get('/api/v1/healthchecks/db/')
 
     assert got == 'true'

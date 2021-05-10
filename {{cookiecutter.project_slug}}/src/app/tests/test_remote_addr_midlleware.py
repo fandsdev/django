@@ -2,7 +2,7 @@ import pytest
 
 from django.apps import apps
 
-from app.test.api_client import DRFClient
+from app.testing.api import ApiClient
 
 pytestmark = [pytest.mark.django_db]
 
@@ -18,11 +18,11 @@ def _require_users_app_installed(settings):
 
 
 @pytest.fixture
-def api():
-    return DRFClient(HTTP_X_FORWARDED_FOR='100.200.250.150, 10.0.0.1')
+def api(user):
+    return ApiClient(user=user, HTTP_X_FORWARDED_FOR='100.200.250.150, 10.0.0.1')
 
 
-def test(api):
+def test_remote_addr(api):
     got = api.get('/api/v1/users/me/')
 
-    assert got['remote_addr'] == '100.200.250.150'
+    assert got['remoteAddr'] == '100.200.250.150'

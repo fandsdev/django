@@ -4,6 +4,7 @@ INSTALLED_APPS = [
     'app',
     'a12n',
     'users',
+    'sepulkas',
 
     'rest_framework',
     'rest_framework.authtoken',

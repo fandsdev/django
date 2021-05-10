@@ -11,19 +11,19 @@ pytestmark = [
 
 
 @pytest.fixture
-def refresh_token(api):
-    def _refresh_token(token, expected_status_code=201):
-        return api.post('/api/v1/auth/token/refresh/', {
+def refresh_token(as_user):
+    def _refresh_token(token, expected_status=201):
+        return as_user.post('/api/v1/auth/token/refresh/', {
             'token': token,
-        }, format='json', expected_status_code=expected_status_code)
+        }, format='json', expected_status=expected_status)
 
     return _refresh_token
 
 
 @pytest.fixture
-def initial_token(api):
+def initial_token(as_user):
     with freeze_time('2049-01-03'):
-        return get_jwt(api.user)
+        return get_jwt(as_user.user)
 
 
 def test_refresh_token_ok(initial_token, refresh_token):
@@ -45,23 +45,23 @@ def test_refreshed_token_is_new_one(initial_token, refresh_token):
 
 
 def test_refresh_token_fails_with_incorrect_previous_token(refresh_token):
-    got = refresh_token('some-invalid-previous-token', expected_status_code=400)
+    got = refresh_token('some-invalid-previous-token', expected_status=400)
 
-    assert 'non_field_errors' in got
+    assert 'nonFieldErrors' in got
 
 
 def test_token_is_not_allowed_to_refresh_if_expired(initial_token, refresh_token):
     with freeze_time('2049-02-05'):
-        got = refresh_token(initial_token, expected_status_code=400)
+        got = refresh_token(initial_token, expected_status=400)
 
-    assert 'expired' in got['non_field_errors'][0]
+    assert 'expired' in got['nonFieldErrors'][0]
 
 
-def test_received_token_works(anon, refresh_token, initial_token):
+def test_received_token_works(as_anon, refresh_token, initial_token):
     token = refresh_token(initial_token)['token']
 
-    anon.credentials(HTTP_AUTHORIZATION=f'Bearer {token}')
+    as_anon.credentials(HTTP_AUTHORIZATION=f'Bearer {token}')
 
-    got = anon.get('/api/v1/users/me/')
+    got = as_anon.get('/api/v1/users/me/')
 
     assert got is not None
