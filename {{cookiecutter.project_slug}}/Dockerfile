@@ -35,7 +35,6 @@ RUN wget -O uwsgi-${_UWSGI_VERSION}.tar.gz https://github.com/unbit/uwsgi/archiv
 ADD requirements.txt /
 RUN pip install --no-cache-dir -r /requirements.txt
 
-VOLUME /src
 WORKDIR /src
 ADD src /src
 
