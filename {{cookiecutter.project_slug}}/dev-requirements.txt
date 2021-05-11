@@ -70,7 +70,7 @@ flake8-variables-names==0.0.4
     # via -r dev-requirements.in
 flake8-walrus==1.1.0
     # via -r dev-requirements.in
-flake8==3.9.1
+flake8==3.9.2
     # via
     #   flake8-absolute-import
     #   flake8-bugbear
