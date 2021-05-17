@@ -16,7 +16,7 @@ backcall==0.2.0
     # via ipython
 cognitive-complexity==1.2.0
     # via flake8-cognitive-complexity
-decorator==5.0.7
+decorator==5.0.9
     # via ipython
 eradicate==2.0.0
     # via flake8-eradicate
