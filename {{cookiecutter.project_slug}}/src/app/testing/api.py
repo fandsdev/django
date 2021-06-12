@@ -56,12 +56,16 @@ class ApiClient(APIClient):
         return content
 
     def _decode(self, response):
-        if not len(response.content):  # HTTP 204 No content
-            return
-
         content = response.content.decode('utf-8', errors='ignore')
-        content_type = response._headers['content-type']
-        if 'application/json' in content_type[1]:
+
+        if self.is_json(response):
             return json.loads(content)
         else:
             return content
+
+    @staticmethod
+    def is_json(response) -> bool:
+        if response.has_header('content-type'):
+            return 'json' in response.get('content-type')
+
+        return False

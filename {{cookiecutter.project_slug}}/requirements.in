@@ -1,10 +1,10 @@
-Django<3.2
+Django<3.3
 django-behaviors
 django-environ
 django-ipware
 whitenoise
 django-storages
-djangorestframework>=3.11.0
+djangorestframework
 djangorestframework-camel-case
 drf-jwt
 drf-yasg
