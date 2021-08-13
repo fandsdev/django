@@ -2,7 +2,7 @@ version: 2.1
 
 defaults: &defaults
   docker:
-    - image: circleci/python:3.7-stretch
+    - image: cimg/python:3.9.6
       environment:
         - DATABASE_URL=sqlite:////tmp/prj.sqlite
         - CELERY_BACKEND=redis://redis:6379
