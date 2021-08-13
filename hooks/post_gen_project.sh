@@ -20,10 +20,11 @@ echo Collecting static assets...
 echo Running initial migrations...
 ./manage.py migrate
 
+cd ../
 echo Running flake8..
-flake8
+make lint
 
 echo Running pytest...
-pytest -x
+make test
 
 echo Done
