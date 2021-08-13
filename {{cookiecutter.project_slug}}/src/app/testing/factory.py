@@ -1,6 +1,6 @@
 from functools import partial
 
-from mixer.backend.django import mixer
+from app.testing.mixer import mixer
 
 
 def register(method):
