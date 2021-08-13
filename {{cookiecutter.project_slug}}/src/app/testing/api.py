@@ -12,7 +12,7 @@ class ApiClient(APIClient):
 
         if user:
             self.user = user
-            self.password = ''.join([random.choice(string.hexdigits) for _ in range(0, 6)])
+            self.password = ''.join([random.choice(string.hexdigits) for _ in range(6)])
             self.user.set_password(self.password)
             self.user.save()
 
