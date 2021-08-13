@@ -1,6 +1,6 @@
 # Django project
 
-This project is bootstrapped using [f213/django](http://github.com/f213/django) template. [Drop a line](https://github.com/f213/django/issues) if you have some issues.
+This project is bootstrapped using [fandsdev/django](http://github.com/fandsdev/django) template. [Drop a line](https://github.com/fandsdev/django/issues) if you have some issues.
 
 ## Project structure
 
@@ -21,18 +21,24 @@ Install requirements:
 ```bash
 $ pip install --upgrade pip pip-tools
 $ make
-$ cd src && cp app/.env.ci app/.env  # default environment variables
 ```
 
+Run the server:
+
 ```bash
+$ cd src && cp app/.env.ci app/.env  # default environment variables
 $ ./manage.py migrate
 $ ./manage.py createsuperuser
+$ ./manage.py runserver
 ```
 
 Testing:
 ```bash
+# run lint
+$ make lint
+
 # run unit tests
-$ pytest
+$ make test
 ```
 
 Development servers:
