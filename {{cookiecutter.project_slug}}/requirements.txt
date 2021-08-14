@@ -32,7 +32,7 @@ django-healthchecks==1.4.2
     # via -r requirements.in
 django-ipware==3.0.7
     # via -r requirements.in
-django-split-settings==1.0.1
+django-split-settings==1.1.0
     # via -r requirements.in
 django-storages==1.11.1
     # via -r requirements.in
