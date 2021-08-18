@@ -10,6 +10,6 @@ services:
     command: --autovacuum=off --fsync=off --synchronous_commit=off --full_page_writes=off --work_mem=12MB --max-connections=10 --max_wal_senders=0
 
   redis:
-    image: redis:5-alpine
+    image: redis:6-alpine
     ports:
       - 6379:6379
