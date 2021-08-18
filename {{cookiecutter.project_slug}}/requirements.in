@@ -1,4 +1,5 @@
 Django<3.3
+bcrypt
 django-behaviors
 django-environ
 django-ipware
