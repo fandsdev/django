@@ -36,3 +36,7 @@ $ cookiecutter gh:f213/django
 ### I have got an error «'random_ascii_string' is undefined»
 
 You should upgrade cookiecutter to the latest version: `pip install --upgrade cookiecutter`
+
+### I wanna hack this!
+
+Thank you so much! Check out our [CI pipeline](https://github.com/fandsdev/django/blob/master/.circleci/config.yml#L10) and pick any desired [ishttps://github.com/fandsdev/django/issues](url)
