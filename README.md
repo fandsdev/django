@@ -39,4 +39,4 @@ You should upgrade cookiecutter to the latest version: `pip install --upgrade co
 
 ### I wanna hack this!
 
-Thank you so much! Check out our [CI pipeline](https://github.com/fandsdev/django/blob/master/.circleci/config.yml#L10) and pick any desired [ishttps://github.com/fandsdev/django/issues](url)
+Thank you so much! Check out our [CI pipeline](https://github.com/fandsdev/django/blob/master/.circleci/config.yml#L10) and pick any free [issue](https://github.com/fandsdev/django/issues).
