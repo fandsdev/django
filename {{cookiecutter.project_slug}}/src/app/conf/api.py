@@ -33,6 +33,7 @@ REST_FRAMEWORK = {
     },
 }
 
+# Adding session auth and browsable API at the developer machine
 if env('DEBUG', cast=bool, default=False):
     REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'].append('rest_framework.authentication.SessionAuthentication')
     REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'].append('djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer')
