@@ -25,8 +25,7 @@ class CycleFixtureFactory:
         self.count = count
 
     def __getattr__(self, name):
-        if hasattr(self.factory, name):
-            return lambda *args, **kwargs: [getattr(self.factory, name)(*args, **kwargs) for _ in range(self.count)]
+        return lambda *args, **kwargs: [getattr(self.factory, name)(*args, **kwargs) for _ in range(self.count)]
 
 
 class FixtureFactory:
