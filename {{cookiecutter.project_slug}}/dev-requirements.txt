@@ -94,7 +94,7 @@ freezegun==1.1.0
     # via
     #   -r dev-requirements.in
     #   pytest-freezegun
-importlib-metadata==4.7.1
+importlib-metadata==4.8.0
     # via pytest-randomly
 iniconfig==1.1.1
     # via pytest
