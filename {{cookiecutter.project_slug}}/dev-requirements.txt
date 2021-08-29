@@ -184,7 +184,7 @@ traitlets==5.0.5
     # via
     #   ipython
     #   matplotlib-inline
-typing-extensions==3.10.0.0
+typing-extensions==3.10.0.1
     # via flake8-pie
 wcwidth==0.2.5
     # via prompt-toolkit
