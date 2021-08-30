@@ -24,7 +24,7 @@ cryptography==3.4.8
     # via pyjwt
 django-behaviors==0.5.1
     # via -r requirements.in
-django-environ==0.4.5
+django-environ==0.5.0
     # via -r requirements.in
 django-filter==2.4.0
     # via -r requirements.in
