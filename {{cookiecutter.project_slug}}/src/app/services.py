@@ -1,7 +1,7 @@
 class BaseService:
     def __call__(self):
         self.validate()
-        return self.action()
+        return self.act()
 
     def get_validators(self):
         return []
