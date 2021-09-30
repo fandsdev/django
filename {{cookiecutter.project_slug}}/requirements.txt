@@ -20,7 +20,7 @@ coreschema==0.0.4
     # via
     #   coreapi
     #   drf-yasg
-cryptography==3.4.8
+cryptography==35.0.0
     # via pyjwt
 django-behaviors==0.5.1
     # via -r requirements.in
