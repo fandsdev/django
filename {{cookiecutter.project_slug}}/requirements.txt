@@ -76,7 +76,7 @@ pyjwt[crypto]==2.1.0
     # via drf-jwt
 pyparsing==2.4.7
     # via packaging
-pytz==2021.1
+pytz==2021.3
     # via django
 redis==3.5.3
     # via -r requirements.in
