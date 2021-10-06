@@ -137,7 +137,7 @@ pycodestyle==2.7.0
     #   flake8
     #   flake8-print
     #   flake8-todo
-pyflakes==2.3.1
+pyflakes==2.4.0
     # via flake8
 pygments==2.10.0
     # via ipython
