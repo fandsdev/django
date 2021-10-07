@@ -57,8 +57,6 @@ class DefaultQuerySet(models.QuerySet):
 
 
 class DefaultManager(models.Manager):
-    relations_to_assign_after_creation = []
-
     def __getattr__(self, name):
         if hasattr(self._queryset_class, 'Q') and hasattr(self._queryset_class.Q, name):
             return getattr(self.get_queryset(), name)
