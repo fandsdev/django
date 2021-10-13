@@ -1,4 +1,4 @@
-FROM python:3.9.7-slim-buster
+FROM python:3.9.7-slim-bullseye
 LABEL maintainer="fedor@borshev.com"
 
 LABEL com.datadoghq.ad.logs='[{"source": "uwsgi", "service": "django"}]'
