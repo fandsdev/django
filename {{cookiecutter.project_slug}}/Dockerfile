@@ -10,7 +10,7 @@ ENV STATIC_ROOT /static
 
 ENV _UWSGI_VERSION 2.0.19
 
-RUN echo deb http://deb.debian.org/debian buster contrib non-free > /etc/apt/sources.list.d/debian-contrib.list \
+RUN echo deb http://deb.debian.org/debian bullseye contrib non-free > /etc/apt/sources.list.d/debian-contrib.list \
   && apt update \
   && apt --no-install-recommends install -y gettext locales-all wget \
   imagemagick tzdata wait-for-it build-essential \
