@@ -68,7 +68,7 @@ markupsafe==2.0.1
     # via jinja2
 packaging==21.0
     # via drf-yasg
-pillow==8.3.2
+pillow==8.4.0
     # via -r requirements.in
 pycparser==2.20
     # via cffi
