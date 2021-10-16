@@ -72,7 +72,7 @@ pillow==8.4.0
     # via -r requirements.in
 pycparser==2.20
     # via cffi
-pyjwt[crypto]==2.2.0
+pyjwt[crypto]==2.3.0
     # via drf-jwt
 pyparsing==2.4.7
     # via packaging
