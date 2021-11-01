@@ -14,4 +14,5 @@ lint:
 	flake8 src
 
 test:
+	cd src && pytest --dead-fixtures
 	cd src && pytest -x
