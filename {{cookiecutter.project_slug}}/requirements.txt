@@ -70,7 +70,7 @@ packaging==21.2
     # via drf-yasg
 pillow==8.4.0
     # via -r requirements.in
-pycparser==2.20
+pycparser==2.21
     # via cffi
 pyjwt[crypto]==2.3.0
     # via drf-jwt
