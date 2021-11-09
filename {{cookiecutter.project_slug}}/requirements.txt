@@ -62,7 +62,7 @@ inflection==0.5.1
     # via drf-yasg
 itypes==1.2.0
     # via coreapi
-jinja2==3.0.2
+jinja2==3.0.3
     # via coreschema
 markupsafe==2.0.1
     # via jinja2
