@@ -104,7 +104,7 @@ ipython==7.29.0
     # via -r dev-requirements.in
 isort==5.10.1
     # via flake8-isort
-jedi==0.18.0
+jedi==0.18.1
     # via
     #   -r dev-requirements.in
     #   ipython
