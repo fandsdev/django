@@ -21,6 +21,7 @@ flake8-commas
 flake8-django
 flake8-eradicate
 flake8-isort>=4.0.0
+flake8-fine-pytest
 flake8-fixme
 flake8-mock
 flake8-multiline-containers
