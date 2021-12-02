@@ -147,7 +147,7 @@ pyparsing==2.4.7
     #   packaging
 pytest-deadfixtures==2.2.1
     # via -r dev-requirements.in
-pytest-django==4.5.0
+pytest-django==4.5.1
     # via -r dev-requirements.in
 pytest-env==0.6.2
     # via -r dev-requirements.in
