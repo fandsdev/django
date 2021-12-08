@@ -1,7 +1,14 @@
 import json
 import pytest
 
+from axes.models import AccessAttempt
+
 pytestmark = pytest.mark.django_db
+
+
+@pytest.fixture(autouse=True)
+def _enable_django_axes(settings):
+    settings.AXES_ENABLED = True
 
 
 @pytest.fixture
@@ -35,6 +42,12 @@ def test_getting_token_with_incorrect_password(as_user, get_token):
     got = get_token(as_user.user.username, 'z3r0c00l', expected_status=400)
 
     assert 'nonFieldErrors' in got
+
+
+def test_getting_token_with_incorrect_password_creates_access_attempt_log_entry(as_user, get_token):
+    get_token(as_user.user.username, 'z3r0c00l', expected_status=400)
+
+    assert AccessAttempt.objects.count() == 1
 
 
 @pytest.mark.parametrize(('extract_token', 'status_code'), [

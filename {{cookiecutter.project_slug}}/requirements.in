@@ -3,6 +3,7 @@ bcrypt
 django-behaviors
 django-environ
 django-ipware
+django-axes
 whitenoise
 django-storages
 djangorestframework

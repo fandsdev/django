@@ -26,6 +26,8 @@ coreschema==0.0.4
     #   drf-yasg
 cryptography==3.4.8
     # via pyjwt
+django-axes==5.27.0
+    # via -r requirements.in
 django-behaviors==0.5.1
     # via -r requirements.in
 django-environ==0.8.1
@@ -35,7 +37,9 @@ django-filter==2.4.0
 django-healthchecks==1.4.2
     # via -r requirements.in
 django-ipware==3.0.7
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   django-axes
 django-split-settings==1.1.0
     # via -r requirements.in
 django-storages==1.12.3
@@ -43,6 +47,7 @@ django-storages==1.12.3
 django==3.2.10
     # via
     #   -r requirements.in
+    #   django-axes
     #   django-filter
     #   django-healthchecks
     #   django-storages
