@@ -6,12 +6,16 @@
 #
 asgiref==3.4.1
     # via django
+bcrypt==3.2.0
+    # via -r requirements.in
 certifi==2021.10.8
     # via
     #   requests
     #   sentry-sdk
 cffi==1.15.0
-    # via cryptography
+    # via
+    #   bcrypt
+    #   cryptography
 charset-normalizer==2.0.9
     # via requests
 coreapi==2.3.3
@@ -91,7 +95,9 @@ ruamel.yaml==0.17.17
 sentry-sdk==1.5.0
     # via -r requirements.in
 six==1.16.0
-    # via django-healthchecks
+    # via
+    #   bcrypt
+    #   django-healthchecks
 sqlparse==0.4.2
     # via django
 uritemplate==3.0.1
@@ -104,3 +110,6 @@ urllib3==1.26.7
     #   sentry-sdk
 whitenoise==5.3.0
     # via -r requirements.in
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools
