@@ -4,7 +4,7 @@ from typing import Callable
 from app.testing.mixer import mixer
 
 
-def register(method):
+def register(method: Callable) -> Callable:
     name = method.__name__
     FixtureRegistry.METHODS[name] = method
     return method
@@ -25,7 +25,7 @@ class CycleFixtureFactory:
         self.factory = factory
         self.count = count
 
-    def __getattr__(self, name):
+    def __getattr__(self, name: str) -> Callable:
         return lambda *args, **kwargs: [getattr(self.factory, name)(*args, **kwargs) for _ in range(self.count)]
 
 
@@ -38,7 +38,7 @@ class FixtureFactory:
         method = self.registry.get(name)
         return partial(method, self)
 
-    def cycle(self, count) -> CycleFixtureFactory:
+    def cycle(self, count: int) -> CycleFixtureFactory:
         """
         Run given method X times:
             factory.cycle(5).order()  # gives 5 orders

@@ -1,4 +1,6 @@
 import json
+from typing import Optional
+from users.models import User
 import random
 import string
 
@@ -7,7 +9,7 @@ from rest_framework.test import APIClient
 
 
 class ApiClient(APIClient):
-    def __init__(self, user=None, *args, **kwargs):
+    def __init__(self, user: Optional[User] = None, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
         if user:

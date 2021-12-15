@@ -4,6 +4,7 @@ from rest_framework import mixins
 from rest_framework import status
 from rest_framework.mixins import CreateModelMixin
 from rest_framework.mixins import UpdateModelMixin
+from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.serializers import BaseSerializer
 from rest_framework.viewsets import GenericViewSet
@@ -21,11 +22,14 @@ class GenericAPIViewProtocol(Protocol):
     def get_serializer_context(self) -> dict:
         ...
 
+    def perform_create(self, serializer: Type[BaseSerializer]):
+        ...
+
 
 class DefaultCreateModelMixin(CreateModelMixin):
     """Return detail-serialized created instance"""
 
-    def create(self, request, *args, **kwargs):
+    def create(self, request: Request) -> Response:
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         instance = self.perform_create(serializer)  # No getting created instance in original DRF
