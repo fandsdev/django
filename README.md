@@ -7,12 +7,15 @@
 
 ## What is in the box
 
+* Python 3.9+
 * API-only django (checkout [this post](https://t.me/pmdaily/257) in Russian) based on Django REST Framework with JWT support
+* mypy with [django-stubs](http://github.com/typeddjango/django-stubs) and
+  [djangorestframework-stubs](https://github.com/typeddjango/djangorestframework-stubs)
 * [drf-yasg](https://github.com/axnsan12/drf-yasg#drf-yasg---yet-another-swagger-generator) for API Schema generation
 * [pip-tools](https://github.com/jazzband/pip-tools) with separate development-time dependencies
 * Starter Circle CI configuration
 * pytest with usefull stuff like freezegun, pytest-mock and super convinient [DRF test client](https://github.com/f213/django/blob/master/%7B%7Bcookiecutter.project_slug%7D%7D/src/app/tests/tests_health.py#L9)
-* flake8 with ton of plugins (contact me if you know more)
+* flake8 with a ton of plugins (contact me if you know more)
 * Custom [user model](https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#specifying-a-custom-user-model)
 * [django-axes](https://github.com/jazzband/django-axes) for additional security
 * [Whitenoise](http://whitenoise.evans.io) for effortless static files hosting

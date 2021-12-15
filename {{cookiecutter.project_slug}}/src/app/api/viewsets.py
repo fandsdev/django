@@ -1,11 +1,25 @@
+from typing import Optional, Protocol, Type
+
 from rest_framework import mixins
 from rest_framework import status
 from rest_framework.mixins import CreateModelMixin
 from rest_framework.mixins import UpdateModelMixin
 from rest_framework.response import Response
+from rest_framework.serializers import BaseSerializer
 from rest_framework.viewsets import GenericViewSet
 
 __all__ = ['DefaultModelViewSet']
+
+
+class GenericAPIViewProtocol(Protocol):
+    action: str
+    serializer_action_classes: dict[str, type[BaseSerializer]]
+
+    def get_serializer_class(self, action: Optional[str]) -> Type[BaseSerializer]:
+        ...
+
+    def get_serializer_context(self) -> dict:
+        ...
 
 
 class DefaultCreateModelMixin(CreateModelMixin):
@@ -16,7 +30,7 @@ class DefaultCreateModelMixin(CreateModelMixin):
         serializer.is_valid(raise_exception=True)
         instance = self.perform_create(serializer)  # No getting created instance in original DRF
         headers = self.get_success_headers(serializer.data)
-        return self.response(instance, status.HTTP_201_CREATED, headers)
+        return self.get_response(instance, status.HTTP_201_CREATED, headers)
 
     def perform_create(self, serializer):
         return serializer.save()  # No returning created instance in original DRF
@@ -37,7 +51,7 @@ class DefaultUpdateModelMixin(UpdateModelMixin):
             # forcibly invalidate the prefetch cache on the instance.
             instance._prefetched_objects_cache = {}
 
-        return self.response(instance, status.HTTP_200_OK)
+        return self.get_response(instance, status.HTTP_200_OK)
 
     def perform_update(self, serializer):
         return serializer.save()  # No returning updated instance in original DRF
@@ -65,20 +79,20 @@ class ResponseWithRetrieveSerializerMixin:
     Thanks gonz: http://stackoverflow.com/a/22922156/11440
 
     """
-    def response(self, instance, status, headers=None):
+    def get_response(self: GenericAPIViewProtocol, instance, status, headers=None) -> Response:
         retrieve_serializer_class = self.get_serializer_class(action='retrieve')
         context = self.get_serializer_context()
         retrieve_serializer = retrieve_serializer_class(instance, context=context)
         return Response(retrieve_serializer.data, status=status, headers=headers)
 
-    def get_serializer_class(self, action=None):
+    def get_serializer_class(self: GenericAPIViewProtocol, action=None) -> Type[BaseSerializer]:
         if action is None:
             action = self.action
 
         try:
             return self.serializer_action_classes[action]
         except (KeyError, AttributeError):
-            return super().get_serializer_class()
+            return super().get_serializer_class()  # type: ignore
 
 
 class DefaultModelViewSet(

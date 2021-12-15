@@ -1,4 +1,5 @@
 from functools import partial
+from typing import Callable
 
 from app.testing.mixer import mixer
 
@@ -10,9 +11,9 @@ def register(method):
 
 
 class FixtureRegistry:
-    METHODS = {}
+    METHODS: dict[str, Callable] = {}
 
-    def get(self, name):
+    def get(self, name: str) -> Callable:
         method = self.METHODS.get(name)
         if not method:
             raise AttributeError(f'Factory method “{name}” not found.')
@@ -20,7 +21,7 @@ class FixtureRegistry:
 
 
 class CycleFixtureFactory:
-    def __init__(self, factory: 'FixtureFactory', count: int):
+    def __init__(self, factory: 'FixtureFactory', count: int) -> None:
         self.factory = factory
         self.count = count
 
@@ -29,11 +30,11 @@ class CycleFixtureFactory:
 
 
 class FixtureFactory:
-    def __init__(self):
+    def __init__(self) -> None:
         self.mixer = mixer
         self.registry = FixtureRegistry()
 
-    def __getattr__(self, name):
+    def __getattr__(self, name: str) -> Callable:
         method = self.registry.get(name)
         return partial(method, self)
 

@@ -1,4 +1,4 @@
-from behaviors.behaviors import Timestamped
+from behaviors.behaviors import Timestamped  # type: ignore
 
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
@@ -16,8 +16,9 @@ class DefaultModel(models.Model):
 
     def __str__(self) -> str:
         """Default name for all models"""
-        if hasattr(self, 'name'):
-            return str(self.name)
+        name = getattr(self, 'name', None)
+        if name is not None:
+            return str(name)
 
         return super().__str__()
 

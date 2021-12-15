@@ -1,5 +1,5 @@
 """Read .env file"""
-import environ
+import environ  # type: ignore
 
 env = environ.Env(
     DEBUG=(bool, False),
