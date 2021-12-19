@@ -1,3 +1,5 @@
+from typing import Any
+
 from behaviors.behaviors import Timestamped  # type: ignore
 
 from django.contrib.contenttypes.models import ContentType
@@ -26,13 +28,13 @@ class DefaultModel(models.Model):
     def get_contenttype(cls) -> ContentType:
         return ContentType.objects.get_for_model(cls)
 
-    def update_from_kwargs(self, **kwargs):
+    def update_from_kwargs(self, **kwargs: dict[str, Any]) -> None:
         """A shortcut method to update model instance from the kwargs.
         """
         for (key, value) in kwargs.items():
             setattr(self, key, value)
 
-    def setattr_and_save(self, key, value):
+    def setattr_and_save(self, key: str, value: Any) -> None:
         """Shortcut for testing -- set attribute of the model and save"""
         setattr(self, key, value)
         self.save()

@@ -17,5 +17,5 @@ class UserSerializer(serializers.ModelSerializer):
             'remote_addr',
         ]
 
-    def get_remote_addr(self, obj):
+    def get_remote_addr(self, obj: User) -> str:
         return self.context['request'].META['REMOTE_ADDR']

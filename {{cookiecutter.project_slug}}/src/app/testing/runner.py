@@ -1,3 +1,4 @@
+# type: ignore
 from django.core.management.base import CommandError
 
 

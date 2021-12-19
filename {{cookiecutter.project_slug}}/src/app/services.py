@@ -1,4 +1,9 @@
-class BaseService:
+from abc import ABCMeta
+from abc import abstractmethod
+from typing import Callable
+
+
+class BaseService(metaclass=ABCMeta):
     """This is a template of a a base service.
     All services in the app should follow this rules:
       * Input variables should be done at the __init__ phase
@@ -22,17 +27,18 @@ class BaseService:
 
     For more implementation examples, check out https://github.com/tough-dev-school/education-backend/tree/master/src/orders/services
     """
-    def __call__(self):
+    def __call__(self) -> None:
         self.validate()
         return self.act()
 
-    def get_validators(self):
+    def get_validators(self) -> list[Callable]:
         return []
 
-    def validate(self):
+    def validate(self) -> None:
         validators = self.get_validators()
         for validator in validators:
             validator()
 
-    def act(self):
-        return
+    @abstractmethod
+    def act(self) -> None:
+        raise NotImplementedError('Please implement in the service class')
