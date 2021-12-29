@@ -8,7 +8,7 @@ appnope==0.1.2
     # via ipython
 astor==0.8.1
     # via flake8-simplify
-attrs==21.3.0
+attrs==21.4.0
     # via
     #   flake8-bugbear
     #   flake8-eradicate
