@@ -186,7 +186,7 @@ typing-extensions==3.10.0.2
     # via flake8-pie
 wcwidth==0.2.5
     # via prompt-toolkit
-zipp==3.6.0
+zipp==3.7.0
     # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
