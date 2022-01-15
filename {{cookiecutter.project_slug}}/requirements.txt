@@ -61,7 +61,7 @@ djangorestframework==3.13.1
     #   -r requirements.in
     #   drf-jwt
     #   drf-yasg
-drf-jwt==1.19.1
+drf-jwt==1.19.2
     # via -r requirements.in
 drf-yasg==1.20.0
     # via -r requirements.in
