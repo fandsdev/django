@@ -89,7 +89,7 @@ pytz==2021.3
     # via django
 redis==3.5.3
     # via -r requirements.in
-requests==2.26.0
+requests==2.27.1
     # via
     #   coreapi
     #   django-healthchecks
