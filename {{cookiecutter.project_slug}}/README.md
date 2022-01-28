@@ -54,7 +54,7 @@ $ ./manage.py runserver
 ### Style
 
 * Obey [django's style guide](https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style/#model-style).
-* Configure your IDE to use [flake8](https://pypi.python.org/pypi/flake8) for checking your python code. For running flake8 manualy, do `cd src && flake8`
+* Configure your IDE to use [flake8](https://pypi.python.org/pypi/flake8) for checking your python code. To run our linters manualy, do `make lint`
 * Prefer English over your native language in comments and commit messages.
 * Commit messages should contain the unique id of issue they are linked to (refs #100500)
 * Every model, service and model method should have a docstring.
