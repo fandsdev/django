@@ -4,7 +4,7 @@
 #
 #    pip-compile requirements.in
 #
-asgiref==3.4.1
+asgiref==3.5.0
     # via django
 bcrypt==3.2.0
     # via -r requirements.in
