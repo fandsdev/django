@@ -2,7 +2,7 @@ version: 2.1
 
 defaults: &defaults
   docker:
-    - image: cimg/python:3.10.1
+    - image: cimg/python:3.10.2
       environment:
         - DATABASE_URL=sqlite:////tmp/prj.sqlite
         - CELERY_BACKEND=redis://redis:6379
