@@ -16,7 +16,7 @@ cffi==1.15.0
     # via
     #   bcrypt
     #   cryptography
-charset-normalizer==2.0.11
+charset-normalizer==2.0.12
     # via requests
 coreapi==2.3.3
     # via drf-yasg
