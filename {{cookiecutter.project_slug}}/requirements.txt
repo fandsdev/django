@@ -73,7 +73,7 @@ itypes==1.2.0
     # via coreapi
 jinja2==3.0.3
     # via coreschema
-markupsafe==2.0.1
+markupsafe==2.1.0
     # via jinja2
 packaging==21.3
     # via drf-yasg
