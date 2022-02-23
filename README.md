@@ -8,12 +8,13 @@
 ## What is in the box
 
 * API-only django (checkout [this post](https://t.me/pmdaily/257) in Russian) based on Django REST Framework with JWT support
-* [drf-yasg](https://github.com/axnsan12/drf-yasg#drf-yasg---yet-another-swagger-generator) for API Schema generation
 * [pip-tools](https://github.com/jazzband/pip-tools) with separate development-time dependencies
-* Starter Circle CI configuration
-* pytest with usefull stuff like freezegun, pytest-mock and super convinient [DRF test client](https://github.com/f213/django/blob/master/%7B%7Bcookiecutter.project_slug%7D%7D/src/app/tests/tests_health.py#L9)
+* Strict type checking with mypy, [django-stubs](https://github.com/typeddjango/django-stubs) and [djangorestframework-stubs](https://github.com/typeddjango/djangorestframework-stubs)
 * flake8 with ton of plugins (contact me if you know more)
+* Starter CI configuration
+* pytest with usefull stuff like freezegun, pytest-mock and super convinient [DRF test client](https://github.com/f213/django/blob/master/%7B%7Bcookiecutter.project_slug%7D%7D/src/app/tests/tests_health.py#L9)
 * Custom [user model](https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#specifying-a-custom-user-model)
+* [drf-yasg](https://github.com/axnsan12/drf-yasg#drf-yasg---yet-another-swagger-generator) for API Schema generation
 * [django-axes](https://github.com/jazzband/django-axes) for additional security
 * [Whitenoise](http://whitenoise.evans.io) for effortless static files hosting
 * Sentry. Set `SENTRY_DSN` env var if you need it.
@@ -22,7 +23,7 @@
 ## Optional next steps
 You definetely should consider this steps after installation:
 * Install [pytest-xdist](https://github.com/pytest-dev/pytest-xdist) if you plan to grow beyond 500 unittests
-* If you are into docker, check out [bundled docker-compose.yml](https://github.com/f213/django/blob/master/%7B%7Bcookiecutter.project_slug%7D%7D/docker-compose.yml) to run on your machine
+* If you are into docker, check out this [docker-compose.yml](https://github.com/f213/django/blob/master/%7B%7Bcookiecutter.project_slug%7D%7D/docker-compose.yml) to run on your machine
 
 
 ## Installation
