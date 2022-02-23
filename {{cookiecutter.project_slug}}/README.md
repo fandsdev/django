@@ -54,18 +54,17 @@ $ ./manage.py runserver
 ### Style
 
 * Obey [django's style guide](https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style/#model-style).
-* Configure your IDE to use [flake8](https://pypi.python.org/pypi/flake8) for checking your python code. For running flake8 manualy, do `cd src && flake8`
+* Configure your IDE to use [flake8](https://pypi.python.org/pypi/flake8) for checking your python code. To run our linters manualy, do `make lint`
 * Prefer English over your native language in comments and commit messages.
 * Commit messages should contain the unique id of issue they are linked to (refs #100500)
-* Every model and a model method should have a docstring.
+* Every model, service and model method should have a docstring.
 
 ### Code organisation
 
 * KISS and DRY.
 * Obey [django best practices](http://django-best-practices.readthedocs.io/en/latest/index.html).
-* **No logic is allowed within the views or serializers**. Only models and services. When a model grows beyond 500 lines of code — create a service for that.
+* **No logic is allowed within the views or serializers**. Only services and models. When a model grows beyond 500 lines of code — go create some services.
 * Use PEP-484 [type hints](https://www.python.org/dev/peps/pep-0484/) when possible.
 * Prefer composition over inheritance.
-* Prefer [Manager](https://docs.djangoproject.com/en/3.0/topics/db/managers/) methods over static models methods.
-* Do not use [signals](https://docs.djangoproject.com/en/3.0/topics/signals/) or [GenericRelations](https://docs.djangoproject.com/en/3.0/ref/contrib/contenttypes/) in your own code.
-* No l10n is allowed in python code, use [django translation](https://docs.djangoproject.com/en/3.0/topics/i18n/translation/).
+* Never use [signals](https://docs.djangoproject.com/en/dev/topics/signals/) or [GenericRelations](https://docs.djangoproject.com/en/dev/ref/contrib/contenttypes/) in your own code.
+* No l10n is allowed in python code, use [django translation](https://docs.djangoproject.com/en/dev/topics/i18n/translation/).

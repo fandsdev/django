@@ -4,7 +4,7 @@
 #
 #    pip-compile requirements.in
 #
-asgiref==3.4.1
+asgiref==3.5.0
     # via django
 bcrypt==3.2.0
     # via -r requirements.in
@@ -16,7 +16,7 @@ cffi==1.15.0
     # via
     #   bcrypt
     #   cryptography
-charset-normalizer==2.0.9
+charset-normalizer==2.0.12
     # via requests
 coreapi==2.3.3
     # via drf-yasg
@@ -26,7 +26,9 @@ coreschema==0.0.4
     #   drf-yasg
 cryptography==3.4.8
     # via pyjwt
-django==3.2.10
+deprecated==1.2.13
+    # via redis
+django==3.2.12
     # via
     #   -r requirements.in
     #   django-axes
@@ -36,7 +38,7 @@ django==3.2.10
     #   djangorestframework
     #   drf-jwt
     #   drf-yasg
-django-axes==5.27.0
+django-axes==5.31.0
     # via -r requirements.in
 django-behaviors==0.5.1
     # via -r requirements.in
@@ -54,14 +56,14 @@ django-split-settings==1.1.0
     # via -r requirements.in
 django-storages==1.12.3
     # via -r requirements.in
-djangorestframework==3.12.4
+djangorestframework==3.13.1
     # via
     #   -r requirements.in
     #   drf-jwt
     #   drf-yasg
-djangorestframework-camel-case==1.2.0
+djangorestframework-camel-case==1.3.0
     # via -r requirements.in
-drf-jwt==1.19.1
+drf-jwt==1.19.2
     # via -r requirements.in
 drf-yasg==1.20.0
     # via -r requirements.in
@@ -73,11 +75,13 @@ itypes==1.2.0
     # via coreapi
 jinja2==3.0.3
     # via coreschema
-markupsafe==2.0.1
+markupsafe==2.1.0
     # via jinja2
 packaging==21.3
-    # via drf-yasg
-pillow==8.4.0
+    # via
+    #   drf-yasg
+    #   redis
+pillow==9.0.1
     # via -r requirements.in
 pycparser==2.21
     # via cffi
@@ -86,18 +90,20 @@ pyjwt[crypto]==2.3.0
 pyparsing==2.4.7
     # via packaging
 pytz==2021.3
-    # via django
-redis==3.5.3
+    # via
+    #   django
+    #   djangorestframework
+redis==4.1.4
     # via -r requirements.in
-requests==2.26.0
+requests==2.27.1
     # via
     #   coreapi
     #   django-healthchecks
-ruamel.yaml==0.17.17
+ruamel-yaml==0.17.21
     # via drf-yasg
-ruamel.yaml.clib==0.2.6
-    # via ruamel.yaml
-sentry-sdk==1.5.0
+ruamel-yaml-clib==0.2.6
+    # via ruamel-yaml
+sentry-sdk==1.5.6
     # via -r requirements.in
 six==1.16.0
     # via
@@ -109,12 +115,14 @@ uritemplate==3.0.1
     # via
     #   coreapi
     #   drf-yasg
-urllib3==1.26.7
+urllib3==1.26.8
     # via
     #   requests
     #   sentry-sdk
 whitenoise==5.3.0
     # via -r requirements.in
+wrapt==1.13.3
+    # via deprecated
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
