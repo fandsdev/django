@@ -89,7 +89,7 @@ pytz==2021.3
     # via
     #   django
     #   djangorestframework
-redis==3.5.3
+redis==4.1.4
     # via -r requirements.in
 requests==2.27.1
     # via
