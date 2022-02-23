@@ -37,3 +37,10 @@ flake8-todo
 flake8-use-fstring
 flake8-variables-names
 flake8-walrus
+
+
+mypy
+django-stubs
+djangorestframework-stubs
+types-freezegun
+types-Pillow

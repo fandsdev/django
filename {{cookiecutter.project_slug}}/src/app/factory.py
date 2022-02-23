@@ -5,10 +5,11 @@ from PIL import Image
 from django.core.files.uploadedfile import SimpleUploadedFile
 
 from app.testing import register
+from app.testing.types import FactoryProtocol
 
 
 @register
-def uploaded_image(self):
+def uploaded_image(self: FactoryProtocol) -> SimpleUploadedFile:
     """
     Can be used in both DRF API and mixer.
     DRF won't let you use invalid image, so the content is a real image.

@@ -1,13 +1,16 @@
 import json
 import random
 import string
+from typing import Optional
 
 from rest_framework.authtoken.models import Token
-from rest_framework.test import APIClient
+from rest_framework.test import APIClient as DRFAPIClient
+
+from users.models import User
 
 
-class ApiClient(APIClient):
-    def __init__(self, user=None, *args, **kwargs):
+class ApiClient(DRFAPIClient):
+    def __init__(self, user: Optional[User] = None, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
         if user:
@@ -69,3 +72,8 @@ class ApiClient(APIClient):
             return 'json' in response.get('content-type')
 
         return False
+
+
+__all__ = [
+    'ApiClient',
+]

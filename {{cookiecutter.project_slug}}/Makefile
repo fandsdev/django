@@ -12,6 +12,7 @@ dev-deps: deps
 
 lint:
 	flake8 src
+	cd src && mypy
 
 test:
 	cd src && pytest --dead-fixtures
