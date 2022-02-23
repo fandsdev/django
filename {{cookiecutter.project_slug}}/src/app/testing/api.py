@@ -1,4 +1,3 @@
-# type: ignore
 import json
 import random
 import string
@@ -76,5 +75,5 @@ class ApiClient(DRFAPIClient):
 
 
 __all__ = [
-    ApiClient,
+    'ApiClient',
 ]
