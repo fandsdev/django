@@ -3,5 +3,4 @@ pytest_plugins = [
     'app.fixtures',
     'users.factory',
     'users.fixtures',
-    'sepulkas.factory',
 ]
