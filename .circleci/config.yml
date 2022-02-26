@@ -10,6 +10,9 @@ jobs:
     steps:
       - checkout
       - run:
+          command: sudo apt-get update && sudo apt-get --no-install-recommends install -y locales-all gettext
+
+      - run:
           name: Install cookiecutter
           command: |
             python3 -m venv venv
