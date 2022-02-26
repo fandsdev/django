@@ -11,6 +11,7 @@ dev-deps: deps
 	pip-compile dev-requirements.in
 
 lint:
+	dotenv-linter src/app/.env.ci
 	flake8 src
 	cd src && mypy
 
