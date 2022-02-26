@@ -9,6 +9,8 @@ pytest-freezegun
 pytest-mock
 pytest-randomly
 
+dotenv-linter
+
 
 freezegun
 mixer
