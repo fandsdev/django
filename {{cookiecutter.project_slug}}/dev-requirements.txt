@@ -51,7 +51,7 @@ coreschema==0.0.4
     #   coreapi
 decorator==5.1.1
     # via ipython
-django==3.2.12
+django==4.0.2
     # via
     #   -c requirements.txt
     #   django-stubs
