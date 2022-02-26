@@ -27,41 +27,41 @@ def initial_token(as_user):
 
 
 def test_refresh_token_ok(initial_token, refresh_token):
-    got = refresh_token(initial_token)
+    result = refresh_token(initial_token)
 
-    assert 'token' in got
+    assert 'token' in result
 
 
 def test_refreshed_token_is_a_token(initial_token, refresh_token):
-    got = refresh_token(initial_token)
+    result = refresh_token(initial_token)
 
-    assert len(got['token']) > 32
+    assert len(result['token']) > 32
 
 
 def test_refreshed_token_is_new_one(initial_token, refresh_token):
-    got = refresh_token(initial_token)
+    result = refresh_token(initial_token)
 
-    assert got['token'] != initial_token
+    assert result['token'] != initial_token
 
 
 def test_refresh_token_fails_with_incorrect_previous_token(refresh_token):
-    got = refresh_token('some-invalid-previous-token', expected_status=400)
+    result = refresh_token('some-invalid-previous-token', expected_status=400)
 
-    assert 'nonFieldErrors' in got
+    assert 'nonFieldErrors' in result
 
 
 def test_token_is_not_allowed_to_refresh_if_expired(initial_token, refresh_token):
     with freeze_time('2049-02-05'):
-        got = refresh_token(initial_token, expected_status=400)
 
-    assert 'expired' in got['nonFieldErrors'][0]
+        result = refresh_token(initial_token, expected_status=400)
+
+    assert 'expired' in result['nonFieldErrors'][0]
 
 
 def test_received_token_works(as_anon, refresh_token, initial_token):
     token = refresh_token(initial_token)['token']
-
     as_anon.credentials(HTTP_AUTHORIZATION=f'Bearer {token}')
 
-    got = as_anon.get('/api/v1/users/me/')
+    result = as_anon.get('/api/v1/users/me/')
 
-    assert got is not None
+    assert result is not None

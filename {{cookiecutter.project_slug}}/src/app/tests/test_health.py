@@ -7,6 +7,6 @@ pytestmark = [
 
 
 def test(as_anon):
-    got = as_anon.get('/api/v1/healthchecks/db/')
+    result = as_anon.get('/api/v1/healthchecks/db/')
 
-    assert got == 'true'
+    assert result == 'true'

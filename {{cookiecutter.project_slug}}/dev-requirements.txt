@@ -13,7 +13,9 @@ asgiref==3.5.0
 astor==0.8.1
     # via flake8-simplify
 asttokens==2.0.5
-    # via stack-data
+    # via
+    #   flake8-aaa
+    #   stack-data
 attrs==21.4.0
     # via
     #   dotenv-linter
@@ -22,8 +24,6 @@ attrs==21.4.0
     #   flake8-multiline-containers
     #   pytest
 backcall==0.2.0
-    # via ipython
-black==22.1.0
     # via ipython
 certifi==2021.10.8
     # via
@@ -34,7 +34,11 @@ charset-normalizer==2.0.12
     #   -c requirements.txt
     #   requests
 click==8.0.4
-    # via black
+    # via
+    #   click-default-group
+    #   dotenv-linter
+click-default-group==1.2.2
+    # via dotenv-linter
 cognitive-complexity==1.2.0
     # via flake8-cognitive-complexity
 coreapi==2.3.3
@@ -86,6 +90,8 @@ flake8==3.9.2
     #   flake8-simplify
     #   flake8-use-fstring
     #   flake8-walrus
+flake8-aaa==0.12.2
+    # via -r dev-requirements.in
 flake8-absolute-import==1.0.0.1
     # via -r dev-requirements.in
 flake8-bugbear==22.1.11
@@ -178,25 +184,21 @@ mypy==0.931
     #   django-stubs
     #   djangorestframework-stubs
 mypy-extensions==0.4.3
-    # via
-    #   black
-    #   mypy
+    # via mypy
 packaging==21.3
     # via
     #   -c requirements.txt
     #   pytest
 parso==0.8.3
     # via jedi
-pathspec==0.9.0
-    # via black
 pexpect==4.8.0
     # via ipython
 pickleshare==0.7.5
     # via ipython
-platformdirs==2.5.1
-    # via black
 pluggy==1.0.0
     # via pytest
+ply==3.11
+    # via dotenv-linter
 prompt-toolkit==3.0.28
     # via ipython
 ptyprocess==0.7.0
@@ -271,7 +273,6 @@ toml==0.10.2
     # via django-stubs
 tomli==2.0.1
     # via
-    #   black
     #   mypy
     #   pytest
 traitlets==5.1.1
@@ -288,7 +289,6 @@ types-pyyaml==6.0.4
     # via django-stubs
 typing-extensions==3.10.0.2
     # via
-    #   black
     #   django-stubs
     #   django-stubs-ext
     #   djangorestframework-stubs
