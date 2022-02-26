@@ -17,6 +17,7 @@ mixer
 
 jedi
 flake8-absolute-import
+flake8-aaa
 flake8-bugbear
 flake8-cognitive-complexity
 flake8-commas

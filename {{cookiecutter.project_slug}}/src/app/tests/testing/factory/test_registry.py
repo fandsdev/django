@@ -19,6 +19,6 @@ def test_registry_returns_correct_method_after_register_decorator(fixture_regist
     def some_method_to_add():
         pass
 
-    method = fixture_registry.get('some_method_to_add')
+    method = fixture_registry.get('some_method_to_add')  # act
 
     assert some_method_to_add == method

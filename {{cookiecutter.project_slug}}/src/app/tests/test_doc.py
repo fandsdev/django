@@ -6,18 +6,18 @@ pytestmark = [
 
 
 def test_html(as_anon):
-    got = as_anon.get('/api/v1/docs/')
+    result = as_anon.get('/api/v1/docs/')
 
-    assert '/static/drf-yasg/redoc-init' in got
+    assert '/static/drf-yasg/redoc-init' in result
 
 
 def test_json(as_anon):
-    got = as_anon.get('/api/v1/swagger.json')
+    result = as_anon.get('/api/v1/swagger.json')
 
-    assert 'basePath' in got
+    assert 'basePath' in result
 
 
 def test_yaml(as_anon):
-    got = as_anon.get('/api/v1/swagger.yaml')
+    result = as_anon.get('/api/v1/swagger.yaml')
 
-    assert 'basePath:' in got
+    assert 'basePath:' in result

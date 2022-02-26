@@ -27,30 +27,30 @@ def _decode(response):
 
 
 def test_getting_token_ok(as_user, get_token):
-    got = get_token(as_user.user.username, as_user.password)
+    result = get_token(as_user.user.username, as_user.password)
 
-    assert 'token' in got
+    assert 'token' in result
 
 
 def test_getting_token_is_token(as_user, get_token):
-    got = get_token(as_user.user.username, as_user.password)
+    result = get_token(as_user.user.username, as_user.password)
 
-    assert len(got['token']) > 32  # every stuff that is long enough, may be a JWT token
+    assert len(result['token']) > 32  # every stuff that is long enough, may be a JWT token
 
 
 def test_getting_token_with_incorrect_password(as_user, get_token):
-    got = get_token(as_user.user.username, 'z3r0c00l', expected_status=400)
+    result = get_token(as_user.user.username, 'z3r0c00l', expected_status=400)
 
-    assert 'nonFieldErrors' in got
+    assert 'nonFieldErrors' in result
 
 
 def test_getting_token_with_incorrect_password_creates_access_attempt_log_entry(as_user, get_token):
-    get_token(as_user.user.username, 'z3r0c00l', expected_status=400)
+    get_token(as_user.user.username, 'z3r0c00l', expected_status=400)  # act
 
     assert AccessAttempt.objects.count() == 1
 
 
-@pytest.mark.parametrize(('extract_token', 'status_code'), [
+@pytest.mark.parametrize(('extract_token', 'status_code'), [  # NOQA: AAA01
     (lambda response: response['token'], 200),
     (lambda *args: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InRpbW90aHk5NSIsImlhdCI6MjQ5MzI0NDgwMCwiZXhwIjoyNDkzMjQ1MTAwLCJqdGkiOiI2MWQ2MTE3YS1iZWNlLTQ5YWEtYWViYi1mOGI4MzBhZDBlNzgiLCJ1c2VyX2lkIjoxLCJvcmlnX2lhdCI6MjQ5MzI0NDgwMH0.YQnk0vSshNQRTAuq1ilddc9g3CZ0s9B0PQEIk5pWa9I', 401),
     (lambda *args: 'sh1t', 401),
