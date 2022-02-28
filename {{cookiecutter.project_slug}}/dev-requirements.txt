@@ -68,7 +68,7 @@ dotenv-linter==0.3.0
     # via -r dev-requirements.in
 eradicate==2.0.0
     # via flake8-eradicate
-executing==0.8.2
+executing==0.8.3
     # via stack-data
 faker==8.16.0
     # via mixer
