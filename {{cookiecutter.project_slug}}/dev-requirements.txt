@@ -265,7 +265,7 @@ sqlparse==0.4.2
     #   django
 stack-data==0.2.0
     # via ipython
-testfixtures==6.18.4
+testfixtures==6.18.5
     # via flake8-isort
 text-unidecode==1.3
     # via faker
