@@ -121,7 +121,7 @@ urllib3==1.26.8
     #   sentry-sdk
 whitenoise==6.0.0
     # via -r requirements.in
-wrapt==1.13.3
+wrapt==1.14.0
     # via deprecated
 
 # The following packages are considered to be unsafe in a requirements file:
