@@ -178,7 +178,7 @@ mccabe==0.6.1
     # via flake8
 mixer==7.2.1
     # via -r dev-requirements.in
-mypy==0.931
+mypy==0.940
     # via
     #   -r dev-requirements.in
     #   django-stubs
