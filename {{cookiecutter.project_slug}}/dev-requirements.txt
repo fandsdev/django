@@ -220,7 +220,7 @@ pyparsing==3.0.7
     # via
     #   -c requirements.txt
     #   packaging
-pytest==7.0.1
+pytest==7.1.0
     # via
     #   pytest-deadfixtures
     #   pytest-django
