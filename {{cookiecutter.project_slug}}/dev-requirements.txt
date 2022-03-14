@@ -70,7 +70,7 @@ eradicate==2.0.0
     # via flake8-eradicate
 executing==0.8.3
     # via stack-data
-faker==8.16.0
+faker==13.3.2
     # via mixer
 flake8==3.9.2
     # via
