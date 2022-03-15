@@ -9,7 +9,7 @@ django-storages
 djangorestframework
 djangorestframework-camel-case
 drf-jwt
-drf-yasg
+drf-spectacular[sidecar]
 django-filter
 django-split-settings
 django-healthchecks

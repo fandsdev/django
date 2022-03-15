@@ -1,4 +1,3 @@
-from drf_yasg.utils import swagger_auto_schema
 from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
@@ -14,7 +13,6 @@ class SelfView(GenericAPIView):
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
 
-    @swagger_auto_schema(responses={200: UserSerializer}, operation_id='whoami', operation_description='Get current user data')
     def get(self, request: Request) -> Response:
         user = self.get_object()
         serializer = self.get_serializer(user)
