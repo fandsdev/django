@@ -168,7 +168,7 @@ jinja2==3.0.3
     # via
     #   -c requirements.txt
     #   coreschema
-markupsafe==2.1.0
+markupsafe==2.1.1
     # via
     #   -c requirements.txt
     #   jinja2
