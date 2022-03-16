@@ -279,7 +279,7 @@ traitlets==5.1.1
     # via
     #   ipython
     #   matplotlib-inline
-types-freezegun==1.1.6
+types-freezegun==1.1.7
     # via -r dev-requirements.in
 types-pillow==9.0.6
     # via -r dev-requirements.in
