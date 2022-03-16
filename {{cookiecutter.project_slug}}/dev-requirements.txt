@@ -281,7 +281,7 @@ traitlets==5.1.1
     #   matplotlib-inline
 types-freezegun==1.1.7
     # via -r dev-requirements.in
-types-pillow==9.0.6
+types-pillow==9.0.7
     # via -r dev-requirements.in
 types-pytz==2021.3.5
     # via django-stubs
