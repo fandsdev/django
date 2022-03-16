@@ -104,7 +104,7 @@ sqlparse==0.4.2
     # via django
 uritemplate==3.0.1
     # via drf-spectacular
-urllib3==1.26.8
+urllib3==1.26.9
     # via
     #   requests
     #   sentry-sdk
