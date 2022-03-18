@@ -94,7 +94,7 @@ redis==4.1.4
     # via -r requirements.in
 requests==2.27.1
     # via django-healthchecks
-sentry-sdk==1.5.7
+sentry-sdk==1.5.8
     # via -r requirements.in
 six==1.16.0
     # via
