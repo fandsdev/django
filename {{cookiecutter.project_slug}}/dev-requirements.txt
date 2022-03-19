@@ -283,7 +283,7 @@ types-freezegun==1.1.7
     # via -r dev-requirements.in
 types-pillow==9.0.7
     # via -r dev-requirements.in
-types-pytz==2021.3.5
+types-pytz==2021.3.6
     # via django-stubs
 types-pyyaml==6.0.5
     # via django-stubs
