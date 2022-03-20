@@ -244,7 +244,7 @@ python-dateutil==2.8.2
     # via
     #   faker
     #   freezegun
-pytz==2021.3
+pytz==2022.1
     # via
     #   -c requirements.txt
     #   django

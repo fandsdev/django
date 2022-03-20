@@ -84,7 +84,7 @@ pyparsing==3.0.7
     # via packaging
 pyrsistent==0.18.1
     # via jsonschema
-pytz==2021.3
+pytz==2022.1
     # via
     #   django
     #   djangorestframework
