@@ -22,7 +22,8 @@ def dumb_function(mocker: MockFixture):
         (True, 1, 1),
         (False, 0, 1),
     ])
-def test_doesnt_call_before_commit(dumb_function, django_capture_on_commit_callbacks, settings, setting_value, called_times_in_transaction, called_times_after_transaction):
+def test_doesnt_call_before_commit(settings, dumb_function, django_capture_on_commit_callbacks, setting_value, called_times_in_transaction, called_times_after_transaction):
+    settings.ON_COMMIT_ALWAYS_EAGER = setting_value
     wrapped = on_transaction_commit(dumb_function)  # noqa: AAA01
 
     with django_capture_on_commit_callbacks(execute=True), atomic():
