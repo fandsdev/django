@@ -4,7 +4,7 @@ from typing import Callable
 
 
 class BaseService(metaclass=ABCMeta):
-    """This is a template of a a base service.
+    """This is a template of a base service.
     All services in the app should follow this rules:
       * Input variables should be done at the __init__ phase
       * Service should implement a single entrypoint without arguments
