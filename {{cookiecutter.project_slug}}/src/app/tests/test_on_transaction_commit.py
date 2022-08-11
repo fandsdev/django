@@ -16,11 +16,12 @@ def dumb_function(mocker: MockFixture):
     return mocker.MagicMock()
 
 
-@pytest.mark.parametrize('setting_value, called_times_in_transaction, called_times_after_transaction',
-                         [
-                             (True, 1, 1),
-                             (False, 0, 1),
-                         ])
+@pytest.mark.parametrize(  # noqa: AAA01
+    ('setting_value', 'called_times_in_transaction', 'called_times_after_transaction'),
+    [
+        (True, 1, 1),
+        (False, 0, 1),
+    ])
 def test_doesnt_call_before_commit(dumb_function, django_capture_on_commit_callbacks, settings, setting_value, called_times_in_transaction, called_times_after_transaction):
     wrapped = on_transaction_commit(dumb_function)  # noqa: AAA01
 
