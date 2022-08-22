@@ -1,0 +1,21 @@
+---
+name: CI
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install cookiecutter
+        run: pip install cookiecutter
+
+      - name: Bootstrap the project
+        run: make
