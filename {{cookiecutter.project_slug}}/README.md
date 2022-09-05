@@ -13,7 +13,7 @@ Django user model is located in the separate `users` app.
 Also, feel free to add as much django apps as you want.
 
 ## Installing on a local machine
-This project requires python 3.8. Deps are managed by [pip-tools](https://github.com/jazzband/pip-tools)
+This project requires python 3.10. Deps are managed by [pip-tools](https://github.com/jazzband/pip-tools)
 
 Install requirements:
 
