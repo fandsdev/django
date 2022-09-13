@@ -1,0 +1,24 @@
+---
+name: CI
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install gettext for correct manage.py compilemessages
+        run: sudo apt-get update && sudo apt-get --no-install-recommends install -y locales-all gettext
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install cookiecutter
+        run: pip install cookiecutter
+
+      - name: Bootstrap the project
+        run: make
