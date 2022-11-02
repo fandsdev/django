@@ -1,9 +1,0 @@
-[flake8]
-ignore = E501, E265, F811, PT001, DJ05, SIM113, SIM102
-max-line-length = 160
-exclude =
-      static,
-      migrations,
-      frontend,
-      .git,
-      __pycache__

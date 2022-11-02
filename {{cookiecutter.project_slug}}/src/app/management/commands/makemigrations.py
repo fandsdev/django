@@ -8,7 +8,7 @@ class Command(BaseCommand):
     """
     def handle(self, *app_labels, **options):
         if options['name'] is None and not any([options['dry_run'], options['check_changes']]):
-            print('Migration name (-n/--name) is required.', file=sys.stderr)  # noqa: T001
+            print('Migration name (-n/--name) is required.', file=sys.stderr)  # noqa: T201
             sys.exit(1)
 
         super().handle(*app_labels, **options)

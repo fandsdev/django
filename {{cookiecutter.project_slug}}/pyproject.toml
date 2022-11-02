@@ -1,0 +1,101 @@
+[project]
+name = "{{cookiecutter.project_slug}}"
+version = "{{cookiecutter.project_version}}"
+dependencies = [
+    "Django<3.3",
+    "bcrypt",
+    "django-behaviors",
+    "django-environ",
+    "django-ipware",
+    "django-axes",
+    "whitenoise",
+    "django-storages",
+    "djangorestframework",
+    "djangorestframework-camel-case",
+    "drf-jwt",
+    "drf-spectacular[sidecar]",
+    "django-filter",
+    "django-split-settings",
+    "django-healthchecks",
+    "redis",
+    "sentry-sdk",
+    "Pillow",
+]
+
+
+[project.optional-dependencies]
+dev = [
+    "ipython",
+
+    "pytest-django>=3.9",
+    "pytest-deadfixtures",
+    "pytest-env",
+    "pytest-freezegun",
+    "pytest-mock",
+    "pytest-randomly",
+
+    "dotenv-linter",
+
+    "freezegun",
+    "mixer",
+
+    "jedi",
+    "flake8-absolute-import",
+    "flake8-aaa",
+    "flake8-bugbear",
+    "flake8-cognitive-complexity",
+    "flake8-commas",
+    "flake8-django",
+    "flake8-eradicate",
+    "flake8-isort>=4.0.0",
+    "flake8-fixme",
+    "flake8-multiline-containers",
+    "flake8-mutable",
+    "flake8-pep3101",
+    "flake8-pie",
+    "flake8-print",
+    "flake8-printf-formatting",
+    "flake8-pytest",
+    "flake8-pytest-style",
+    "flake8-quotes",
+    "flake8-simplify",
+    "flake8-todo",
+    "flake8-use-fstring",
+    "flake8-variables-names",
+    "flake8-walrus",
+    "flake8-pyproject",
+
+    "mypy",
+    "django-stubs",
+    "djangorestframework-stubs",
+    "types-freezegun",
+    "types-Pillow",
+]
+
+
+[tool.flake8]
+max-line-length = 160
+ignore = [
+    "DJ05",  # URLs include() should set a namespace
+    "E501",  # Line too long
+    "E265",  # Block comments should have one space before the pound sign (#) and the comment itself
+    "F811",  # Redefinition of unused name from line n
+    "PT001",  # Use @pytest.fixture() over @pytest.fixture
+    "SIM102",  # Use a single if-statement instead of nested if-statements
+    "SIM113",  # Use enumerate instead of manually incrementing a counter
+]
+exclude = [
+    "static",
+    "migrations",
+    "frontend",
+    ".git",
+    "__pycache__",
+]
+
+
+[tool.isort]
+profile = "google"
+line_length = 119
+extra_standard_library = ["pytest"]
+known_django = ["django", "restframework"]
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "DJANGO", "FIRSTPARTY", "LOCALFOLDER"]
