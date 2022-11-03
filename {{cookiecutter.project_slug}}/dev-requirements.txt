@@ -126,7 +126,6 @@ flake8==5.0.4
     #   flake8-eradicate
     #   flake8-isort
     #   flake8-multiline-containers
-    #   flake8-mutable
     #   flake8-pep3101
     #   flake8-print
     #   flake8-printf-formatting
@@ -155,8 +154,6 @@ flake8-fixme==1.1.1
 flake8-isort==5.0.0
     # via django (pyproject.toml)
 flake8-multiline-containers==0.0.19
-    # via django (pyproject.toml)
-flake8-mutable==1.2.0
     # via django (pyproject.toml)
 flake8-pep3101==2.0.0
     # via django (pyproject.toml)

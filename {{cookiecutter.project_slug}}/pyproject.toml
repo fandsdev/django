@@ -50,7 +50,6 @@ dev = [
     "flake8-isort>=4.0.0",
     "flake8-fixme",
     "flake8-multiline-containers",
-    "flake8-mutable",
     "flake8-pep3101",
     "flake8-pie",
     "flake8-print",
