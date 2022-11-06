@@ -1,0 +1,2 @@
+default_context:
+    formatter: "black"

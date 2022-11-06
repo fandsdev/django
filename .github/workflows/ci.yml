@@ -21,4 +21,7 @@ jobs:
         run: pip install cookiecutter
 
       - name: Bootstrap the project
-        run: make
+        run: make test
+
+      - name: Bootstrap the project with black as formatter
+        run: make test-with-black

@@ -24,7 +24,13 @@ jobs:
           name: Bootstrap the project
           command: |
             . venv/bin/activate
-            make
+            make test
+
+      - run:
+          name: Bootstrap the project with black as formatter
+          command: |
+            . venv/bin/activate
+            make test-with-black
 
       - persist_to_workspace:
           root: .
