@@ -12,7 +12,7 @@ dev-deps: deps
 
 frmt:
 	cd src && isort .
-	{% if cookiecutter.formatter == "black" %}cd src && black .{% endif %}
+	cd src && black .
 
 lint:
 	dotenv-linter src/app/.env.ci

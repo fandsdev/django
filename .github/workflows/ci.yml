@@ -22,6 +22,3 @@ jobs:
 
       - name: Bootstrap the project
         run: make test
-
-      - name: Bootstrap the project with black as formatter
-        run: make test-with-black

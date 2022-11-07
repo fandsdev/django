@@ -5,9 +5,5 @@
     "_copy_without_render": [
         "*.py-tpl",
         ".circleci/config.yml"
-    ],
-    "formatter": [
-        "without-formatter",
-        "black"
     ]
 }

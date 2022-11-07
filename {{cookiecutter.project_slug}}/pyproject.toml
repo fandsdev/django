@@ -34,7 +34,7 @@ dev = [
     "pytest-mock",
     "pytest-randomly",
 
-    {% if cookiecutter.formatter == "black" -%}"black",{%- endif %}
+    "black",
 
     "dotenv-linter",
 
@@ -44,7 +44,7 @@ dev = [
     "jedi",
     "flake8-absolute-import",
     "flake8-aaa",
-    {% if cookiecutter.formatter == "black" -%}"flake8-black",{%- endif %}
+    "flake8-black",
     "flake8-bugbear",
     "flake8-cognitive-complexity",
     "flake8-commas",
@@ -77,7 +77,7 @@ dev = [
 
 [tool.flake8]
 max-line-length = 160
-{% if cookiecutter.formatter == "black" -%}inline-quotes = "\""{%- endif %}
+inline-quotes = "\""
 ignore = [
     "DJ05",  # URLs include() should set a namespace
     "E501",  # Line too long
@@ -86,10 +86,8 @@ ignore = [
     "PT001",  # Use @pytest.fixture() over @pytest.fixture
     "SIM102",  # Use a single if-statement instead of nested if-statements
     "SIM113",  # Use enumerate instead of manually incrementing a counter
-    {% if cookiecutter.formatter == "black" -%}
     "E203",  # whitespace before ':', disabled for black purposes https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html#slices
     "C812",  # Missing trailing comma, disabled for black purposes https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html#the-magic-trailing-comma
-    {%- endif %}
 ]
 exclude = [
     "static",
@@ -106,14 +104,11 @@ line_length = 160
 extra_standard_library = ["pytest"]
 known_django = ["django", "restframework"]
 sections = ["FUTURE", "STDLIB", "THIRDPARTY", "DJANGO", "FIRSTPARTY", "LOCALFOLDER"]
-{% if cookiecutter.formatter == "black" -%}
 use_parentheses = true
 include_trailing_comma = true
 multi_line_output = 3
-{%- endif %}
 
 
-{% if cookiecutter.formatter == "black" -%}
 [tool.black]
 exclude = '''
 /(
@@ -121,4 +116,3 @@ exclude = '''
 )/
 '''
 line_length = 160
-{%- endif %}
