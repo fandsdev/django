@@ -14,7 +14,8 @@ class AppConfig(BaseAppConfig):
     Allthough, if you wish to use signals, place handlers to the `signals/handlers.py`:
     your code be automatically imported and used.
     """
+
     def ready(self) -> None:
         """Import a module with handlers if it exists to avoid boilerplate code."""
         with contextlib.suppress(ModuleNotFoundError):
-            importlib.import_module('.signals.handlers', self.module.__name__)  # type: ignore
+            importlib.import_module(".signals.handlers", self.module.__name__)  # type: ignore

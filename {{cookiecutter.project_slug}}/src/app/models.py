@@ -6,9 +6,9 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
 __all__ = [
-    'models',
-    'DefaultModel',
-    'TimestampedModel',
+    "models",
+    "DefaultModel",
+    "TimestampedModel",
 ]
 
 
@@ -18,7 +18,7 @@ class DefaultModel(models.Model):
 
     def __str__(self) -> str:
         """Default name for all models"""
-        name = getattr(self, 'name', None)
+        name = getattr(self, "name", None)
         if name is not None:
             return str(name)
 
@@ -29,8 +29,7 @@ class DefaultModel(models.Model):
         return ContentType.objects.get_for_model(cls)
 
     def update_from_kwargs(self, **kwargs: dict[str, Any]) -> None:
-        """A shortcut method to update model instance from the kwargs.
-        """
+        """A shortcut method to update model instance from the kwargs."""
         for (key, value) in kwargs.items():
             setattr(self, key, value)
 
@@ -41,9 +40,8 @@ class DefaultModel(models.Model):
 
     @classmethod
     def get_label(cls) -> str:
-        """Get a unique within the app model label
-        """
-        return cls._meta.label_lower.split('.')[-1]
+        """Get a unique within the app model label"""
+        return cls._meta.label_lower.split(".")[-1]
 
 
 class TimestampedModel(DefaultModel, Timestamped):
@@ -51,5 +49,6 @@ class TimestampedModel(DefaultModel, Timestamped):
     Default app model that has `created` and `updated` attributes.
     Currently based on https://github.com/audiolion/django-behaviors
     """
+
     class Meta:
         abstract = True

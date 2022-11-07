@@ -8,5 +8,5 @@ class FactoryProtocol(Protocol):
 
 
 __all__ = [
-    'FactoryProtocol',
+    "FactoryProtocol",
 ]

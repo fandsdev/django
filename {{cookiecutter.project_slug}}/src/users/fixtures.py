@@ -8,5 +8,5 @@ if TYPE_CHECKING:
 
 
 @pytest.fixture
-def user(factory: 'FixtureFactory') -> User:
+def user(factory: "FixtureFactory") -> User:
     return factory.user()

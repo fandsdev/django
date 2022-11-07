@@ -16,12 +16,12 @@ class FixtureRegistry:
     def get(self, name: str) -> Callable:
         method = self.METHODS.get(name)
         if not method:
-            raise AttributeError(f'Factory method “{name}” not found.')
+            raise AttributeError(f"Factory method “{name}” not found.")
         return method
 
 
 class CycleFixtureFactory:
-    def __init__(self, factory: 'FixtureFactory', count: int) -> None:
+    def __init__(self, factory: "FixtureFactory", count: int) -> None:
         self.factory = factory
         self.count = count
 

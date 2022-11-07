@@ -10,6 +10,6 @@ from books.models import Book
 @admin.register(Book)
 class BookAdmin(ModelAdmin):
     fields = [
-        'name',
+        "name",
     ]
 ```

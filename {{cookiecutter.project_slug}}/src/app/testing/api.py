@@ -15,39 +15,39 @@ class ApiClient(DRFAPIClient):
 
         if user:
             self.user = user
-            self.password = ''.join([random.choice(string.hexdigits) for _ in range(6)])
+            self.password = "".join([random.choice(string.hexdigits) for _ in range(6)])
             self.user.set_password(self.password)
             self.user.save()
 
             token = Token.objects.create(user=self.user)
             self.credentials(
-                HTTP_AUTHORIZATION=f'Token {token}',
-                HTTP_X_CLIENT='testing',
+                HTTP_AUTHORIZATION=f"Token {token}",
+                HTTP_X_CLIENT="testing",
             )
 
     def get(self, *args, **kwargs):
-        expected_status = kwargs.get('expected_status', 200)
-        return self._request('get', expected_status, *args, **kwargs)
+        expected_status = kwargs.get("expected_status", 200)
+        return self._request("get", expected_status, *args, **kwargs)
 
     def patch(self, *args, **kwargs):
-        expected_status = kwargs.get('expected_status', 200)
-        return self._request('patch', expected_status, *args, **kwargs)
+        expected_status = kwargs.get("expected_status", 200)
+        return self._request("patch", expected_status, *args, **kwargs)
 
     def post(self, *args, **kwargs):
-        expected_status = kwargs.get('expected_status', 201)
-        return self._request('post', expected_status, *args, **kwargs)
+        expected_status = kwargs.get("expected_status", 201)
+        return self._request("post", expected_status, *args, **kwargs)
 
     def put(self, *args, **kwargs):
-        expected_status = kwargs.get('expected_status', 200)
-        return self._request('put', expected_status, *args, **kwargs)
+        expected_status = kwargs.get("expected_status", 200)
+        return self._request("put", expected_status, *args, **kwargs)
 
     def delete(self, *args, **kwargs):
-        expected_status = kwargs.get('expected_status', 204)
-        return self._request('delete', expected_status, *args, **kwargs)
+        expected_status = kwargs.get("expected_status", 204)
+        return self._request("delete", expected_status, *args, **kwargs)
 
     def _request(self, method, expected, *args, **kwargs):
-        kwargs['format'] = kwargs.get('format', 'json')
-        as_response = kwargs.pop('as_response', False)
+        kwargs["format"] = kwargs.get("format", "json")
+        as_response = kwargs.pop("as_response", False)
         method = getattr(super(), method)
 
         response = method(*args, **kwargs)
@@ -59,7 +59,7 @@ class ApiClient(DRFAPIClient):
         return content
 
     def _decode(self, response):
-        content = response.content.decode('utf-8', errors='ignore')
+        content = response.content.decode("utf-8", errors="ignore")
 
         if self.is_json(response):
             return json.loads(content)
@@ -68,12 +68,12 @@ class ApiClient(DRFAPIClient):
 
     @staticmethod
     def is_json(response) -> bool:
-        if response.has_header('content-type'):
-            return 'json' in response.get('content-type')
+        if response.has_header("content-type"):
+            return "json" in response.get("content-type")
 
         return False
 
 
 __all__ = [
-    'ApiClient',
+    "ApiClient",
 ]
