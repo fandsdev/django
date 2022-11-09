@@ -22,7 +22,7 @@ echo Running initial migrations...
 
 cd ../
 echo Apply formatting..
-make frmt
+make fmt
 
 echo Running flake8..
 make lint

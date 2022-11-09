@@ -10,7 +10,7 @@ deps:
 dev-deps: deps
 	pip-compile --extra=dev --output-file=dev-requirements.txt pyproject.toml
 
-frmt:
+fmt:
 	cd src && isort .
 	cd src && black .
 

@@ -47,7 +47,6 @@ dev = [
     "flake8-black",
     "flake8-bugbear",
     "flake8-cognitive-complexity",
-    "flake8-commas",
     "flake8-django",
     "flake8-eradicate",
     "flake8-isort>=4.0.0",
@@ -87,7 +86,6 @@ ignore = [
     "SIM102",  # Use a single if-statement instead of nested if-statements
     "SIM113",  # Use enumerate instead of manually incrementing a counter
     "E203",  # whitespace before ':', disabled for black purposes https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html#slices
-    "C812",  # Missing trailing comma, disabled for black purposes https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html#the-magic-trailing-comma
 ]
 exclude = [
     "static",
