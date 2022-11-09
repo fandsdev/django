@@ -11,15 +11,16 @@
 * [pip-tools](https://github.com/jazzband/pip-tools) with separate development-time dependencies
 * Strict type checking with mypy, [django-stubs](https://github.com/typeddjango/django-stubs) and [djangorestframework-stubs](https://github.com/typeddjango/djangorestframework-stubs)
 * flake8 with ton of plugins (contact me if you know more)
-* Starter CI configuration
-* pytest with usefull stuff like freezegun, pytest-mock and super convinient [DRF test client](https://github.com/f213/django/blob/master/%7B%7Bcookiecutter.project_slug%7D%7D/src/app/tests/tests_health.py#L9)
+* [black](https://github.com/psf/black) as uncompromising code formatter
+* Starter CI configuration on GitHub Actions
+* pytest with useful stuff like freezegun, pytest-mock and super convinient [DRF test client](https://github.com/f213/django/blob/master/%7B%7Bcookiecutter.project_slug%7D%7D/src/app/tests/tests_health.py#L9)
 * Custom [user model](https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#specifying-a-custom-user-model)
 * [drf-yasg](https://github.com/axnsan12/drf-yasg#drf-yasg---yet-another-swagger-generator) for API Schema generation
 * [django-axes](https://github.com/jazzband/django-axes) for additional security
 * [Whitenoise](http://whitenoise.evans.io) for effortless static files hosting
-* Sentry. Set `SENTRY_DSN` env var if you need it.
 * cloudflare-ready with [django-ipware](https://github.com/un33k/django-ipware)
-* [black](https://github.com/psf/black) as uncompromising code formatter 
+* Sentry. Set `SENTRY_DSN` env var if you need it.
+
 
 ## Optional next steps
 You definetely should consider this steps after installation:
@@ -31,7 +32,7 @@ You definetely should consider this steps after installation:
 
 ```
 $ pip install --upgrade cookiecutter
-$ cookiecutter gh:f213/django
+$ cookiecutter gh:fandsdev/django
 ```
 
 ## FAQ
@@ -42,4 +43,4 @@ You should upgrade cookiecutter to the latest version: `pip install --upgrade co
 
 ### I wanna hack this!
 
-Thank you so much! Check out our [CI pipeline](https://github.com/fandsdev/django/blob/master/.circleci/config.yml#L10) and pick any free [issue](https://github.com/fandsdev/django/issues).
+Thank you so much! Check out our [build pipeline](https://github.com/fandsdev/django/blob/master/Makefile) and pick any free [issue](https://github.com/fandsdev/django/issues).
