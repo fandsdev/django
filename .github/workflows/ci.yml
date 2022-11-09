@@ -21,4 +21,4 @@ jobs:
         run: pip install cookiecutter
 
       - name: Bootstrap the project
-        run: make
+        run: make test

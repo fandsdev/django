@@ -10,6 +10,10 @@ deps:
 dev-deps: deps
 	pip-compile --extra=dev --output-file=dev-requirements.txt pyproject.toml
 
+fmt:
+	cd src && isort .
+	cd src && black .
+
 lint:
 	dotenv-linter src/app/.env.ci
 	flake8 src

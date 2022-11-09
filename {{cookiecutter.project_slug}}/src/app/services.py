@@ -18,7 +18,7 @@ class BaseService(metaclass=ABCMeta):
         def act(self) -> User:
           return User.objects.create(first_name=self.first_name, last_name=self.last_name)
 
-        # user = UserCreator(first_name='Ivan', last_name='Petrov')()
+        # user = UserCreator(first_name="Ivan", last_name="Petrov")()
 
     This is not ok:
       class UserCreator:
@@ -27,6 +27,7 @@ class BaseService(metaclass=ABCMeta):
 
     For more implementation examples, check out https://github.com/tough-dev-school/education-backend/tree/master/src/orders/services
     """
+
     def __call__(self) -> None:
         self.validate()
         return self.act()
@@ -41,4 +42,4 @@ class BaseService(metaclass=ABCMeta):
 
     @abstractmethod
     def act(self) -> None:
-        raise NotImplementedError('Please implement in the service class')
+        raise NotImplementedError("Please implement in the service class")

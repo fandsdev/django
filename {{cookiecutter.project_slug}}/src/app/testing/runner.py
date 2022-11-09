@@ -7,4 +7,4 @@ class DisableTestCommandRunner:
         pass
 
     def run_tests(self, *args):
-        raise CommandError('Please use command `pytest`.')
+        raise CommandError("Pytest here. Run it with `make test`")

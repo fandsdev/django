@@ -3,7 +3,7 @@ import uuid
 from mixer.backend.django import mixer
 
 __all__ = [
-    'mixer',
+    "mixer",
 ]
 
 
@@ -12,8 +12,8 @@ def _random_user_name() -> str:
 
 
 def _random_email() -> str:
-    uuid_as_str = str(uuid.uuid4()).replace('-', '_')
-    return f'{uuid_as_str}@mail.com'
+    uuid_as_str = str(uuid.uuid4()).replace("-", "_")
+    return f"{uuid_as_str}@mail.com"
 
 
-mixer.register('users.User', username=_random_user_name, email=_random_email)
+mixer.register("users.User", username=_random_user_name, email=_random_email)

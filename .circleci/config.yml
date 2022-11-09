@@ -24,7 +24,7 @@ jobs:
           name: Bootstrap the project
           command: |
             . venv/bin/activate
-            make
+            make test
 
       - persist_to_workspace:
           root: .
