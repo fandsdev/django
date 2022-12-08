@@ -58,7 +58,6 @@ dev = [
     "flake8-printf-formatting",
     "flake8-pytest",
     "flake8-pytest-style",
-    "flake8-quotes",
     "flake8-simplify",
     "flake8-todo",
     "flake8-use-fstring",
