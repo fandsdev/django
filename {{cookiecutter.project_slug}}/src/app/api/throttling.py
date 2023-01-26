@@ -13,7 +13,7 @@ class BaseThrottle(Protocol):
 
 class ConfigurableThrottlingMixin:
     def allow_request(self: BaseThrottle, request: Request, view: APIView) -> bool:
-        if settings.DISABLE_THROTTLING:
+        if settings.DISABLE_THROTTLING:  # type: ignore
             return True
 
         return super().allow_request(request, view)  # type: ignore
