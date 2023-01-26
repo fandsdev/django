@@ -5,22 +5,28 @@ install-deps: deps
 	pip-sync requirements.txt
 
 deps:
-	pip-compile --output-file=requirements.txt pyproject.toml
+	pip-compile --resolver=backtracking --output-file=requirements.txt pyproject.toml
 
 dev-deps: deps
-	pip-compile --extra=dev --output-file=dev-requirements.txt pyproject.toml
+	pip-compile --resolver=backtracking --extra=dev --output-file=dev-requirements.txt pyproject.toml
 
 fmt:
 	cd src && isort .
 	cd src && black .
 
-lint:
+fmt-check:
+	cd src && isort . --check
+	cd src && black . --check
+
+lint: fmt-check
 	dotenv-linter src/app/.env.ci
+	cd src && ./manage.py check
 	flake8 src
 	cd src && mypy
 
 test:
-	mkdir -p src/app/static
+	mkdir -p src/static
+	cd src && ./manage.py makemigrations --dry-run --no-input --check
 	cd src && ./manage.py compilemessages
 	cd src && pytest --dead-fixtures
 	cd src && pytest -x
