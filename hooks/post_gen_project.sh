@@ -21,7 +21,10 @@ echo Running initial migrations...
 ./manage.py migrate
 
 cd ../
-echo Running linters..
+echo Apply formatting..
+make fmt
+
+echo Running flake8..
 make lint
 
 echo Running pytest...

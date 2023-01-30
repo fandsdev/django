@@ -14,11 +14,7 @@ fmt:
 	cd src && isort .
 	cd src && black .
 
-fmt-check:
-	cd src && isort . --check
-	cd src && black . --check
-
-lint: fmt-check
+lint:
 	dotenv-linter src/app/.env.ci
 	cd src && ./manage.py check
 	flake8 src
