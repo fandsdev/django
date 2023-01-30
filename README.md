@@ -20,6 +20,7 @@
 * [Whitenoise](http://whitenoise.evans.io) for effortless static files hosting
 * cloudflare-ready with [django-ipware](https://github.com/un33k/django-ipware)
 * Sentry. Set `SENTRY_DSN` env var if you need it.
+* Postgres ready. Set `DATABASE_URL` env var to something like `DATABASE_URL=postgres://postgres@localhost:5432/postgres`
 
 
 ## Optional next steps
