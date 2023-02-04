@@ -23,7 +23,7 @@ charset-normalizer==3.0.1
     # via requests
 cryptography==39.0.0
     # via pyjwt
-django==3.2.16
+django==3.2.17
     # via
     #   django (pyproject.toml)
     #   django-axes

@@ -25,7 +25,7 @@ backcall==0.2.0
     # via ipython
 bcrypt==4.0.1
     # via django (pyproject.toml)
-black==22.12.0
+black==23.1.0
     # via
     #   django (pyproject.toml)
     #   flake8-black
@@ -51,7 +51,7 @@ cryptography==39.0.0
     # via pyjwt
 decorator==5.1.1
     # via ipython
-django==3.2.16
+django==3.2.17
     # via
     #   django (pyproject.toml)
     #   django-axes
@@ -181,9 +181,9 @@ inflection==0.5.1
     # via drf-spectacular
 iniconfig==2.0.0
     # via pytest
-ipython==8.8.0
+ipython==8.9.0
     # via django (pyproject.toml)
-isort==5.11.4
+isort==5.12.0
     # via flake8-isort
 jedi==0.18.2
     # via
@@ -202,12 +202,14 @@ mypy==0.991
     #   django (pyproject.toml)
     #   django-stubs
     #   djangorestframework-stubs
-mypy-extensions==0.4.3
+mypy-extensions==1.0.0
     # via
     #   black
     #   mypy
 packaging==23.0
-    # via pytest
+    # via
+    #   black
+    #   pytest
 parso==0.8.3
     # via jedi
 pathspec==0.11.0
@@ -301,17 +303,17 @@ tomli==2.0.1
     #   flake8-pyproject
     #   mypy
     #   pytest
-traitlets==5.8.1
+traitlets==5.9.0
     # via
     #   ipython
     #   matplotlib-inline
 types-freezegun==1.1.10
     # via django (pyproject.toml)
-types-pillow==9.4.0.5
+types-pillow==9.4.0.6
     # via django (pyproject.toml)
 types-pytz==2022.7.1.0
     # via django-stubs
-types-pyyaml==6.0.12.3
+types-pyyaml==6.0.12.4
     # via
     #   django-stubs
     #   djangorestframework-stubs
