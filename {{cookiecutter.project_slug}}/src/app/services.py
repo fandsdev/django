@@ -1,6 +1,6 @@
 from abc import ABCMeta
 from abc import abstractmethod
-from typing import Callable
+from typing import Any, Callable
 
 
 class BaseService(metaclass=ABCMeta):
@@ -28,7 +28,7 @@ class BaseService(metaclass=ABCMeta):
     For more implementation examples, check out https://github.com/tough-dev-school/education-backend/tree/master/src/orders/services
     """
 
-    def __call__(self) -> None:
+    def __call__(self) -> Any:
         self.validate()
         return self.act()
 
@@ -41,5 +41,5 @@ class BaseService(metaclass=ABCMeta):
             validator()
 
     @abstractmethod
-    def act(self) -> None:
+    def act(self) -> Any:
         raise NotImplementedError("Please implement in the service class")

@@ -15,11 +15,12 @@
 * Starter CI configuration on GitHub Actions
 * pytest with useful stuff like freezegun, pytest-mock and super convinient [DRF test client](https://github.com/f213/django/blob/master/%7B%7Bcookiecutter.project_slug%7D%7D/src/app/tests/tests_health.py#L9)
 * Custom [user model](https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#specifying-a-custom-user-model)
-* [drf-yasg](https://github.com/axnsan12/drf-yasg#drf-yasg---yet-another-swagger-generator) for API Schema generation
+* [drf-spectacular](https://github.com/tfranzel/drf-spectacular) for API Schema generation
 * [django-axes](https://github.com/jazzband/django-axes) for additional security
 * [Whitenoise](http://whitenoise.evans.io) for effortless static files hosting
 * cloudflare-ready with [django-ipware](https://github.com/un33k/django-ipware)
 * Sentry. Set `SENTRY_DSN` env var if you need it.
+* Postgres ready. Set `DATABASE_URL` env var to something like `DATABASE_URL=postgres://postgres@localhost:5432/postgres`
 
 
 ## Optional next steps

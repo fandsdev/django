@@ -20,6 +20,7 @@ dependencies = [
     "redis",
     "sentry-sdk",
     "Pillow",
+    "psycopg2-binary",
 ]
 
 
@@ -43,7 +44,6 @@ dev = [
 
     "jedi",
     "flake8-absolute-import",
-    "flake8-aaa",
     "flake8-black",
     "flake8-bugbear",
     "flake8-cognitive-complexity",
@@ -51,7 +51,6 @@ dev = [
     "flake8-eradicate",
     "flake8-isort>=4.0.0",
     "flake8-fixme",
-    "flake8-multiline-containers",
     "flake8-pep3101",
     "flake8-pie",
     "flake8-print",
@@ -113,3 +112,22 @@ exclude = '''
 )/
 '''
 line_length = 160
+
+
+[tool.pytest.ini_options]
+ DJANGO_SETTINGS_MODULE = "app.settings"
+ python_files = ["test*.py"]
+ addopts = ["--reuse-db"]
+ markers = [
+   "freeze_time: freezing time marker (pytest-freezegun does not register it)",
+ ]
+ filterwarnings = [  # Pattern: `action:message:category:module:line` (https://docs.python.org/3/library/warnings.html#describing-warning-filters)
+   "ignore:.*'rest_framework_jwt.blacklist' defines default_app_config.*You can remove default_app_config.::django",
+   "ignore:distutils Version classes are deprecated. Use packaging.version instead.:DeprecationWarning:pytest_freezegun:17",
+ ]
+ env = [
+   "CI=1",
+   "CELERY_ALWAYS_EAGER=True",
+   "DISABLE_THROTTLING=True",
+   "AXES_ENABLED=False",
+ ]

@@ -1,4 +1,5 @@
-FROM python:3.10.3-slim-bullseye
+ARG PYTHON_VERSION
+FROM python:${PYTHON_VERSION}-slim-bullseye
 LABEL maintainer="fedor@borshev.com"
 
 LABEL com.datadoghq.ad.logs='[{"source": "uwsgi", "service": "django"}]'
