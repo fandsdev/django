@@ -118,7 +118,8 @@ line_length = 160
 
 [tool.autoflake]
 check = true
-imports = ["django", "requests", "urllib3"]
+imports = ["django"]
+
 
 [tool.pytest.ini_options]
  DJANGO_SETTINGS_MODULE = "app.settings"
