@@ -116,6 +116,10 @@ exclude = '''
 line_length = 160
 
 
+[tool.autoflake]
+check = true
+imports = ["django", "requests", "urllib3"]
+
 [tool.pytest.ini_options]
  DJANGO_SETTINGS_MODULE = "app.settings"
  python_files = ["test*.py"]
