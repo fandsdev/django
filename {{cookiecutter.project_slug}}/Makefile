@@ -13,7 +13,7 @@ dev-deps: deps
 fmt:
 	cd src && isort .
 	cd src && black .
-	cd src && autoflake --remove-all-unused-imports --recursive --in-place .
+	cd src && autoflake --in-place --remove-unused-variables --recursive .
 
 lint:
 	dotenv-linter src/app/.env.ci
