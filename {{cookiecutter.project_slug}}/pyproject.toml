@@ -37,7 +37,7 @@ dev = [
 
     "black",
 
-    "autoflake",
+    "autoflake==1.7.0",
 
     "dotenv-linter",
 
@@ -114,11 +114,6 @@ exclude = '''
 )/
 '''
 line_length = 160
-
-
-[tool.autoflake]
-check = true
-imports = ["django"]
 
 
 [tool.pytest.ini_options]
