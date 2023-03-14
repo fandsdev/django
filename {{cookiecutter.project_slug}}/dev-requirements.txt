@@ -242,7 +242,7 @@ pycodestyle==2.9.1
     #   flake8-todo
 pycparser==2.21
     # via cffi
-pyflakes==3.0.0
+pyflakes==2.5.0
     # via flake8
 pygments==2.14.0
     # via ipython
