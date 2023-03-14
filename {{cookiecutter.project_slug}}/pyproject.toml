@@ -37,6 +37,8 @@ dev = [
 
     "black",
 
+    "autoflake==1.7.0",
+
     "dotenv-linter",
 
     "freezegun",
