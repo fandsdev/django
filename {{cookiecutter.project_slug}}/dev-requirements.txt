@@ -280,7 +280,7 @@ pytz==2022.7.1
     #   djangorestframework
 pyyaml==6.0
     # via drf-spectacular
-redis==4.4.2
+redis==4.5.3
     # via django (pyproject.toml)
 requests==2.28.2
     # via
