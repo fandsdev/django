@@ -292,7 +292,7 @@ six==1.16.0
     # via
     #   asttokens
     #   python-dateutil
-sqlparse==0.4.3
+sqlparse==0.4.4
     # via django
 stack-data==0.6.2
     # via ipython
