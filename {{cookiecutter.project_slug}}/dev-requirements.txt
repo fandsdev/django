@@ -332,7 +332,7 @@ typing-extensions==4.4.0
     #   mypy
 uritemplate==4.1.1
     # via drf-spectacular
-urllib3==1.26.14
+urllib3==1.26.17
     # via
     #   requests
     #   sentry-sdk
