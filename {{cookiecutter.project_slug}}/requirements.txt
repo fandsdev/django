@@ -71,7 +71,7 @@ inflection==0.5.1
     # via drf-spectacular
 jsonschema==4.17.3
     # via drf-spectacular
-pillow==9.4.0
+pillow==10.0.1
     # via django (pyproject.toml)
 psycopg2-binary==2.9.5
     # via django (pyproject.toml)
