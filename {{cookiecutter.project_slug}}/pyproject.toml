@@ -2,7 +2,7 @@
 name = "{{cookiecutter.project_slug}}"
 version = "{{cookiecutter.project_version}}"
 dependencies = [
-    "Django<3.3",
+    "Django<4.3",
     "bcrypt",
     "django-behaviors",
     "django-environ",

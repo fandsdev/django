@@ -1,0 +1,5 @@
+from django.db import models
+
+from app.models import DefaultModel
+
+# Create your model here. One model is one file. Rename file and add model to __init__.py.
