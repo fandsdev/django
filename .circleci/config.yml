@@ -1,11 +1,11 @@
 version: 2.1
 orbs:
-  docker: circleci/docker@1.7.0
+  docker: circleci/docker@2.4.0
 
 jobs:
   build:
     docker:
-      - image: cimg/python:3.10
+      - image: cimg/python:3.11
 
     steps:
       - checkout
@@ -34,7 +34,7 @@ jobs:
 
   coverage:
     docker:
-      - image: cimg/python:3.10
+      - image: cimg/python:3.11
     steps:
       - checkout
       - attach_workspace:
@@ -73,5 +73,6 @@ workflows:
           image: f213/django
           path: testproject/django
           docker-context: testproject/django
+          extra_build_args: '--build-arg PYTHON_VERSION=3.11'
           deploy: false
           attach-at: .
