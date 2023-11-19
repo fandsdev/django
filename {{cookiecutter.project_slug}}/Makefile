@@ -27,3 +27,5 @@ test:
 	cd src && ./manage.py compilemessages
 	cd src && pytest --dead-fixtures
 	cd src && pytest -x
+
+pr: fmt lint test

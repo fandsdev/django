@@ -1,5 +1,5 @@
 from django.db import models
 
-from app.models import DefaultModel
+from app.models import DefaultModel, TimeStampedModel
 
-# Create your model here. One model is one file. Rename file and add model to __init__.py.
+# Rename this file to singular form of your entity, e.g. "orders.py -> order.py". Add your class to __init__.py.
