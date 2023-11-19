@@ -1,5 +1,5 @@
 ARG PYTHON_VERSION
-FROM python:${PYTHON_VERSION}-slim-bullseye
+FROM python:${PYTHON_VERSION}-slim-bookworm
 LABEL maintainer="fedor@borshev.com"
 
 LABEL com.datadoghq.ad.logs='[{"source": "uwsgi", "service": "django"}]'
@@ -9,9 +9,9 @@ ENV DEBIAN_FRONTEND noninteractive
 
 ENV STATIC_ROOT /static
 
-ENV _UWSGI_VERSION 2.0.20
+ENV _UWSGI_VERSION 2.0.23
 
-RUN echo deb http://deb.debian.org/debian bullseye contrib non-free > /etc/apt/sources.list.d/debian-contrib.list \
+RUN echo deb http://deb.debian.org/debian bookworm contrib non-free > /etc/apt/sources.list.d/debian-contrib.list \
   && apt update \
   && apt --no-install-recommends install -y gettext locales-all wget \
   imagemagick tzdata wait-for-it build-essential \
