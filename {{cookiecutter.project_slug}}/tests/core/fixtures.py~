@@ -1,0 +1,23 @@
+import pytest
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from apps.users.models import User
+    from core.testing import ApiClient
+    from core.testing.factory import FixtureFactory
+
+
+@pytest.fixture
+def as_anon() -> "ApiClient":
+    return ApiClient()
+
+
+@pytest.fixture
+def as_user(user: "User") -> "ApiClient":
+    return ApiClient(user=user)
+
+
+@pytest.fixture
+def factory() -> "FixtureFactory":
+    return FixtureFactory()

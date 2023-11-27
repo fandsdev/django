@@ -1,4 +1,4 @@
-from app.base_config import AppConfig
+from core.base_config import AppConfig
 
 
 class {{ camel_case_app_name }}Config(AppConfig):

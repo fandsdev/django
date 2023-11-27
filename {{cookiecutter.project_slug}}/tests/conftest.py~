@@ -1,0 +1,9 @@
+# fmt: off
+pytest_plugins = [
+    "tests.apps.users.conftest",
+    "tests.core.conftest",
+
+    "tests.apps.users.factory",
+    "tests.core.factory",
+]
+# fmt: on

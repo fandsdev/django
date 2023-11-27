@@ -31,7 +31,7 @@ jobs:
       - name: Run the linter
         run: |
           . venv/bin/activate
-          cp src/app/.env.ci src/app/.env
+          cp src/core/.env.ci src/core/.env
           make lint
 
   test:
@@ -73,5 +73,5 @@ jobs:
 
         run: |
           . venv/bin/activate
-          cp src/app/.env.ci src/app/.env
+          cp src/core/.env.ci src/core/.env
           make test

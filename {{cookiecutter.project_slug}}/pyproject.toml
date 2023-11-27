@@ -1,135 +1,109 @@
-[project]
-name = "{{cookiecutter.project_slug}}"
-version = "{{cookiecutter.project_version}}"
-dependencies = [
-    "Django<4.3",
-    "bcrypt",
-    "django-behaviors",
-    "django-environ",
-    "django-ipware",
-    "django-axes",
-    "whitenoise",
-    "django-storages",
-    "djangorestframework",
-    "djangorestframework-camel-case",
-    "drf-jwt",
-    "drf-spectacular[sidecar]",
-    "django-filter",
-    "django-split-settings",
-    "django-healthchecks",
-    "redis",
-    "sentry-sdk",
-    "Pillow",
-    "psycopg2-binary",
-]
+[tool.poetry]
+authors = ["you <your@email.com>"]
+description = "your project description"
+name = "your-project-name"
+readme = "README.md"
+version = "0.1.0"
 
+[tool.poetry.dependencies]
+python = "~3.11"
+bcrypt = "^4.0.1"
+django = "^4.2.7"
+django-axes = "^6.1.1"
+django-behaviors = "^0.5.1"
+django-environ = "^0.11.2"
+django-filter = "^23.4"
+django-healthchecks = "^1.5.0"
+django-ipware = "^6.0.0"
+django-split-settings = "^1.2.0"
+django-storages = "^1.14.2"
+djangorestframework = "^3.14.0"
+djangorestframework-camel-case = "^1.4.2"
+drf-jwt = "^1.19.2"
+drf-spectacular = {extras = ["sidecar"], version = "^0.26.5"}
+pillow = "^10.1.0"
+psycopg2-binary = "^2.9.9"
+redis = "^5.0.1"
+sentry-sdk = "^1.37.0"
+whitenoise = "^6.6.0"
 
-[project.optional-dependencies]
-dev = [
-    "ipython",
+[tool.poetry.group.dev.dependencies]
+autoflake = "^2.2.1"
+black = "^23.11.0"
+django-stubs = "^4.2.6"
+djangorestframework-stubs = "^3.14.4"
+dotenv-linter = "^0.4.0"
+flake8-absolute-import = "^1.0.0.2"
+flake8-bugbear = "^23.9.16"
+flake8-cognitive-complexity = "^0.1.0"
+flake8-django = "^1.4"
+flake8-eradicate = "^1.5.0"
+flake8-fixme = "^1.1.1"
+flake8-pep3101 = "^2.1.0"
+flake8-pie = "^0.16.0"
+flake8-print = "^5.0.0"
+flake8-printf-formatting = "^1.1.2"
+flake8-pyproject = "^1.2.3"
+flake8-variables-names = "^0.0.6"
+flake8-walrus = "^1.2.0"
+freezegun = "^1.2.2"
+ipython = "^8.18.0"
+jedi = "^0.19.1"
+mixer = {extras = ["django"], version = "^7.2.2"}
+mypy = "^1.7.1"
+pytest-deadfixtures = "^2.2.1"
+pytest-django = "^4.7.0"
+pytest-env = "^1.1.1"
+pytest-freezegun = "^0.4.2"
+pytest-mock = "^3.12.0"
+pytest-randomly = "^3.15.0"
+types-freezegun = "^1.1.10"
+types-pillow = "^10.1.0.2"
 
-    "pytest-django>=3.9",
-    "pytest-deadfixtures",
-    "pytest-env",
-    "pytest-freezegun",
-    "pytest-mock",
-    "pytest-randomly",
-
-    "black",
-
-    "autoflake==1.7.0",
-
-    "dotenv-linter",
-
-    "freezegun",
-    "mixer",
-
-    "jedi",
-    "flake8-absolute-import",
-    "flake8-black",
-    "flake8-bugbear",
-    "flake8-cognitive-complexity",
-    "flake8-django",
-    "flake8-eradicate",
-    "flake8-isort>=4.0.0",
-    "flake8-fixme",
-    "flake8-pep3101",
-    "flake8-pie",
-    "flake8-print",
-    "flake8-printf-formatting",
-    "flake8-pytest",
-    "flake8-pytest-style",
-    "flake8-simplify",
-    "flake8-todo",
-    "flake8-use-fstring",
-    "flake8-variables-names",
-    "flake8-walrus",
-    "flake8-pyproject",
-
-    "mypy",
-    "django-stubs",
-    "djangorestframework-stubs",
-    "types-freezegun",
-    "types-Pillow",
-]
-
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
 
 [tool.flake8]
-max-line-length = 160
-inline-quotes = "\""
+exclude = ["migrations", "__pycache__"]
 ignore = [
-    "DJ05",  # URLs include() should set a namespace
-    "E501",  # Line too long
-    "E265",  # Block comments should have one space before the pound sign (#) and the comment itself
-    "F811",  # Redefinition of unused name from line n
-    "PT001",  # Use @pytest.fixture() over @pytest.fixture
-    "SIM102",  # Use a single if-statement instead of nested if-statements
-    "SIM113",  # Use enumerate instead of manually incrementing a counter
-    "E203",  # whitespace before ':', disabled for black purposes https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html#slices
+    "DJ05", # URLs include() should set a namespace
+    "E501", # Line too long
+    "E265", # Block comments should have one space before the pound sign (#) and the comment itself
+    "F811", # Redefinition of unused name from line n
+    "PT001", # Use @pytest.fixture() over @pytest.fixture
+    "SIM102", # Use a single if-statement instead of nested if-statements
+    "SIM113", # Use enumerate instead of manually incrementing a counter
+    "E203", # whitespace before ':', disabled for black purposes https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html#slices
 ]
-exclude = [
-    "static",
-    "migrations",
-    "frontend",
-    ".git",
-    "__pycache__",
-]
-
+inline-quotes = "\""
+max-line-length = 160
 
 [tool.isort]
-profile = "google"
-line_length = 160
 extra_standard_library = ["pytest"]
+include_trailing_comma = true
 known_django = ["django", "restframework"]
+line_length = 160
+multi_line_output = 3
+profile = "google"
 sections = ["FUTURE", "STDLIB", "THIRDPARTY", "DJANGO", "FIRSTPARTY", "LOCALFOLDER"]
 use_parentheses = true
-include_trailing_comma = true
-multi_line_output = 3
-
-
-[tool.black]
-exclude = '''
-/(
-  | migrations
-)/
-'''
-line_length = 160
-
 
 [tool.pytest.ini_options]
- DJANGO_SETTINGS_MODULE = "app.settings"
- python_files = ["test*.py"]
- addopts = ["--reuse-db"]
- markers = [
-   "freeze_time: freezing time marker (pytest-freezegun does not register it)",
- ]
- filterwarnings = [  # Pattern: `action:message:category:module:line` (https://docs.python.org/3/library/warnings.html#describing-warning-filters)
-   "ignore:.*'rest_framework_jwt.blacklist' defines default_app_config.*You can remove default_app_config.::django",
-   "ignore:distutils Version classes are deprecated. Use packaging.version instead.:DeprecationWarning:pytest_freezegun:17",
- ]
- env = [
-   "CI=1",
-   "CELERY_ALWAYS_EAGER=True",
-   "DISABLE_THROTTLING=True",
-   "AXES_ENABLED=False",
- ]
+addopts = ["--reuse-db"]
+DJANGO_SETTINGS_MODULE = "core.settings"
+env = [
+    "AXES_ENABLED = False",
+    "CELERY_ALWAYS_EAGER = True",
+    "CI = 1",
+    "DISABLE_THROTTLING = True",
+]
+filterwarnings = [
+    "ignore:.*'rest_framework_jwt.blacklist' defines default_app_config.*You can remove default_app_config.::django",
+    "ignore:distutils Version classes are deprecated. Use packaging.version instead.:DeprecationWarning:pytest_freezegun:17",
+]
+markers = [
+    "freeze_time: freezing time marker (pytest-freezegun does not register it)",
+]
+python_files = ["test*.py"]
+pythonpath = ". src"

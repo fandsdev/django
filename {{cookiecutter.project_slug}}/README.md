@@ -4,9 +4,9 @@ This project is bootstrapped using [fandsdev/django](http://github.com/fandsdev/
 
 ## Project structure
 
-The main django app is called `app`. It contains `.env` file for django-environ. For examples see `src/app/.env.ci`. Here are some usefull app-wide tools:
+The main django app is called `app`. It contains `.env` file for django-environ. For examples see `src/core/.env.ci`. Here are some usefull app-wide tools:
 * `app.admin` — app-wide django-admin customizations (empty yet), check out usage [examples](https://github.com/f213/django/tree/master/%7B%7Bcookiecutter.project_slug%7D%7D/src/app/admin)
-* `app.test.api_client` (available as `api` and `anon` fixtures within pytest) — a [convinient DRF test client](https://github.com/f213/django/blob/master/%7B%7Bcookiecutter.project_slug%7D%7D/src/users/tests/tests_whoami.py#L6-L16).
+* `core.test.api_client` (available as `api` and `anon` fixtures within pytest) — a [convinient DRF test client](https://github.com/f213/django/blob/master/%7B%7Bcookiecutter.project_slug%7D%7D/src/users/tests/tests_whoami.py#L6-L16).
 
 Django user model is located in the separate `users` app.
 
@@ -25,7 +25,7 @@ $ make
 Run the server:
 
 ```bash
-$ cd src && cp app/.env.ci app/.env  # default environment variables
+$ cd src && cp core/.env.ci core/.env  # default environment variables
 $ ./manage.py migrate
 $ ./manage.py createsuperuser
 $ ./manage.py runserver
