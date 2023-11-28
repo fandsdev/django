@@ -1,5 +1,4 @@
 import pytest
-
 from typing import TYPE_CHECKING
 
 from core.testing import ApiClient

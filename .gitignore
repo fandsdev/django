@@ -1,4 +1,8 @@
-venv
-testproject
-.vscode
 .idea
+.vscode
+
+**/*~
+**/.DS_Store
+
+testproject
+venv

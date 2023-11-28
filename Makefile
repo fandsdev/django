@@ -1,4 +1,4 @@
-VENV=cd testproject/django && poetry run python src/manage.py
+VENV = cd testproject && poetry run python src/manage.py
 
 test: bootstrap
 	$(VENV) makemigrations --check
@@ -6,9 +6,8 @@ test: bootstrap
 
 bootstrap:
 	rm -Rf testproject
-	mkdir -p testproject
 
-	cd testproject && cookiecutter --no-input ../
+	cookiecutter --no-input ./
 
 coverage:
 	$(VENV) -m pip install pytest-cov

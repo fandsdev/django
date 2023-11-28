@@ -1,9 +1,9 @@
 [tool.poetry]
 authors = ["you <your@email.com>"]
 description = "your project description"
-name = "your-project-name"
+name = "{{cookiecutter.project_slug}}"
 readme = "README.md"
-version = "0.1.0"
+version = "{{cookiecutter.project_version}}"
 
 [tool.poetry.dependencies]
 python = "~3.11"
@@ -48,6 +48,7 @@ flake8-variables-names = "^0.0.6"
 flake8-walrus = "^1.2.0"
 freezegun = "^1.2.2"
 ipython = "^8.18.0"
+isort = "^5.12.0"
 jedi = "^0.19.1"
 mixer = {extras = ["django"], version = "^7.2.2"}
 mypy = "^1.7.1"

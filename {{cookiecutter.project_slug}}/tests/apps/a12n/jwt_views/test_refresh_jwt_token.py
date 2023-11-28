@@ -57,7 +57,6 @@ def test_refresh_token_fails_with_incorrect_previous_token(refresh_token):
 
 def test_token_is_not_allowed_to_refresh_if_expired(initial_token, refresh_token):
     with freeze_time("2049-02-05"):
-
         result = refresh_token(initial_token, expected_status=400)
 
     assert "expired" in result["nonFieldErrors"][0]

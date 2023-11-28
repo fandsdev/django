@@ -1,7 +1,9 @@
-# Internationalization
-# https://docs.djangoproject.com/en/3.0/topics/i18n/
+from pathlib import Path
 
-LANGUAGE_CODE = "en-us"
-LOCALE_PATHS = ["locale"]
-USE_L10N = True
-USE_I18N = True
+from core.conf.boilerplate import BASE_DIR
+
+LANGUAGE_CODE = "ru"
+
+LOCALE_PATHS = [Path(BASE_DIR).parent / "locale"]
+
+USE_i18N = True
