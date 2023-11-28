@@ -1,14 +1,15 @@
-VENV = cd testproject && poetry run python src/manage.py
-
 test: bootstrap
-	$(VENV) makemigrations --check
-	$(VENV) startapp test_app
+	cd testproject && poetry run src/manage.py makemigrations --check
+	cd testproject && poetry run src/manage.py startapp test_app
+
+	make coverage
 
 bootstrap:
 	rm -Rf testproject
 
-	cookiecutter --no-input ./
+	poetry run cookiecutter --no-input ./
+
+	cd testproject && poetry install
 
 coverage:
-	$(VENV) -m pip install pytest-cov
-	$(VENV) -m pytest --cov-report=xml --cov=core --cov=users --cov=a12n --cov=sepulkas
+	cd testproject && poetry run python -m pytest --cov-report=xml --cov=core --cov=apps.a12n --cov=apps.users --cov=sepulkas

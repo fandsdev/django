@@ -1,0 +1,14 @@
+[tool.poetry]
+authors = ["Fedor Borshev <fedor@borshev.com>"]
+description = ""
+name = "django-fandsdev"
+readme = "README.md"
+version = "2023.11.29"
+
+[tool.poetry.dependencies]
+cookiecutter = "^2.5.0"
+python = "~3.11"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,5 +1,8 @@
 manage = poetry run src/manage.py
 
+compilemessages: messages
+	$(manage) compilemessages
+
 fmt:
 	poetry run autoflake --in-place --remove-all-unused-imports --recursive src tests
 	poetry run isort src tests
@@ -13,11 +16,11 @@ lint:
 	poetry run mypy src tests
 	poetry run dotenv-linter src/core/.env.ci
 
-test:
-	mkdir -p src/static
+messages:
+	$(manage) makemessages --locale ru
 
+test: compilemessages
 	$(manage) makemigrations --dry-run --no-input --check
-	$(manage) compilemessages
 	poetry run pytest --dead-fixtures
 	poetry run pytest -x
 
