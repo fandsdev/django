@@ -1,12 +1,15 @@
 manage = poetry run src/manage.py
+numprocesses = 4
 
 fmt:
 	poetry run autoflake --in-place --remove-all-unused-imports --recursive src tests
 	poetry run isort src tests
 	poetry run black src tests
 
-lint:
+checks:
 	$(manage) check
+	$(manage) makemigrations --check --dry-run --no-input
+
 	poetry run isort --check-only src tests
 	poetry run black --check src tests
 	poetry run flake8 src tests
@@ -14,8 +17,7 @@ lint:
 	poetry run dotenv-linter src/core/.env.ci
 
 test:
-	$(manage) makemigrations --dry-run --no-input --check
 	poetry run pytest --dead-fixtures
-	poetry run pytest -x
+	poetry run pytest --create-db --exitfirst --numprocesses ${numprocesses}
 
-pr: fmt lint test
+pr: fmt checks test
