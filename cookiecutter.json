@@ -1,9 +1,12 @@
 {
-    "project_slug": "testproject",
-    "email": "",
-    "project_version": "0.0.0-dev",
+    "name": "testproject",
     "_copy_without_render": [
-        "*.py-tpl",
-        ".github/workflows/ci.yml"
+	".github/workflows/ci.yml",
+	".mypy_cache",
+	".pytest_cache",
+	".venv",
+	"**/__pycache__",
+	"db.sqlite",
+	"src/.django-app-template"
     ]
 }

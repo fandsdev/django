@@ -1,9 +1,9 @@
 [tool.poetry]
 authors = ["you <your@email.com>"]
 description = "your project description"
-name = "{{cookiecutter.project_slug}}"
+name = "your project name"
 readme = "README.md"
-version = "{{cookiecutter.project_version}}"
+version = "0.0.0-dev"
 
 [tool.poetry.dependencies]
 python = "~3.11"
