@@ -1,3 +1,7 @@
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
+
 [tool.poetry]
 authors = ["you <your@email.com>"]
 description = "your project description"
@@ -6,7 +10,6 @@ readme = "README.md"
 version = "0.0.0-dev"
 
 [tool.poetry.dependencies]
-python = "~3.11"
 bcrypt = "^4.0.1"
 django = "^4.2.7"
 django-axes = "^6.1.1"
@@ -23,6 +26,7 @@ drf-jwt = "^1.19.2"
 drf-spectacular = {extras = ["sidecar"], version = "^0.26.5"}
 pillow = "^10.1.0"
 psycopg2-binary = "^2.9.9"
+python = "~3.11"
 redis = "^5.0.1"
 sentry-sdk = "^1.37.0"
 whitenoise = "^6.6.0"
@@ -59,30 +63,25 @@ pytest-freezegun = "^0.4.2"
 pytest-mock = "^3.12.0"
 pytest-randomly = "^3.15.0"
 pytest-xdist = "^3.5.0"
+toml-sort = "^0.23.1"
 types-freezegun = "^1.1.10"
 types-pillow = "^10.1.0.2"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 line_length = 160
 
 [tool.flake8]
-exclude = ["migrations", "__pycache__"]
+exclude = ["__pycache__", "migrations"]
 ignore = [
-    "DJ05", # URLs include() should set a namespace
-    "E501", # Line too long
-    "E265", # Block comments should have one space before the pound sign (#) and the comment itself
-    "F811", # Redefinition of unused name from line n
-    "PT001", # Use @pytest.fixture() over @pytest.fixture
-    "SIM102", # Use a single if-statement instead of nested if-statements
-    "SIM113", # Use enumerate instead of manually incrementing a counter
-    "E203", # whitespace before ':', disabled for black purposes https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html#slices
+    "E203",  # whitespace before ':'
+    "E265",  # block comment should start with '#'
+    "E501",  # line too long ({} > {} characters)
+    "F811",  # redefinition of unused name from line {}
+    "PT001",  # use @pytest.fixture() over @pytest.fixture
+    "SIM102",  # use a single if-statement instead of nested if-statements
+    "SIM113",  # use enumerate instead of manually incrementing a counter
 ]
 inline-quotes = "\""
-max-line-length = 160
 
 [tool.isort]
 include_trailing_comma = true
@@ -92,8 +91,8 @@ src_paths = ["src", "tests"]
 use_parentheses = true
 
 [tool.pytest.ini_options]
-addopts = ["--reuse-db"]
 DJANGO_SETTINGS_MODULE = "core.settings"
+addopts = ["--reuse-db"]
 env = [
     "AXES_ENABLED = False",
     "CELERY_ALWAYS_EAGER = True",
@@ -109,3 +108,11 @@ markers = [
 ]
 python_files = ["test*.py"]
 pythonpath = ". src"
+
+[tool.tomlsort]
+all = true
+in_place = true
+sort_first = ["tool.poetry"]
+spaces_before_inline_comment = 2
+spaces_indent_inline_array = 4
+trailing_comma_inline_array = true

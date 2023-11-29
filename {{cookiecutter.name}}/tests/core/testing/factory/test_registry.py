@@ -13,9 +13,7 @@ def test_registry_raises_exception_if_no_method(fixture_registry: FixtureRegistr
         fixture_registry.get("not_real")
 
 
-def test_registry_returns_correct_method_after_register_decorator(
-    fixture_registry: FixtureRegistry,
-):
+def test_registry_returns_correct_method_after_register_decorator(fixture_registry: FixtureRegistry):
     @register
     def some_method_to_add():
         pass

@@ -9,12 +9,14 @@ checks:
 	poetry run black --check src tests
 	poetry run flake8 src tests
 	poetry run mypy src tests
+	poetry run toml-sort pyproject.toml --check
 	poetry run dotenv-linter src/core/.env.ci
 
 fmt:
 	poetry run autoflake --in-place --remove-all-unused-imports --recursive src tests
 	poetry run isort src tests
 	poetry run black src tests
+	poetry run toml-sort pyproject.toml
 
 test:
 	poetry run pytest --dead-fixtures
