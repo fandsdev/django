@@ -9,15 +9,11 @@ class Command(BaseCommand):
 
     def handle(self, **options):
         if "template" not in options or options["template"] is None:
-            options["template"] = str(
-                Path(settings.BASE_DIR).parent / ".django-app-template"
-            )
+            options["template"] = str(Path(settings.BASE_DIR).parent / ".django-app-template")
 
         super().handle(**options)
 
-        testsdir = (
-            Path(settings.BASE_DIR).parent.parent / "tests" / "apps" / options["name"]
-        )
+        testsdir = Path(settings.BASE_DIR).parent.parent / "tests" / "apps" / options["name"]
         testsdir.mkdir(parents=True, exist_ok=True)
 
         (testsdir / "__init__.py").touch()

@@ -1,5 +1,4 @@
 import pytest
-
 from django.apps import apps
 
 from core.testing.api import ApiClient

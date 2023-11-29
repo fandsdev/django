@@ -1,9 +1,7 @@
 from typing import Callable
 
+from django.http import HttpRequest, HttpResponse
 from ipware import get_client_ip
-
-from django.http import HttpRequest
-from django.http import HttpResponse
 
 
 def real_ip_middleware(get_response: Callable) -> Callable:

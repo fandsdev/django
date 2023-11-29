@@ -66,6 +66,9 @@ types-pillow = "^10.1.0.2"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.black]
+line_length = 160
+
 [tool.flake8]
 exclude = ["migrations", "__pycache__"]
 ignore = [
@@ -82,13 +85,10 @@ inline-quotes = "\""
 max-line-length = 160
 
 [tool.isort]
-extra_standard_library = ["pytest"]
 include_trailing_comma = true
-known_django = ["django", "restframework"]
 line_length = 160
 multi_line_output = 3
-profile = "google"
-sections = ["FUTURE", "STDLIB", "THIRDPARTY", "DJANGO", "FIRSTPARTY", "LOCALFOLDER"]
+src_paths = ["src", "tests"]
 use_parentheses = true
 
 [tool.pytest.ini_options]

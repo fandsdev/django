@@ -1,5 +1,6 @@
-import pytest
 import uuid
+
+import pytest
 
 from apps.users.models import User
 

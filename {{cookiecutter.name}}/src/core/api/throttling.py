@@ -1,9 +1,8 @@
 from typing import Protocol
 
+from django.conf import settings
 from rest_framework.request import Request
 from rest_framework.views import APIView
-
-from django.conf import settings
 
 
 class BaseThrottle(Protocol):

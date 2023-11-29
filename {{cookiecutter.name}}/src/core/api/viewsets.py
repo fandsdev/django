@@ -1,9 +1,7 @@
 from typing import Any, Optional, Protocol, Type
 
-from rest_framework import mixins
-from rest_framework import status
-from rest_framework.mixins import CreateModelMixin
-from rest_framework.mixins import UpdateModelMixin
+from rest_framework import mixins, status
+from rest_framework.mixins import CreateModelMixin, UpdateModelMixin
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.serializers import BaseSerializer
@@ -38,14 +36,10 @@ class BaseGenericViewSet(Protocol):
 class DefaultCreateModelMixin(CreateModelMixin):
     """Return detail-serialized created instance"""
 
-    def create(
-        self: BaseGenericViewSet, request: Request, *args: Any, **kwargs: Any
-    ) -> Response:
+    def create(self: BaseGenericViewSet, request: Request, *args: Any, **kwargs: Any) -> Response:
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        instance = self.perform_create(
-            serializer
-        )  # No getting created instance in original DRF
+        instance = self.perform_create(serializer)  # No getting created instance in original DRF
         headers = self.get_success_headers(serializer.data)
         return self.get_response(instance, status.HTTP_201_CREATED, headers)
 
@@ -56,16 +50,12 @@ class DefaultCreateModelMixin(CreateModelMixin):
 class DefaultUpdateModelMixin(UpdateModelMixin):
     """Return detail-serialized updated instance"""
 
-    def update(
-        self: BaseGenericViewSet, request: Request, *args: Any, **kwargs: Any
-    ) -> Response:
+    def update(self: BaseGenericViewSet, request: Request, *args: Any, **kwargs: Any) -> Response:
         partial = kwargs.pop("partial", False)
         instance = self.get_object()
         serializer = self.get_serializer(instance, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
-        instance = self.perform_update(
-            serializer
-        )  # No getting updated instance in original DRF
+        instance = self.perform_update(serializer)  # No getting updated instance in original DRF
 
         if getattr(instance, "_prefetched_objects_cache", None):
             # If 'prefetch_related' has been applied to a queryset, we need to

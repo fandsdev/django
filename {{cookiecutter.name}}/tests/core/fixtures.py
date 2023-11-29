@@ -1,5 +1,6 @@
-import pytest
 from typing import TYPE_CHECKING
+
+import pytest
 
 from core.testing import ApiClient
 from core.testing.factory import FixtureFactory

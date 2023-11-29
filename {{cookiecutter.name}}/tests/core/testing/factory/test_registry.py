@@ -1,7 +1,6 @@
 import pytest
 
-from core.testing.factory import FixtureRegistry
-from core.testing.factory import register
+from core.testing.factory import FixtureRegistry, register
 
 
 @pytest.fixture
@@ -10,9 +9,7 @@ def fixture_registry() -> FixtureRegistry:
 
 
 def test_registry_raises_exception_if_no_method(fixture_registry: FixtureRegistry):
-    with pytest.raises(
-        AttributeError, match=r"Factory method \“not_real\” not found\."
-    ):
+    with pytest.raises(AttributeError, match=r"Factory method \“not_real\” not found\."):
         fixture_registry.get("not_real")
 
 

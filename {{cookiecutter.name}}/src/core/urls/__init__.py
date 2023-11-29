@@ -1,6 +1,5 @@
 from django.contrib import admin
-from django.urls import include
-from django.urls import path
+from django.urls import include, path
 
 api = [
     path("v1/", include("core.urls.v1", namespace="v1")),

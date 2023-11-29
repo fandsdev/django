@@ -1,5 +1,6 @@
-import pytest
 from typing import TYPE_CHECKING
+
+import pytest
 
 from apps.users.models import User
 

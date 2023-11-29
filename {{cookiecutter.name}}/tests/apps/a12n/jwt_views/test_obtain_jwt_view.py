@@ -1,6 +1,6 @@
 import json
-import pytest
 
+import pytest
 from axes.models import AccessAttempt
 
 pytestmark = pytest.mark.django_db
@@ -40,9 +40,7 @@ def test_getting_token_ok(as_user, get_token):
 def test_getting_token_is_token(as_user, get_token):
     result = get_token(as_user.user.username, as_user.password)
 
-    assert (
-        len(result["token"]) > 32
-    )  # every stuff that is long enough, may be a JWT token
+    assert len(result["token"]) > 32  # every stuff that is long enough, may be a JWT token
 
 
 def test_getting_token_with_incorrect_password(as_user, get_token):
@@ -51,9 +49,7 @@ def test_getting_token_with_incorrect_password(as_user, get_token):
     assert "nonFieldErrors" in result
 
 
-def test_getting_token_with_incorrect_password_creates_access_attempt_log_entry(
-    as_user, get_token
-):
+def test_getting_token_with_incorrect_password_creates_access_attempt_log_entry(as_user, get_token):
     get_token(as_user.user.username, "z3r0c00l", expected_status=400)  # act
 
     assert AccessAttempt.objects.count() == 1
