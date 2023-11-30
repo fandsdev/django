@@ -6,8 +6,6 @@
 **/*~
 **/.DS_Store
 **/db.sqlite
-
-{{cookiecutter.name}}/src/apps/testapp
-{{cookiecutter.name}}/tests/apps/testapp
+**/some_app
 
 testproject
