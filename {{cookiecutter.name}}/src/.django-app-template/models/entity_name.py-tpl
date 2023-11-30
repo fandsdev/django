@@ -1,0 +1,7 @@
+from django.db import models  # noqa: F401
+
+from core.models import TimestampedModel
+
+
+class {{ camel_case_entity_name }}(TimestampedModel):
+      pass

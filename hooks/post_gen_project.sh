@@ -1,16 +1,11 @@
 #!/bin/bash -e
 
-rm -rf .mypy_cache \
-   .pytest_cache \
-   .venv \
-   db.sqlite
-
 cp src/core/.env.ci src/core/.env
 
 poetry install
 
 poetry run python src/manage.py collectstatic
 poetry run python src/manage.py migrate
-poetry run python src/manage.py startapp test_app
+poetry run python src/manage.py startapp some_app --entity_name some_entity
 
 make checks test

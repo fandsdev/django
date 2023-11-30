@@ -1,4 +1,4 @@
-manage = poetry run src/manage.py
+manage = poetry run python src/manage.py
 numprocesses = 4
 
 checks:

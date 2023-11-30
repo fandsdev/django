@@ -1,0 +1,5 @@
+from core.api.viewsets import DefaultModelViewSet
+
+
+class {{ camel_case_entity_name }}ViewSet(DefaultModelViewSet):
+    pass

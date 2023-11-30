@@ -1,10 +1,13 @@
 .git
 .idea
+.venv
 .vscode
 
 **/*~
 **/.DS_Store
+**/db.sqlite
 
-db.sqlite
+{{cookiecutter.name}}/src/apps/testapp
+{{cookiecutter.name}}/tests/apps/testapp
+
 testproject
-venv

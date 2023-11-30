@@ -1,0 +1,5 @@
+from apps.{{ app_name }}.api.v1.views.{{ entity_name }} import {{ camel_case_entity_name }}ViewSet
+
+__all__ = [
+    "{{ camel_case_entity_name }}ViewSet",
+]
