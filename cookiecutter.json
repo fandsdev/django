@@ -2,11 +2,6 @@
     "name": "testproject",
     "_copy_without_render": [
 	".github/workflows/ci.yml",
-	".mypy_cache",
-	".pytest_cache",
-	".venv",
-	"**/__pycache__",
-	"db.sqlite",
 	"src/.django-app-template"
     ]
 }
