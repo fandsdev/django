@@ -1,5 +1,5 @@
----
 name: CI
+
 on: push
 
 jobs:
@@ -7,18 +7,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: checkout
+      	uses: actions/checkout@v3
 
-      - name: Install gettext for correct manage.py compilemessages
-        run: sudo apt-get update && sudo apt-get --no-install-recommends install -y locales-all gettext
+      - name: load cached poetry installation
+      	id: cached-poetry
+      	uses: actions/cache@v3
+      	with:
+	  path: ~/.local
+          key: poetry-v1-${{ hashFiles("pyproject.toml") }}
 
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-          cache: 'pip'
+      - name: install poetry
+      	if: steps.cached-poetry.outputs.cache-hit != "true"
+	uses: snok/install-poetry@v1
+	with:
+	  version: 1.6.1
 
-      - name: Install cookiecutter
-        run: pip install cookiecutter
+      - name: install python
+      	id: setup-python
+	uses: actions/setup-python@v4
+	with:
+	  cache: "poetry"
+	  python-version-file: "pyproject.toml"
 
-      - name: Bootstrap the project
-        run: make test
+      - name: make sure poetry lockfile is up to date
+      	run: poetry check --lock
+
+      - name: install deps
+      	if: steps.setup-python.outputs.cache-hit != "true"
+	run: poetry install --no-interaction --no-root
+
+      - name: bootstrap
+        run: make bootstrap
