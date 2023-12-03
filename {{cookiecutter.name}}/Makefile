@@ -10,6 +10,7 @@ checks:
 	poetry run flake8 src tests
 	poetry run mypy src tests
 	poetry run toml-sort pyproject.toml --check
+	poetry run pymarkdown scan README.md
 	poetry run dotenv-linter src/core/.env.ci
 
 fmt:
@@ -22,4 +23,4 @@ test:
 	poetry run pytest --dead-fixtures
 	poetry run pytest --create-db --exitfirst --numprocesses ${numprocesses}
 
-pr: fmt checks test
+mr: fmt checks test

@@ -4,58 +4,55 @@ This project is bootstrapped using [fandsdev/django](http://github.com/fandsdev/
 
 ## Project structure
 
-The main django app is called `app`. It contains `.env` file for django-environ. For examples see `src/core/.env.ci`. Here are some usefull app-wide tools:
-* `app.admin` — app-wide django-admin customizations (empty yet), check out usage [examples](https://github.com/f213/django/tree/master/%7B%7Bcookiecutter.project_slug%7D%7D/src/app/admin)
-* `core.test.api_client` (available as `api` and `anon` fixtures within pytest) — a [convinient DRF test client](https://github.com/f213/django/blob/master/%7B%7Bcookiecutter.project_slug%7D%7D/src/users/tests/tests_whoami.py#L6-L16).
+The main django app is called `core`. It contains `.env` file for django-environ. For examples see `src/core/.env.ci`. Here are some usefull app-wide tools:
+
+* `core.admin` — app-wide django-admin customizations (empty yet), check out usage [examples](https://github.com/f213/django/tree/master/%7B%7Bcookiecutter.project_slug%7D%7D/src/core/admin)
+* `core.test.api_client` (available as `api` and `anon` fixtures within pytest) — a [convinient DRF test client](https://github.com/f213/django/blob/master/%7B%7Bcookiecutter.project_slug%7D%7D/src/tests/apps/users/tests_whoami.py#L6-L16).
 
 Django user model is located in the separate `users` app.
 
 Also, feel free to add as much django apps as you want.
 
 ## Installing on a local machine
-This project requires python 3.10. Deps are managed by [pip-tools](https://github.com/jazzband/pip-tools)
+
+This project requires python 3.11. Deps are managed by [poetry](https://python-poetry.org).
 
 Install requirements:
 
 ```bash
-$ pip install --upgrade pip pip-tools
-$ make
+poetry install
 ```
 
 Run the server:
 
 ```bash
-$ cd src && cp core/.env.ci core/.env  # default environment variables
-$ ./manage.py migrate
-$ ./manage.py createsuperuser
-$ ./manage.py runserver
+cp src/core/.env.ci src/core/.env
+
+poetry run python src/manage.py migrate
+poetry run python src/manage.py createsuperuser
+poetry run python src/manage.py runserver
 ```
 
-Testing:
-```bash
-# run lint
-$ make lint
-
-# run unit tests
-$ make test
-```
-
-Development servers:
+Useful commands
 
 ```bash
-# run django dev server
-$ ./manage.py runserver
+make checks  # run code quality checks
 
+make fmt  # run code formatters
+
+make test  # run tests
+
+make mr  # run all of above one-by-one
 ```
 
-## Backend Code requirements
+## Backend code requirements
 
 ### Style
 
 * Obey [django's style guide](https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style/#model-style).
-* Configure your IDE to use [flake8](https://pypi.python.org/pypi/flake8) for checking your python code. To run our linters manualy, do `make lint`
+* Configure your IDE to use [flake8](https://pypi.python.org/pypi/flake8) for checking your python code. To run our linters manualy, do `make lint`.
 * Prefer English over your native language in comments and commit messages.
-* Commit messages should contain the unique id of issue they are linked to (refs #100500)
+* Commit messages should contain the unique id of issue they are linked to (refs #100500).
 * Every model, service and model method should have a docstring.
 
 ### Code organisation

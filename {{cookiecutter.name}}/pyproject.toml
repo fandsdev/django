@@ -56,6 +56,7 @@ isort = "^5.12.0"
 jedi = "^0.19.1"
 mixer = {extras = ["django"], version = "^7.2.2"}
 mypy = "^1.7.1"
+pymarkdownlnt = "^0.9.14"
 pytest-deadfixtures = "^2.2.1"
 pytest-django = "^4.7.0"
 pytest-env = "^1.1.1"
@@ -89,6 +90,12 @@ line_length = 160
 multi_line_output = 3
 src_paths = ["src", "tests"]
 use_parentheses = true
+
+[tool.pymarkdown.plugins.md013]
+enabled = false
+
+[tool.pymarkdown.plugins.md045]
+enabled = false
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "core.settings"
