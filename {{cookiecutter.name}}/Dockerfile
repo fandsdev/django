@@ -1,46 +1,51 @@
 ARG PYTHON_VERSION
-FROM python:${PYTHON_VERSION}-slim-bookworm
+
+FROM python:${PYTHON_VERSION}-slim-bookworm as uwsgi-compile
+
+ENV _UWSGI_VERSION 2.0.22
+
+RUN apt-get update && apt-get --no-install-recommends install -y build-essential wget && rm -rf /var/lib/apt/lists/*
+RUN wget -O uwsgi-${_UWSGI_VERSION}.tar.gz https://github.com/unbit/uwsgi/archive/${_UWSGI_VERSION}.tar.gz \
+  && tar zxvf uwsgi-*.tar.gz \
+  && UWSGI_BIN_NAME=/uwsgi make -C uwsgi-${_UWSGI_VERSION} \
+  && rm -Rf uwsgi-*
+
+FROM python:${PYTHON_VERSION}-slim-bookworm as deps-compile
+
+WORKDIR /
+COPY poetry.lock pyproject.toml /
+
+ARG POETRY_VERSION
+
+RUN pip install --no-cache-dir poetry==${POETRY_VERSION}
+RUN poetry export --format=requirements.txt > requirements.txt
+
+FROM python:${PYTHON_VERSION}-slim-bookworm as base
 LABEL maintainer="fedor@borshev.com"
+LABEL com.datadoghq.ad.logs='[{"service": "django", "source": "uwsgi"}]'
 
-LABEL com.datadoghq.ad.logs='[{"source": "uwsgi", "service": "django"}]'
-
-ENV PYTHONUNBUFFERED 1
 ENV DEBIAN_FRONTEND noninteractive
+ENV PYTHONUNBUFFERED 1
+ENV STATIC_ROOT /var/lib/django-static
+ENV _WAITFOR_VERSION 2.2.3
 
-ENV STATIC_ROOT /static
-
-ENV _UWSGI_VERSION 2.0.23
-
-RUN echo deb http://deb.debian.org/debian bookworm contrib non-free > /etc/apt/sources.list.d/debian-contrib.list \
-  && apt update \
-  && apt --no-install-recommends install -y gettext locales-all wget \
-  imagemagick tzdata wait-for-it build-essential \
-  libxml2-dev libxslt1-dev libjpeg62-turbo-dev libjpeg-dev libfreetype6-dev \
-  libtiff5-dev liblcms2-dev libwebp-dev tk8.6-dev \
-  libffi-dev libcgraph6 libgraphviz-dev libmagic-dev libpq-dev \
-  default-mysql-client default-libmysqlclient-dev \
+RUN apt-get update \
+  && apt-get --no-install-recommends install -y gettext locales-all tzdata git wait-for-it wget \
   && rm -rf /var/lib/apt/lists/*
 
-RUN wget -O uwsgi-${_UWSGI_VERSION}.tar.gz https://github.com/unbit/uwsgi/archive/${_UWSGI_VERSION}.tar.gz \
-    && tar zxvf uwsgi-*.tar.gz \
-    && UWSGI_BIN_NAME=/usr/local/bin/uwsgi make -C uwsgi-${_UWSGI_VERSION} \
-    && rm -Rf uwsgi-*
+COPY --from=uwsgi-compile /uwsgi /usr/local/bin/
+RUN pip install --no-cache-dir --upgrade pip
 
-RUN pip install --upgrade pip
-
-ADD requirements.txt /
-RUN pip install --no-cache-dir -r /requirements.txt
+COPY --from=deps-compile /requirements.txt /
+RUN pip install --no-cache-dir -r requirements.txt
 
 WORKDIR /src
-ADD src /src
+COPY src /src
 
+ENV NO_CACHE=on
 RUN ./manage.py compilemessages
 RUN ./manage.py collectstatic --noinput
+ENV NO_CACHE=off
 
-ARG RELEASE=dev-untagged
-ENV SENTRY_RELEASE ${RELEASE}
-ENV DD_VERSION ${RELEASE}
-
-USER nobody
-
-CMD uwsgi --master --http :8000 --module core.wsgi --workers 2 --threads 2 --harakiri 25 --max-requests 1000 --log-x-forwarded-for --buffer-size 32000
+FROM base as web
+CMD ./manage.py migrate && uwsgi --master --http :8000 --module core.wsgi --workers 2 --threads 2 --harakiri 25 --max-requests 1000 --log-x-forwarded-for
