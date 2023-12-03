@@ -1,45 +1,37 @@
----
 name: CI
-on: push
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
 
 jobs:
-  build:
+  checks:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: checkout
+        uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v4
-        id: setup-python
+      - name: build
+        uses: ./.github/actions/build
+
+      - name: restore mypy cache
+        uses: actions/cache@v3
         with:
-          python-version-file: '.python-version'
+          path: .mypy_cache
+          key: mypy-cache-${{ github.ref_name }}
+          restore-keys: mypy-cache-master
 
-      - uses: actions/cache@v3
-        id: cache-dependencies
-        with:
-          path: |
-            venv
-          key: ${{ runner.os }}-venv-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/*requirements.txt') }}
-
-      - name: Install dependencies
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: |
-          python -m venv venv
-          . venv/bin/activate
-          pip install --upgrade pip pip-tools
-          pip-sync requirements.txt dev-requirements.txt
-
-      - name: Run the linter
-        run: |
-          . venv/bin/activate
-          cp src/core/.env.ci src/core/.env
-          make lint
+      - name: checks
+        run: make checks
 
   test:
-    needs: build
-    runs-on: ubuntu-latest
+    needs: checks
+    runs-on: ${{ contains(github.triggering_actor, "[bot]") && "ubuntu-latest" || "ubuntu-8x" }}
     services:
       postgres:
-        image: postgres:13.3-alpine
+        image: postgres:13.9-alpine
         env:
           POSTGRES_PASSWORD: secret
         options: >-
@@ -49,29 +41,29 @@ jobs:
           --health-retries 5
         ports:
           - 5432:5432
+      redis:
+        image: redis:6.2.10-alpine
+        ports:
+          - 6379:6379
 
     steps:
-      - uses: actions/checkout@v3
+      - name: checkout
+        uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v4
-        id: setup-python
+      - name: build
+        uses: ./.github/actions/build
+
+      - name: install locale stuff
+        uses: awalsh128/cache-apt-pkgs-action@v1
         with:
-          python-version-file: '.python-version'
+          packages: locales-all gettext
+          version: 1
 
-      - uses: actions/cache@v3
-        with:
-          path: |
-            venv
-          key: ${{ runner.os }}-venv-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/*requirements.txt') }}
+      - name: get number of cpu cores
+        uses: SimenB/github-actions-cpu-cores@v2.0.0
+        id: cpu-cores
 
-      - name: Install locale stuff
-        run: sudo apt-get update && sudo apt-get --no-install-recommends install -y locales-all gettext
-
-      - name: Run the tests
+      - name: test
         env:
           DATABASE_URL: postgres://postgres:secret@localhost:5432/postgres
-
-        run: |
-          . venv/bin/activate
-          cp src/core/.env.ci src/core/.env
-          make test
+        run: make test -e numprocesses=${{ steps.cpu-cores.outputs.count }}
