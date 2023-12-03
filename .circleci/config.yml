@@ -8,26 +8,26 @@ jobs:
     docker:
       - image: 'cimg/python:3.11'
 
-  steps:
-    - checkout
+    steps:
+      - checkout
 
-    - run:
-        name: install poetry
-        command: pip install poetry==1.6.1
+      - run:
+          name: install poetry
+          command: pip install poetry==1.6.1
 
-    - run:
-        name: install deps
-        command: poetry install
+      - run:
+          name: install deps
+          command: poetry install
 
-    - run:
-        name: bootstrap
-        command: make bootstrap
+      - run:
+          name: bootstrap
+          command: make bootstrap
 
-    - persist_to_workspace:
-        paths:
-          - .venv
-          - testproject
-        root: .
+      - persist_to_workspace:
+          paths:
+            - .venv
+            - testproject
+          root: .
 
 workflows:
   version: 2
