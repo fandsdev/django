@@ -36,8 +36,8 @@ workflows:
      - build
 
      - docker/publish:
-         context: docker
          attach-at: .
+	 context: docker
          deploy: false
          docker-context: testproject/django
          extra_build_args:
@@ -46,4 +46,5 @@ workflows:
          image: f213/django
          name: make sure docker image is buildable
          path: testproject
-         requires: build
+         requires:
+	   - build
