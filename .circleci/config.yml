@@ -47,4 +47,4 @@ workflows:
          name: make sure docker image is buildable
          path: testproject
          requires:
-	   - build
+           - build
