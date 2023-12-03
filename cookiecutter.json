@@ -1,6 +1,7 @@
 {
     "name": "testproject",
     "_copy_without_render": [
+	".github/actions/build/action.yml",
 	".github/workflows/ci.yml",
 	"src/.django-app-template"
     ]

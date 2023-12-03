@@ -1,3 +1,7 @@
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
+
 [tool.poetry]
 authors = ["Fedor Borshev <fedor@borshev.com>"]
 description = ""
@@ -9,6 +13,23 @@ version = "2023.11.29"
 cookiecutter = "^2.5.0"
 python = "~3.11"
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[tool.poetry.group.dev.dependencies]
+pymarkdownlnt = "^0.9.14"
+toml-sort = "^0.23.1"
+
+[tool.pymarkdown.plugins.md013]
+enabled = false
+
+[tool.pymarkdown.plugins.md026]
+enabled = false
+
+[tool.pymarkdown.plugins.md045]
+enabled = false
+
+[tool.tomlsort]
+all = true
+in_place = true
+sort_first = ["tool.poetry"]
+spaces_before_inline_comment = 2
+spaces_indent_inline_array = 4
+trailing_comma_inline_array = true
