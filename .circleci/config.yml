@@ -37,7 +37,7 @@ workflows:
 
      - docker/publish:
          attach-at: .
-	 context: docker
+         context: docker
          deploy: false
          docker-context: testproject/django
          extra_build_args:
