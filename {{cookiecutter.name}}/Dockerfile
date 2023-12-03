@@ -42,10 +42,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 WORKDIR /src
 COPY src /src
 
-ENV NO_CACHE=on
+RUN ./manage.py makemessages --locale ru
 RUN ./manage.py compilemessages
 RUN ./manage.py collectstatic --noinput
-ENV NO_CACHE=off
 
 FROM base as web
 CMD ./manage.py migrate && uwsgi --master --http :8000 --module core.wsgi --workers 2 --threads 2 --harakiri 25 --max-requests 1000 --log-x-forwarded-for
