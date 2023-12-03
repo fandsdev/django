@@ -1,12 +1,12 @@
 version: 2.1
 
 orbs:
- docker: circleci/docker@2.4.0
+  docker: circleci/docker@2.4.0
 
 jobs:
   build:
     docker:
-      - image: cimg/python:3.11
+      - image: 'cimg/python:3.11'
 
   steps:
     - checkout
@@ -25,8 +25,8 @@ jobs:
 
     - persist_to_workspace:
         paths:
-          - ".venv"
-          - "testproject"
+          - .venv
+          - testproject
         root: .
 
 workflows:
@@ -34,13 +34,12 @@ workflows:
   ci:
     jobs:
       - build
-
       - docker/publish:
           attach-at: .
           context: docker
           deploy: false
           docker-context: testproject
-          extra_build_args: "--build-arg POETRY_VERSION=1.6.1 --build-arg PYTHON_VERSION=3.11"
+          extra_build_args: '--build-arg POETRY_VERSION=1.6.1 --build-arg PYTHON_VERSION=3.11'
           image: f213/django
           name: make sure docker image is buildable
           path: testproject
