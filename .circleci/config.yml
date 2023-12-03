@@ -39,7 +39,7 @@ workflows:
          attach-at: .
          context: docker
          deploy: false
-         docker-context: testproject/django
+         docker-context: testproject
          extra_build_args: "--build-arg POETRY_VERSION=1.6.1 --build-arg PYTHON_VERSION=3.11"
          image: f213/django
          name: make sure docker image is buildable
