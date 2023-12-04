@@ -1,4 +1,7 @@
 {
+    "author": "Fedor Borshev",
+    "description": "",
+    "email": "fedor@borshev.com",
     "name": "testproject",
     "_copy_without_render": [
 	".github/actions/build/action.yml",

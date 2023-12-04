@@ -3,9 +3,9 @@ build-backend = "poetry.core.masonry.api"
 requires = ["poetry-core"]
 
 [tool.poetry]
-authors = ["you <your@email.com>"]
-description = "your project description"
-name = "your project name"
+authors = ["{{ cookiecutter.author }} <{{ cookiecutter.email }}>"]
+description = "{{ cookiecutter.description }}"
+name = "{{ cookiecutter.name }}"
 readme = "README.md"
 version = "0.0.0-dev"
 
