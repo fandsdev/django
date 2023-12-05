@@ -1,0 +1,22 @@
+name: child project workflow run
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+defaults:
+  run:
+    working-directory: {{ cookiecutter.name }}
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: run
+        uses: ./.github/workflows/ci.yml
