@@ -19,5 +19,5 @@ jobs:
 
       - name: run
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh workflow run ./.github/workflows/ci.yml
