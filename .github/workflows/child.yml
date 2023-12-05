@@ -17,4 +17,4 @@ jobs:
       - name: run
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh workflow run ./{{ cookiecutter.name }}/.github/workflows/ci.yml
+        run: gh workflow run ./\{\{\ cookiecutter.name\ \}\}/.github/workflows/ci.yml
