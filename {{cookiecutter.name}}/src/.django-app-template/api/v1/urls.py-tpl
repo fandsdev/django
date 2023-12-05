@@ -1,10 +1,7 @@
 from django.urls import include, path
 from rest_framework.routers import SimpleRouter
 
-from apps.{{ app_name }}.api.v1 import views
-
 router = SimpleRouter()
-router.register("{{ app_name }}", views.{{ camel_case_entity_name }}ViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),

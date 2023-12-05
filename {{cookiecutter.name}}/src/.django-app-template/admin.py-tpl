@@ -1,9 +1,1 @@
-from django.contrib import admin
-
-from apps.{{ app_name }}.models import {{ camel_case_entity_name }}
-from core.admin import ModelAdmin
-
-
-@admin.register({{ camel_case_entity_name }})
-class {{ camel_case_entity_name }}Admin(ModelAdmin):
-    pass
+from core.admin import ModelAdmin, admin  # noqa: F401
