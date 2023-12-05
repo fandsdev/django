@@ -10,7 +10,7 @@ jobs:
   run:
     defaults:
       run:
-        working-directory: {{ cookiecutter.name }}
+        working-directory: '{{ cookiecutter.name }}'
     runs-on: ubuntu-latest
 
     steps:
