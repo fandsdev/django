@@ -8,13 +8,10 @@ on:
 
 jobs:
   run:
-    defaults:
-      run:
-        working-directory: '{{ cookiecutter.name }}'
     runs-on: ubuntu-latest
 
     steps:
       - name: run
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh workflow run ./.github/workflows/ci.yml
+        run: gh workflow run ./{{ cookiecutter.name }}/.github/workflows/ci.yml
