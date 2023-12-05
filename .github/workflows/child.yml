@@ -8,6 +8,9 @@ on:
 
 jobs:
   run:
+    defaults:
+      run:
+        working-directory: \{\{\ cookiecutter.name\ \}\}/
     runs-on: ubuntu-latest
 
     steps:
@@ -15,5 +18,4 @@ jobs:
         uses: actions/checkout@v3
 
       - name: run
-        uses: ./{{ cookiecutter.name }}/.github/workflows/ci.yml
-        working-directory: {{ cookiecutter.name }}
+        uses: ./.github/workflows/ci.yml
