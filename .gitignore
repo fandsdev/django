@@ -4,6 +4,8 @@
 .vscode
 
 **/.DS_Store
-**/db.sqlite
+
+{{ cookiecutter.name }}/db.sqlite
+{{ cookiecutter.name }}/poetry.lock
 
 testproject

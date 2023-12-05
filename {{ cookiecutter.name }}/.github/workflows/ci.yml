@@ -16,22 +16,16 @@ jobs:
       - name: build
         uses: ./.github/actions/build
 
-      - name: restore mypy cache
-        uses: actions/cache@v3
-        with:
-          path: .mypy_cache
-          key: mypy-cache-${{ github.ref_name }}
-          restore-keys: mypy-cache-master
-
       - name: checks
         run: make checks
 
   test:
     needs: checks
-    runs-on: ${{ contains(github.triggering_actor, "[bot]") && "ubuntu-latest" || "ubuntu-8x" }}
+    runs-on: ubuntu-latest
+
     services:
       postgres:
-        image: postgres:13.9-alpine
+        image: postgres:16.1-alpine
         env:
           POSTGRES_PASSWORD: secret
         options: >-
@@ -41,8 +35,9 @@ jobs:
           --health-retries 5
         ports:
           - 5432:5432
+
       redis:
-        image: redis:6.2.10-alpine
+        image: redis:7.2.3-alpine
         ports:
           - 6379:6379
 
