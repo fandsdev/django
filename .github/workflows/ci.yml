@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: build
+        uses: ./.github/actions/build
+
+      - name: check
+        run: make checks
+
+  bootstrap:
+    needs: check
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: build
+        run: ./.github/actions/build
+
+      - name: bootstrap
+        run: make bootstrap
