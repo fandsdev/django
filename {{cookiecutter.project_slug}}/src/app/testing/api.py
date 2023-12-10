@@ -5,6 +5,7 @@ from typing import Optional
 
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APIClient as DRFAPIClient
+from rest_framework.response import Response
 
 from users.models import User
 
@@ -58,7 +59,10 @@ class ApiClient(DRFAPIClient):
         assert response.status_code == expected, content
         return content
 
-    def _decode(self, response):
+    def _decode(self, response: Response):
+        if response.status_code == 204:
+            return {}
+        
         content = response.content.decode("utf-8", errors="ignore")
 
         if self.is_json(response):
@@ -67,7 +71,7 @@ class ApiClient(DRFAPIClient):
             return content
 
     @staticmethod
-    def is_json(response) -> bool:
+    def is_json(response: Response) -> bool:
         if response.has_header("content-type"):
             return "json" in response.get("content-type")
 
