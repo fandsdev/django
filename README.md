@@ -1,6 +1,6 @@
 # My personal (very) opinionated django template
 
-[![CircleCI](https://circleci.com/gh/fandsdev/django.svg?style=svg&circle-token=8ce8cbe93d81d60af6b67c82a82563d93da0cb03)](https://circleci.com/gh/f213/django) ![Shields.io](https://img.shields.io/github/last-commit/fandsdev/django?style=flat-square) [![Maintainability](https://api.codeclimate.com/v1/badges/2b9800b10414a4ad2622/maintainability)](https://codeclimate.com/github/f213/django/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/2b9800b10414a4ad2622/test_coverage)](https://codeclimate.com/github/f213/django/test_coverage) [![Support me on Patreon](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3Df213%26type%3Dpatrons&style=flat)](https://patreon.com/f213)
+![Shields.io](https://img.shields.io/github/last-commit/fandsdev/django?style=flat-square) [![Maintainability](https://api.codeclimate.com/v1/badges/2b9800b10414a4ad2622/maintainability)](https://codeclimate.com/github/f213/django/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/2b9800b10414a4ad2622/test_coverage)](https://codeclimate.com/github/f213/django/test_coverage)
 
 ![Easy peasy](https://user-images.githubusercontent.com/1592663/79918184-93bca100-8434-11ea-9902-0ff726a864a3.gif)
 
