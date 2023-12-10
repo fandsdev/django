@@ -62,7 +62,7 @@ class ApiClient(DRFAPIClient):
     def _decode(self, response: Response):
         if response.status_code == 204:
             return {}
-        
+
         content = response.content.decode("utf-8", errors="ignore")
 
         if self.is_json(response):
@@ -73,7 +73,7 @@ class ApiClient(DRFAPIClient):
     @staticmethod
     def is_json(response: Response) -> bool:
         if response.has_header("content-type"):
-            return "json" in response.get("content-type")
+            return "json" in response.get("content-type", "")
 
         return False
 
