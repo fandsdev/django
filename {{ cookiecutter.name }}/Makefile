@@ -1,5 +1,6 @@
+NUMPROCESSES = 4
+
 manage = poetry run python src/manage.py
-numprocesses = 4
 
 checks:
 	$(manage) check
@@ -21,6 +22,6 @@ fmt:
 
 test:
 	poetry run pytest --dead-fixtures
-	poetry run pytest --create-db --exitfirst --numprocesses ${numprocesses}
+	poetry run pytest --create-db --exitfirst --numprocesses ${NUMPROCESSES}
 
 mr: fmt checks test
