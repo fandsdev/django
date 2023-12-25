@@ -1,8 +1,8 @@
 # fands.dev django template
 
-[![CircleCI](https://circleci.com/gh/fandsdev/django.svg?style=svg&circle-token=8ce8cbe93d81d60af6b67c82a82563d93da0cb03)](https://circleci.com/gh/f213/django) ![Shields.io](https://img.shields.io/github/last-commit/fandsdev/django?style=flat-square) [![Support me on Patreon](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3Df213%26type%3Dpatrons&style=flat)](https://patreon.com/f213)
+![Shields.io](https://img.shields.io/github/last-commit/fandsdev/django?style=flat-square)
 
-![Easy peasy](https://user-images.githubusercontent.com/1592663/79918184-93bca100-8434-11ea-9902-0ff726a864a3.
+![Easy peasy](https://user-images.githubusercontent.com/1592663/79918184-93bca100-8434-11ea-9902-0ff726a864a3.gif)
 
 ## What is in the box
 
