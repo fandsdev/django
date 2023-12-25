@@ -23,5 +23,3 @@ fmt:
 test:
 	poetry run pytest --dead-fixtures
 	poetry run pytest --create-db --exitfirst --numprocesses ${NUMPROCESSES}
-
-mr: fmt checks test
