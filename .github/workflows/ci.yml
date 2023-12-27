@@ -48,6 +48,12 @@ jobs:
       - name: bootstrap
         run: make bootstrap
 
+      - name: setup qemu
+        uses: docker/setup-qemu-action@v2
+
+      - name: setup buildx
+        uses: docker/setup-buildx-action@v2
+
       - name: make sure docker image is buildable
         uses: docker/build-push-action@v3
         with:

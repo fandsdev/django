@@ -22,7 +22,7 @@ runs:
 
     - name: save python version to the env
       run: echo "python-version=${{ steps.setup-python.outputs.python-version }}" >> $GITHUB_ENV
-      shell: bash    
+      shell: bash
 
     - name: install deps
       if: steps.setup-python.outputs.cache-hit != true
