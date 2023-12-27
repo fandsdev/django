@@ -7,7 +7,7 @@ on:
   pull_request:
 
 jobs:
-  check:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,8 +17,8 @@ jobs:
       - name: build
         uses: ./.github/actions/build
 
-      - name: check
-        run: make checks
+      - name: lint
+        run: make lint
 
   bootstrap:
     needs: check
