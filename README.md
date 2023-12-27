@@ -30,10 +30,6 @@ poetry run cookiecutter gh:fandsdev/django
 
 ## FAQ
 
-### I have got an error «'random_ascii_string' is undefined»
-
-You should upgrade cookiecutter to the latest version: `pip install --upgrade cookiecutter`.
-
 ### I wanna hack this!
 
 Thank you so much! Check out our [build pipeline](https://github.com/fandsdev/django/blob/master/Makefile) and pick any free [issue](https://github.com/fandsdev/django/issues).
