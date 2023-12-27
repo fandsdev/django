@@ -20,6 +20,10 @@ runs:
       run: poetry check --lock
       shell: bash
 
+    - name: save python version to the env
+      run: echo "python-version=${{ steps.setup-python.outputs.python-version }}" >> $GITHUB_ENV
+      shell: bash    
+
     - name: install deps
       if: steps.setup-python.outputs.cache-hit != true
       run: poetry install --no-interaction --no-root

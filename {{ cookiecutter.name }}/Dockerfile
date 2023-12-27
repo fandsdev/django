@@ -15,9 +15,7 @@ FROM python:${PYTHON_VERSION}-slim-bookworm as deps-compile
 WORKDIR /
 COPY poetry.lock pyproject.toml /
 
-ARG POETRY_VERSION
-
-RUN pip install --no-cache-dir poetry==${POETRY_VERSION}
+RUN pip install --no-cache-dir poetry==$(cat poetry.lock |head -n1|awk -v FS='(Poetry |and)' '{print $2}')
 RUN poetry export --format=requirements.txt > requirements.txt
 
 FROM python:${PYTHON_VERSION}-slim-bookworm as base

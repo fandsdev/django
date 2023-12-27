@@ -33,3 +33,27 @@ jobs:
 
       - name: bootstrap
         run: make bootstrap
+
+  build-docker-image:
+    needs: bootstrap
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: build
+        uses: ./.github/actions/build
+
+      - name: bootstrap
+        run: make bootstrap
+
+      - name: make sure docker image is buildable
+        uses: docker/build-push-action@v3
+        with:
+          build-args: |
+            PYTHON_VERSION=${{ env.python-version }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          context: testproject
+          push: false
