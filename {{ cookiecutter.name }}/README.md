@@ -23,16 +23,6 @@ Install requirements:
 poetry install
 ```
 
-Before `git push` remote:
-
-```bash
-git init
-
-git add --force .github/actions/build/action.yml
-
-# other git commands
-```
-
 Run the server:
 
 ```bash
@@ -46,13 +36,11 @@ poetry run python src/manage.py runserver
 Useful commands
 
 ```bash
-make checks  # run code quality checks
-
 make fmt  # run code formatters
 
-make test  # run tests
+make lint  # run code quality checks
 
-make mr  # run all of above one-by-one
+make test  # run tests
 ```
 
 ## Backend code requirements
