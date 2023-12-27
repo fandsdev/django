@@ -2,7 +2,7 @@ ARG PYTHON_VERSION
 
 FROM python:${PYTHON_VERSION}-slim-bookworm as uwsgi-compile
 
-ENV _UWSGI_VERSION 2.0.22
+ENV _UWSGI_VERSION 2.0.23
 
 RUN apt-get update && apt-get --no-install-recommends install -y build-essential wget && rm -rf /var/lib/apt/lists/*
 RUN wget -O uwsgi-${_UWSGI_VERSION}.tar.gz https://github.com/unbit/uwsgi/archive/${_UWSGI_VERSION}.tar.gz \
