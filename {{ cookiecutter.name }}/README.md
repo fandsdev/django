@@ -6,8 +6,8 @@ This project is bootstrapped using [fandsdev/django](http://github.com/fandsdev/
 
 The main django app is called `core`. It contains `.env` file for django-environ. For examples see `src/core/.env.ci`. Here are some usefull app-wide tools:
 
-* `core.admin` — app-wide django-admin customizations (empty yet), check out usage [examples](https://github.com/f213/django/tree/master/%7B%7Bcookiecutter.project_slug%7D%7D/src/core/admin)
-* `core.test.api_client` (available as `api` and `anon` fixtures within pytest) — a [convinient DRF test client](https://github.com/f213/django/blob/master/%7B%7Bcookiecutter.project_slug%7D%7D/src/tests/apps/users/tests_whoami.py#L6-L16).
+* `core.admin` — app-wide django-admin customizations (empty yet), check out usage [examples](https://github.com/fandsdev/django/tree/master/%7B%7Bcookiecutter.name%7D%7D/src/core/admin)
+* `core.test.api_client` (available as `api` and `anon` fixtures within pytest) — a [convinient DRF test client](https://github.com/fandsdev/django/blob/master/%7B%7Bcookiecutter.name%7D%7D/src/tests/apps/users/tests_whoami.py#L6-L16).
 
 Django user model is located in the separate `users` app.
 
