@@ -106,7 +106,6 @@ dmypy.json
 # End of https://www.gitignore.io/api/python
 
 # IDE stuff
-**.*~
 .vscode
 .idea
 
