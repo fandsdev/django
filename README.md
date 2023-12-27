@@ -20,12 +20,6 @@
 * Sentry. Set `SENTRY_DSN` env var if you need it.
 * Postgres ready. Set `DATABASE_URL` env var to something like `DATABASE_URL=postgres://postgres@localhost:5432/postgres`.
 
-## Optional next steps
-
-You definetely should consider this steps after installation:
-
-* If you are into docker, check out this [docker-compose.yml](https://github.com/fandsdev/django/blob/master/%7B%7Bcookiecutter.name%7D%7D/docker-compose.yml) to run on your machine.
-
 ## Installation
 
 ```bash
