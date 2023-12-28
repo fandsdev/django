@@ -24,24 +24,6 @@ jobs:
     needs: lint
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:16.1-alpine
-        env:
-          POSTGRES_PASSWORD: secret
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
-
-      redis:
-        image: redis:7.2.3-alpine
-        ports:
-          - 6379:6379
-
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -55,24 +37,6 @@ jobs:
   build-docker-image:
     needs: bootstrap
     runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres:16.1-alpine
-        env:
-          POSTGRES_PASSWORD: secret
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
-
-      redis:
-        image: redis:7.2.3-alpine
-        ports:
-          - 6379:6379
 
     steps:
       - name: checkout
