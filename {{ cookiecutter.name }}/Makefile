@@ -1,4 +1,4 @@
-NUMPROCESSES = 4
+NUMPROCESSES = auto
 
 manage = poetry run python src/manage.py
 
