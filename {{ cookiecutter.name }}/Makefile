@@ -1,4 +1,4 @@
-NUMPROCESSES = auto
+SIMULTANEOS_TEST_JOBS = auto
 
 manage = poetry run python src/manage.py
 
@@ -22,4 +22,4 @@ lint:
 
 test:
 	poetry run pytest --dead-fixtures
-	poetry run pytest --create-db --exitfirst --numprocesses ${NUMPROCESSES}
+	poetry run pytest --create-db --exitfirst --numprocesses ${SIMULTANEOS_TEST_JOBS}

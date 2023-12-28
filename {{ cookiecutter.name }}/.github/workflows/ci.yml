@@ -62,4 +62,4 @@ jobs:
       - name: test
         env:
           DATABASE_URL: postgres://postgres:secret@localhost:5432/postgres
-        run: make test -e NUMPROCESSES=${{ steps.cpu-cores.outputs.count }}
+        run: make test -e SIMULTANEOS_TEST_JOBS=${{ steps.cpu-cores.outputs.count }}
