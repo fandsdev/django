@@ -26,8 +26,6 @@ poetry install
 Run the server:
 
 ```bash
-cp src/core/.env.ci src/core/.env
-
 poetry run python src/manage.py migrate
 poetry run python src/manage.py createsuperuser
 poetry run python src/manage.py runserver
