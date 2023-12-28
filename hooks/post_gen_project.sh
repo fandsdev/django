@@ -2,6 +2,7 @@
 
 cp src/core/.env.ci src/core/.env
 
+docker compose down --volumes
 docker compose up --detach
 
 poetry install

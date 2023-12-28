@@ -63,3 +63,30 @@ jobs:
         env:
           DATABASE_URL: postgres://postgres:secret@localhost:5432/postgres
         run: make test -e SIMULTANEOS_TEST_JOBS=${{ steps.cpu-cores.outputs.count }}
+
+  build-docker-image:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: build
+        uses: ./.github/actions/build
+
+      - name: setup qemu
+        uses: docker/setup-qemu-action@v2
+
+      - name: setup buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: make sure docker image is buildable
+        uses: docker/build-push-action@v3
+        with:
+          build-args: |
+            PYTHON_VERSION=${{ env.python-version }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          context: .
+          push: false
