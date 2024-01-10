@@ -1,7 +1,6 @@
 # Application definition
 
 APPS = [
-    "core",
     "apps.a12n",
     "apps.users",
 ]
