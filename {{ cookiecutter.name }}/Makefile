@@ -1,4 +1,4 @@
-SIMULTANEOS_TEST_JOBS = auto
+SIMULTANEOS_TEST_JOBS = 4
 
 manage = poetry run python src/manage.py
 
