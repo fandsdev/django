@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-cp src/core/.env.ci src/core/.env
+cp src/app/.env.ci src/app/.env
 
 docker compose down --volumes
 docker compose up --detach

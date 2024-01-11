@@ -38,5 +38,5 @@ runs:
       shell: bash
 
     - name: restore default environment
-      run: cp src/core/.env.ci src/core/.env
+      run: cp src/app/.env.ci src/app/.env
       shell: bash

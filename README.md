@@ -11,7 +11,7 @@
 * Strict type checking with mypy, [django-stubs](https://github.com/typeddjango/django-stubs) and [djangorestframework-stubs](https://github.com/typeddjango/djangorestframework-stubs).
 * tons of linters and formatters (contact me if something interesting not included, see `Makefile` `fmt`, `lint` commands).
 * Starter CI configuration on GitHub Actions.
-* `pytest` with useful stuff like `freezegun`, `pytest-mock` and super convinient [DRF test client](https://github.com/fandsdev/django/blob/master/%7B%7Bcookiecutter.name%7D%7D/src/tests/core/tests_health.py#L9)
+* `pytest` with useful stuff like `freezegun`, `pytest-mock` and super convinient [DRF test client](https://github.com/fandsdev/django/blob/master/%7B%7Bcookiecutter.name%7D%7D/src/app/tests_health.py#L9)
 * Custom [user model](https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#specifying-a-custom-user-model).
 * [drf-spectacular](https://github.com/tfranzel/drf-spectacular) for API Schema generation.
 * [django-axes](https://github.com/jazzband/django-axes) for additional security.

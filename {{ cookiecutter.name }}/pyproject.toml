@@ -98,7 +98,7 @@ enabled = false
 enabled = false
 
 [tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "core.settings"
+DJANGO_SETTINGS_MODULE = "app.settings"
 addopts = ["--reuse-db"]
 env = [
     "AXES_ENABLED = False",
