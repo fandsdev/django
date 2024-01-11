@@ -89,4 +89,4 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           context: .
-          push: false
+          push: ${{ github.ref == refs/heads/master }}
