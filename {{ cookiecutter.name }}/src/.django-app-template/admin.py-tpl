@@ -1,1 +1,1 @@
-from core.admin import ModelAdmin, admin  # noqa: F401
+from app.admin import ModelAdmin, admin  # noqa: F401
