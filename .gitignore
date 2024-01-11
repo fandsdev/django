@@ -5,7 +5,6 @@
 
 **/.DS_Store
 
-{{ cookiecutter.name }}/db.sqlite
 {{ cookiecutter.name }}/poetry.lock
 
 testproject
