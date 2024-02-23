@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  postgres:
+    image: postgres:13-alpine
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+     - 5432:5432
+    command: --autovacuum=off --fsync=off --synchronous_commit=off --full_page_writes=off --work_mem=12MB --max-connections=10 --max_wal_senders=0
+
+  redis:
+    image: redis:6-alpine
+    ports:
+      - 6379:6379
