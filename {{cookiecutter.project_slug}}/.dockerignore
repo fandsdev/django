@@ -1,5 +1,0 @@
-venv/
-static/
-.circleci/
-db.sqlite
-__pycache__/
