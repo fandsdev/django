@@ -1,6 +1,6 @@
 [project]
-name = "{{cookiecutter.project_slug}}"
-version = "{{cookiecutter.project_version}}"
+name = "django"
+version = "0.0.0-dev"
 dependencies = [
     "Django<4.3",
     "bcrypt",

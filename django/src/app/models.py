@@ -30,7 +30,7 @@ class DefaultModel(models.Model):
 
     def update_from_kwargs(self, **kwargs: dict[str, Any]) -> None:
         """A shortcut method to update model instance from the kwargs."""
-        for (key, value) in kwargs.items():
+        for key, value in kwargs.items():
             setattr(self, key, value)
 
     def setattr_and_save(self, key: str, value: Any) -> None:
