@@ -25,7 +25,6 @@ LABEL com.datadoghq.ad.logs='[{"service": "django", "source": "uwsgi"}]'
 ENV DEBIAN_FRONTEND noninteractive
 ENV PYTHONUNBUFFERED 1
 ENV STATIC_ROOT /var/lib/django-static
-ENV _WAITFOR_VERSION 2.2.3
 
 RUN apt-get update \
   && apt-get --no-install-recommends install -y gettext locales-all tzdata git wait-for-it wget \
