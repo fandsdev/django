@@ -82,7 +82,7 @@ ignore = [
     "SIM102",  # use a single if-statement instead of nested if-statements
     "SIM113",  # use enumerate instead of manually incrementing a counter
 ]
-inline-quotes = "\""
+inline-quotes = '"'
 
 [tool.isort]
 include_trailing_comma = true
