@@ -89,4 +89,6 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           context: .
+          # make sure you log to the container registry before pushing
+          # see https://github.com/docker/login-action
           push: false
