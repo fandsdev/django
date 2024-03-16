@@ -31,15 +31,14 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 COPY --from=uwsgi-compile /uwsgi /usr/local/bin/
-RUN pip install --no-cache-dir --upgrade pip
-
 COPY --from=deps-compile /requirements.txt /
+
+RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 WORKDIR /src
 COPY src /src
 
-RUN ./manage.py makemessages --locale ru
 RUN ./manage.py compilemessages
 RUN ./manage.py collectstatic --noinput
 
