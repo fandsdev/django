@@ -1,4 +1,10 @@
-venv
-testproject
-.vscode
+.git
 .idea
+.venv
+.vscode
+
+**/.DS_Store
+
+{{ cookiecutter.name }}/poetry.lock
+
+testproject

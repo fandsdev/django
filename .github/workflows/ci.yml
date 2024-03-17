@@ -1,24 +1,65 @@
----
 name: CI
-on: push
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: checkout
+        uses: actions/checkout@v4
 
-      - name: Install gettext for correct manage.py compilemessages
-        run: sudo apt-get update && sudo apt-get --no-install-recommends install -y locales-all gettext
+      - name: build
+        uses: ./.github/actions/build
 
-      - uses: actions/setup-python@v4
+      - name: lint
+        run: make lint
+
+  bootstrap:
+    needs: lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: build
+        uses: ./.github/actions/build
+
+      - name: bootstrap
+        run: make bootstrap
+
+  build-docker-image:
+    needs: bootstrap
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: build
+        uses: ./.github/actions/build
+
+      - name: bootstrap
+        run: make bootstrap
+
+      - name: setup qemu
+        uses: docker/setup-qemu-action@v2
+
+      - name: setup buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: make sure docker image is buildable
+        uses: docker/build-push-action@v5
         with:
-          python-version: '3.11'
-          cache: 'pip'
-
-      - name: Install cookiecutter
-        run: pip install cookiecutter
-
-      - name: Bootstrap the project
-        run: make test
+          build-args: |
+            PYTHON_VERSION=${{ env.python-version }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          context: testproject
+          push: false

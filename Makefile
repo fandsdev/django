@@ -1,14 +1,15 @@
-VENV=cd testproject/django/src && ../venv/bin/python
+remove-prev-generated-project-if-exists:
+	if [ -d "testproject" ]; then \
+		cd testproject && docker compose down --volumes; \
+		cd .. && rm -Rf testproject; \
+	fi
 
-test: bootstrap
-	$(VENV) ./manage.py makemigrations --check
-	$(VENV) ./manage.py startapp test_app
+bootstrap: remove-prev-generated-project-if-exists
+	poetry run cookiecutter --no-input ./
 
-bootstrap:
-	rm -Rf testproject
-	mkdir -p testproject
-	cd testproject && cookiecutter --no-input ../
+fmt:
+	poetry run toml-sort pyproject.toml
 
-coverage:
-	$(VENV) -m pip install pytest-cov
-	$(VENV) -m pytest --cov-report=xml --cov=app --cov=users --cov=a12n --cov=sepulkas
+lint:
+	poetry run toml-sort pyproject.toml --check
+	poetry run pymarkdown scan README.md
