@@ -6,6 +6,7 @@ requires = ["poetry-core"]
 authors = ["Fedor Borshev <fedor@borshev.com>"]
 description = ""
 name = "django-fandsdev"
+package-mode = false
 readme = "README.md"
 version = "2023.11.29"
 

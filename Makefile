@@ -1,11 +1,15 @@
-remove-prev-generated-project-if-exists:
-	if [ -d "testproject" ]; then \
-		cd testproject && docker compose down --volumes; \
-		cd .. && rm -Rf testproject; \
-	fi
+setup-dev-environment:
+	cp {{\ cookiecutter.name\ }}/docker-compose.yml ./
 
-bootstrap: remove-prev-generated-project-if-exists
+	docker-compose down --volumes
+	docker-compose up --detach
+
+	rm -rf testproject
+
+bootstrap: setup-dev-environment
 	poetry run cookiecutter --no-input ./
+
+	rm docker-compose.yml
 
 fmt:
 	poetry run toml-sort pyproject.toml

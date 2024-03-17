@@ -22,6 +22,8 @@
 
 ## Installation
 
+First, make sure you have `PostgreSQL` up and running (check the `{{ cookiecutter.name }}/src/app/.env.ci` `DATABASE_URL` and `{{ cookiecutter.name }}/docker-compose.yml` for configuration). After that:
+
 ```bash
 poetry install
 

@@ -1,23 +1,31 @@
 ARG PYTHON_VERSION
 
+#
+# Compile custom uwsgi, cuz debian's one is weird
+#
 FROM python:${PYTHON_VERSION}-slim-bookworm as uwsgi-compile
-
 ENV _UWSGI_VERSION 2.0.24
-
 RUN apt-get update && apt-get --no-install-recommends install -y build-essential wget && rm -rf /var/lib/apt/lists/*
 RUN wget -O uwsgi-${_UWSGI_VERSION}.tar.gz https://github.com/unbit/uwsgi/archive/${_UWSGI_VERSION}.tar.gz \
   && tar zxvf uwsgi-*.tar.gz \
   && UWSGI_BIN_NAME=/uwsgi make -C uwsgi-${_UWSGI_VERSION} \
   && rm -Rf uwsgi-*
 
+#
+# Build poetry and export compiled dependecines as plain requirements.txt
+#
 FROM python:${PYTHON_VERSION}-slim-bookworm as deps-compile
 
 WORKDIR /
 COPY poetry.lock pyproject.toml /
 
+# Version is taken from poetry.lock, assuming it is generated with up-to-date version of poetry
 RUN pip install --no-cache-dir poetry==$(cat poetry.lock |head -n1|awk -v FS='(Poetry |and)' '{print $2}')
 RUN poetry export --format=requirements.txt > requirements.txt
 
+#
+# Base image with django dependecines
+#
 FROM python:${PYTHON_VERSION}-slim-bookworm as base
 LABEL maintainer="{{ cookiecutter.email }}"
 LABEL com.datadoghq.ad.logs='[{"service": "django", "source": "uwsgi"}]'

@@ -6,6 +6,7 @@ requires = ["poetry-core"]
 authors = ["{{ cookiecutter.author }} <{{ cookiecutter.email }}>"]
 description = "{{ cookiecutter.description }}"
 name = "{{ cookiecutter.name }}"
+package-mode = false
 readme = "README.md"
 version = "0.0.0-dev"
 

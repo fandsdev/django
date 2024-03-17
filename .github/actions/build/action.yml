@@ -7,7 +7,7 @@ runs:
     - name: install poetry
       uses: snok/install-poetry@v1
       with:
-        version: 1.6.1
+        version: 1.8.2
 
     - name: install python
       id: setup-python
