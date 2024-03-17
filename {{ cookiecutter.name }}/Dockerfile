@@ -19,7 +19,7 @@ RUN pip install --no-cache-dir poetry==$(cat poetry.lock |head -n1|awk -v FS='(P
 RUN poetry export --format=requirements.txt > requirements.txt
 
 FROM python:${PYTHON_VERSION}-slim-bookworm as base
-LABEL maintainer="fedor@borshev.com"
+LABEL maintainer="{{ cookiecutter.email }}"
 LABEL com.datadoghq.ad.logs='[{"service": "django", "source": "uwsgi"}]'
 
 ENV DEBIAN_FRONTEND noninteractive
