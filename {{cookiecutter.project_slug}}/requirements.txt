@@ -71,7 +71,7 @@ jsonschema==4.20.0
     # via drf-spectacular
 jsonschema-specifications==2023.11.1
     # via jsonschema
-pillow==10.1.0
+pillow==10.3.0
     # via django (pyproject.toml)
 psycopg2-binary==2.9.9
     # via django (pyproject.toml)
