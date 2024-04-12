@@ -51,6 +51,18 @@ jobs:
   build-docker-image:
     needs: bootstrap
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        env:
+          POSTGRES_PASSWORD: secret
+        image: postgres:16.2-alpine
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-retries 5
+          --health-timeout 5s
+        ports:
+          - 5432:5432
 
     steps:
       - name: checkout
@@ -61,6 +73,8 @@ jobs:
 
       - name: bootstrap
         run: make bootstrap
+        env:
+          DATABASE_URL: postgres://postgres:secret@localhost:5432/postgres
 
       - name: setup qemu
         uses: docker/setup-qemu-action@v2
