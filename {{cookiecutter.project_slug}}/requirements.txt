@@ -99,7 +99,7 @@ rpds-py==0.13.1
     #   referencing
 sentry-sdk==1.35.0
     # via django (pyproject.toml)
-sqlparse==0.4.4
+sqlparse==0.5.0
     # via django
 uritemplate==4.1.1
     # via drf-spectacular
