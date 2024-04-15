@@ -12,4 +12,4 @@ poetry run isort src/users/migrations/0001_initial.py
 
 poetry run python src/manage.py migrate
 
-make fmt lint test
+make test

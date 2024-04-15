@@ -48,6 +48,10 @@ jobs:
         env:
           DATABASE_URL: postgres://postgres:secret@localhost:5432/postgres
 
+      - name: lint generated project (and its template)
+        run: poetry install && make lint
+        working-directory: testproject
+
   build-docker-image:
     needs: bootstrap
     runs-on: ubuntu-latest
