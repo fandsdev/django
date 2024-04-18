@@ -21,13 +21,15 @@
 * Postgres.
 
 ## Installation
+You need python 3.11, [poetry](https://python-poetry.org) and [cookiecutter](https://www.cookiecutter.io/).
 
-First, make sure you have `PostgreSQL` up and running (check the `{{ cookiecutter.name }}/src/app/.env.ci` `DATABASE_URL` and `{{ cookiecutter.name }}/docker-compose.yml` for configuration). After that:
+We only support PostgreSQL as the database backend, so make sure it runs on `localhost:5432` before installing the project.
 
 ```bash
-poetry install
+pipx install poetry
+pipx install cookiecutter
 
-poetry run cookiecutter gh:fandsdev/django
+cookiecutter gh:fandsdev/django
 ```
 
 ## FAQ
