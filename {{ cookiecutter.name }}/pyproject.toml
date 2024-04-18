@@ -24,7 +24,7 @@ django-storages = "^1.14.2"
 djangorestframework = "^3.14.0"
 djangorestframework-camel-case = "^1.4.2"
 drf-jwt = "^1.19.2"
-drf-spectacular = {extras = ["sidecar"], version = "^0.26.5"}
+drf-spectacular = {extras = ["sidecar"], version = "^0.27.2"}
 pillow = "^10.1.0"
 psycopg2-binary = "^2.9.9"
 python = "~3.11"
