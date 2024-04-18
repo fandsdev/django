@@ -21,6 +21,7 @@
 * Postgres.
 
 ## Installation
+
 You need python 3.11, [poetry](https://python-poetry.org) and [cookiecutter](https://www.cookiecutter.io/).
 
 We only support PostgreSQL as the database backend, so make sure it runs on `localhost:5432` before installing the project.
