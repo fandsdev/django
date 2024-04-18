@@ -20,21 +20,27 @@ jobs:
       - name: lint
         run: make lint
 
-  bootstrap:
+  test:
     needs: lint
     runs-on: ubuntu-latest
+
     services:
       postgres:
+        image: postgres:16.1-alpine
         env:
           POSTGRES_PASSWORD: secret
-        image: postgres:16.2-alpine
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
-          --health-retries 5
           --health-timeout 5s
+          --health-retries 5
         ports:
           - 5432:5432
+
+      redis:
+        image: redis:7.2.3-alpine
+        ports:
+          - 6379:6379
 
     steps:
       - name: checkout
@@ -43,30 +49,24 @@ jobs:
       - name: build
         uses: ./.github/actions/build
 
-      - name: bootstrap
-        run: make bootstrap
+      - name: install locale stuff
+        uses: awalsh128/cache-apt-pkgs-action@v1
+        with:
+          packages: locales-all gettext
+          version: 1
+
+      - name: get number of cpu cores
+        uses: SimenB/github-actions-cpu-cores@v2.0.0
+        id: cpu-cores
+
+      - name: test
         env:
           DATABASE_URL: postgres://postgres:secret@localhost:5432/postgres
-
-      - name: lint generated project (and its template)
-        run: poetry install && make lint
-        working-directory: testproject
+        run: make test -e SIMULTANEOS_TEST_JOBS=${{ steps.cpu-cores.outputs.count }}
 
   build-docker-image:
-    needs: bootstrap
+    needs: test
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        env:
-          POSTGRES_PASSWORD: secret
-        image: postgres:16.2-alpine
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-retries 5
-          --health-timeout 5s
-        ports:
-          - 5432:5432
 
     steps:
       - name: checkout
@@ -75,13 +75,8 @@ jobs:
       - name: build
         uses: ./.github/actions/build
 
-      - name: bootstrap
-        run: make bootstrap
-        env:
-          DATABASE_URL: postgres://postgres:secret@localhost:5432/postgres
-
       - name: setup qemu
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v3
 
       - name: setup buildx
         uses: docker/setup-buildx-action@v3
@@ -93,5 +88,7 @@ jobs:
             PYTHON_VERSION=${{ env.python-version }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          context: testproject
+          context: .
+          # make sure you log to the container registry before pushing
+          # see https://github.com/docker/login-action
           push: false

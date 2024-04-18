@@ -1,33 +1,15 @@
 #!/bin/bash -e
 
-echo -ne "Running with "
+cp src/app/.env.ci src/app/.env
 
-python --version
+poetry install
 
-echo Creating and populating virtualenv..
+poetry run python src/manage.py collectstatic
+poetry run python src/manage.py startapp some_app
+poetry run python src/manage.py makemigrations -n "initial"
 
-python -m venv venv
-. venv/bin/activate
+poetry run isort src/users/migrations/0001_initial.py
 
-pip install --upgrade pip pip-tools wheel
-make
+poetry run python src/manage.py migrate
 
-cd src
-
-echo Collecting static assets...
-./manage.py collectstatic
-
-echo Running initial migrations...
-./manage.py migrate
-
-cd ../
-echo Apply formatting..
-make fmt
-
-echo Running flake8..
-make lint
-
-echo Running pytest...
 make test
-
-echo Done

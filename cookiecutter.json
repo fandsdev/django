@@ -1,9 +1,11 @@
 {
-    "project_slug": "django",
-    "email": "",
-    "project_version": "0.0.0-dev",
+    "author": "Fedor Borshev",
+    "description": "",
+    "email": "fedor@borshev.com",
+    "name": "testproject",
     "_copy_without_render": [
-        "*.py-tpl",
-        ".github/workflows/ci.yml"
+	".github/actions/build/action.yml",
+	".github/workflows/ci.yml",
+	"src/.django-app-template"
     ]
 }
