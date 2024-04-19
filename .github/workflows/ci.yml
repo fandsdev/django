@@ -7,21 +7,7 @@ on:
   pull_request:
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: checkout
-        uses: actions/checkout@v4
-
-      - name: build
-        uses: ./.github/actions/build
-
-      - name: lint
-        run: make lint
-
   bootstrap:
-    needs: lint
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -36,6 +22,8 @@ jobs:
         ports:
           - 5432:5432
 
+    env:
+      DATABASE_URL: postgres://postgres:secret@localhost:5432/postgres
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -44,30 +32,26 @@ jobs:
         uses: ./.github/actions/build
 
       - name: bootstrap
-        run: make bootstrap
-        env:
-          DATABASE_URL: postgres://postgres:secret@localhost:5432/postgres
+        run: |
+          . venv/bin/activate
+          make bootstrap
 
-      - name: lint generated project (and its template)
-        run: poetry install && make lint
-        working-directory: testproject
+      - name: lint the generated project
+        run: |
+          . venv/bin/activate
+          cd testproject
+          make lint
+
+      - name: save the bootstrap result
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated
+          path: testproject
+
 
   build-docker-image:
     needs: bootstrap
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        env:
-          POSTGRES_PASSWORD: secret
-        image: postgres:16.2-alpine
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-retries 5
-          --health-timeout 5s
-        ports:
-          - 5432:5432
-
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -75,10 +59,11 @@ jobs:
       - name: build
         uses: ./.github/actions/build
 
-      - name: bootstrap
-        run: make bootstrap
-        env:
-          DATABASE_URL: postgres://postgres:secret@localhost:5432/postgres
+      - name: download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: generated
+          path: testproject
 
       - name: setup qemu
         uses: docker/setup-qemu-action@v2
