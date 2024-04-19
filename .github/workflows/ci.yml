@@ -42,24 +42,16 @@ jobs:
           cd testproject
           make lint
 
+      - name: save the bootstrap result
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated
+          path: testproject
+
+
   build-docker-image:
     needs: bootstrap
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        env:
-          POSTGRES_PASSWORD: secret
-        image: postgres:16.2-alpine
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-retries 5
-          --health-timeout 5s
-        ports:
-          - 5432:5432
-
-    env:
-      DATABASE_URL: postgres://postgres:secret@localhost:5432/postgres
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -67,8 +59,11 @@ jobs:
       - name: build
         uses: ./.github/actions/build
 
-      - name: bootstrap
-        run: make bootstrap
+      - name: download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: generated
+          path: testproject
 
       - name: setup qemu
         uses: docker/setup-qemu-action@v2
