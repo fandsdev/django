@@ -11,7 +11,46 @@ from users.models import User
 
 
 class ApiClient(DRFAPIClient):
-    def __init__(self, user: Optional[User] = None, *args, **kwargs) -> None:
+    """Testing HTTP client to deal with the app API.
+
+    Takes care of authentication and JSON parsing.
+
+    Client is available as two fixtures: `as_anon` and `as_user`. Use it like this:
+
+        def test(as_anon):
+            as_anon.get("/api/v1/healthchecks/db/")  # fetch endpoint anonymously
+
+
+        def test_whoami(as_user, user):
+            result = as_user.get("/api/v1/users/me/")  # fetch endpoint, authenticated as current user.
+
+            assert result["id"] == user.pk  # fixture `as_user` always takes the `user` fixture
+
+
+        def test_raw(as_user, user):
+            raw = as_user.get("/api/v1/users/me/", as_response=True)  # get raw django HTTPResponse
+
+            result = json.loads(raw.content)
+
+            assert result["id"] == user.pk
+
+    You can build your own fixtures around the client, for example like this:
+
+        from app.testing import ApiClient
+
+        @pytest.fixture
+        def as() -> ApiClient:
+            return lambda user: User, ApiClient(user=user)
+
+    And use this fixture like this:
+
+        def test_whoami(as, another_user):
+            result = as(another_user).get("/api/v1/users/me/")  # your custom user to authenticate
+
+
+    """
+
+    def __init__(self, user: User | None = None, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
         if user:
