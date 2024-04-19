@@ -6,8 +6,7 @@ from rest_framework.views import APIView
 
 
 class BaseThrottle(Protocol):
-    def allow_request(self, request: Request, view: APIView) -> bool:
-        ...
+    def allow_request(self, request: Request, view: APIView) -> bool: ...
 
 
 class ConfigurableThrottlingMixin:
