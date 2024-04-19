@@ -12,7 +12,7 @@ version = "0.0.0-dev"
 
 [tool.poetry.dependencies]
 bcrypt = "^4.0.1"
-django = "^4.2.7"
+django = "^5.0.4"
 django-axes = "^6.1.1"
 django-behaviors = "^0.5.1"
 django-environ = "^0.11.2"
