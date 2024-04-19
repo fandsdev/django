@@ -2,6 +2,7 @@
 
 cp src/app/.env.ci src/app/.env
 
+poetry lock --no-update
 poetry install
 
 poetry run python src/manage.py collectstatic
