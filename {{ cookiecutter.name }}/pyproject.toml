@@ -78,6 +78,7 @@ ignore = [
     "E203",  # whitespace before ':'
     "E265",  # block comment should start with '#'
     "E501",  # line too long ({} > {} characters)
+    "E704",  # Multiple statements on one line (def)
     "F811",  # redefinition of unused name from line {}
     "PT001",  # use @pytest.fixture() over @pytest.fixture
     "SIM102",  # use a single if-statement instead of nested if-statements
