@@ -5,6 +5,4 @@
 
 **/.DS_Store
 
-{{ cookiecutter.name }}/poetry.lock
-
 testproject
