@@ -7,23 +7,7 @@ on:
   pull_request:
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: checkout
-        uses: actions/checkout@v4
-
-      - name: build
-        uses: ./.github/actions/build
-
-      - name: lint
-        run: |
-          . venv/bin/activate
-          make lint
-
   bootstrap:
-    needs: lint
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -38,6 +22,8 @@ jobs:
         ports:
           - 5432:5432
 
+    env:
+      DATABASE_URL: postgres://postgres:secret@localhost:5432/postgres
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -50,12 +36,11 @@ jobs:
           . venv/bin/activate
           make bootstrap
 
-        env:
-          DATABASE_URL: postgres://postgres:secret@localhost:5432/postgres
-
       - name: lint the generated project
-        run: make lint
-        working-directory: testproject
+        run: |
+          . venv/bin/activate
+          cd testproject
+          make lint
 
   build-docker-image:
     needs: bootstrap
@@ -73,6 +58,8 @@ jobs:
         ports:
           - 5432:5432
 
+    env:
+      DATABASE_URL: postgres://postgres:secret@localhost:5432/postgres
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -82,8 +69,6 @@ jobs:
 
       - name: bootstrap
         run: make bootstrap
-        env:
-          DATABASE_URL: postgres://postgres:secret@localhost:5432/postgres
 
       - name: setup qemu
         uses: docker/setup-qemu-action@v2
