@@ -49,8 +49,7 @@ jobs:
           DATABASE_URL: postgres://postgres:secret@localhost:5432/postgres
 
       - name: lint generated project (and its template)
-        run: poetry install && make lint
-        working-directory: testproject
+        run: cd testproject && make lint
 
   build-docker-image:
     needs: bootstrap
