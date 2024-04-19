@@ -600,14 +600,17 @@ test = ["coverage[toml] (==5.2)", "flake8 (==3.8.3)", "flake8-blind-except (==0.
 
 [[package]]
 name = "django-ipware"
-version = "5.0.2"
+version = "6.0.5"
 description = "A Django application to retrieve user's IP address"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "django-ipware-5.0.2.tar.gz", hash = "sha256:ab3ab7645e674df682c1146a5bddfa5151b1b7be7be9210872c3156bd836aad4"},
-    {file = "django_ipware-5.0.2-py2.py3-none-any.whl", hash = "sha256:838b7aede77734603bd32ebd08ad7957304266580b646f8cbe982c4833b71c84"},
+    {file = "django-ipware-6.0.5.tar.gz", hash = "sha256:b39e27403287d6beb0513e694024017dba58d129fd410a1014ac8a1584e73fce"},
+    {file = "django_ipware-6.0.5-py2.py3-none-any.whl", hash = "sha256:a4b73de9a58af9aaa08710da689fb87e39ec470f8df6dc7ee9f8e2d3e0cdef6a"},
 ]
+
+[package.dependencies]
+python-ipware = ">=2.0.3"
 
 [[package]]
 name = "django-split-settings"
@@ -1890,6 +1893,20 @@ files = [
 six = ">=1.5"
 
 [[package]]
+name = "python-ipware"
+version = "2.0.4"
+description = "A Python package to retrieve user's IP address"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "python_ipware-2.0.4-py3-none-any.whl", hash = "sha256:95f96404e27c41ca908e2dfa62dd34fa530ae3d15f20b276ec9d255f3c9aaf86"},
+    {file = "python_ipware-2.0.4.tar.gz", hash = "sha256:21e14b644ea4b2bafaae812b082bfd0b73c3557da253ac7fee8367b620652c0d"},
+]
+
+[package.extras]
+dev = ["coverage[toml]", "coveralls (>=3.3,<4.0)", "ruff", "twine"]
+
+[[package]]
 name = "pyyaml"
 version = "6.0.1"
 description = "YAML parser and emitter for Python"
@@ -2496,4 +2513,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.11"
-content-hash = "d2a6ef9f6dc2dd6650dc9af40c6ac5985f96ddcdb887119371bbe0d76f12a801"
+content-hash = "52f2cb371adf2c3e3fff76280b12a9b2aa06bb4e3bfcc97c1cd8e234f5fa7385"
