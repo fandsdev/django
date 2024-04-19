@@ -39,9 +39,19 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
+      - name: install poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: 1.8.2
 
-      - name: build
-        uses: ./.github/actions/build
+      - name: install python
+        id: setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: pyproject.toml
+
+      - name: install cookiecutter
+        run: pip install cookiecutter
 
       - name: bootstrap
         run: make bootstrap

@@ -1,7 +1,7 @@
 bootstrap:
 	rm -rf testproject
 
-	poetry run cookiecutter --no-input --keep-project-on-failure ./
+	cookiecutter --no-input --keep-project-on-failure ./
 
 fmt:
 	poetry run toml-sort pyproject.toml
