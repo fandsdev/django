@@ -4,8 +4,8 @@ bootstrap:
 	cookiecutter --no-input --keep-project-on-failure ./
 
 fmt:
-	poetry run toml-sort pyproject.toml
+	toml-sort pyproject.toml
 
 lint:
-	poetry run toml-sort pyproject.toml --check
-	poetry run pymarkdown scan README.md
+	toml-sort pyproject.toml --check
+	pymarkdown scan README.md

@@ -18,7 +18,9 @@ jobs:
         uses: ./.github/actions/build
 
       - name: lint
-        run: make lint
+        run: |
+          . venv/bin/activate
+          make lint
 
   bootstrap:
     needs: lint
@@ -39,27 +41,21 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-      - name: install poetry
-        uses: snok/install-poetry@v1
-        with:
-          version: 1.8.2
 
-      - name: install python
-        id: setup-python
-        uses: actions/setup-python@v5
-        with:
-          python-version-file: pyproject.toml
-
-      - name: install cookiecutter
-        run: pip install cookiecutter
+      - name: build
+        uses: ./.github/actions/build
 
       - name: bootstrap
-        run: make bootstrap
+        run: |
+          . venv/bin/activate
+          make bootstrap
+
         env:
           DATABASE_URL: postgres://postgres:secret@localhost:5432/postgres
 
-      - name: lint generated project (and its template)
-        run: cd testproject && make lint
+      - name: lint the generated project
+        run: make lint
+        working-directory: testproject
 
   build-docker-image:
     needs: bootstrap
