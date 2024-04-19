@@ -5,7 +5,7 @@
   "enabledManagers": ["poetry"],
   "packageRules": [
     {
-      "ignorePaths": "pyproject.toml",
+      "ignorePaths": ["pyproject.toml"],
       "poetry": {
         "fileMatch": ["{{ cookiecutter.name }}/pyproject.toml"]
       },
