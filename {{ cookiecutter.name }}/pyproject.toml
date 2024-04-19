@@ -34,7 +34,7 @@ whitenoise = "^6.6.0"
 
 [tool.poetry.group.dev.dependencies]
 autoflake = "^2.2.1"
-black = "^23.11.0"
+black = "^24.3.0"
 django-stubs = "^4.2.6"
 djangorestframework-stubs = "^3.14.4"
 dotenv-linter = "^0.4.0"
@@ -78,6 +78,7 @@ ignore = [
     "E203",  # whitespace before ':'
     "E265",  # block comment should start with '#'
     "E501",  # line too long ({} > {} characters)
+    "E704",  # Multiple statements on one line (def)
     "F811",  # redefinition of unused name from line {}
     "PT001",  # use @pytest.fixture() over @pytest.fixture
     "SIM102",  # use a single if-statement instead of nested if-statements
