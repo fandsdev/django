@@ -3,12 +3,12 @@
     "config:recommended"
   ],
   "enabledManagers": ["poetry"],
+  "ignorePaths": ["pyproject.toml"],
+  "poetry": {
+    "fileMatch": ["{{ cookiecutter.name }}/pyproject.toml"]
+  },
   "packageRules": [
     {
-      "ignorePaths": ["pyproject.toml"],
-      "poetry": {
-        "fileMatch": ["{{ cookiecutter.name }}/pyproject.toml"]
-      },
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true
     }
