@@ -34,7 +34,7 @@ whitenoise = "^6.6.0"
 
 [tool.poetry.group.dev.dependencies]
 autoflake = "^2.2.1"
-black = "^24.3.0"
+black = "^24.4.1"
 django-stubs = "^4.2.6"
 djangorestframework-stubs = "^3.14.4"
 dotenv-linter = "^0.5.0"
