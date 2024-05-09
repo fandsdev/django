@@ -35,7 +35,7 @@ whitenoise = "^6.6.0"
 [tool.poetry.group.dev.dependencies]
 autoflake = "^2.2.1"
 black = "^24.4.2"
-django-stubs = "^4.2.6"
+django-stubs = "^5.0.0"
 djangorestframework-stubs = "^3.14.4"
 dotenv-linter = "^0.5.0"
 flake8-absolute-import = "^1.0.0.2"
