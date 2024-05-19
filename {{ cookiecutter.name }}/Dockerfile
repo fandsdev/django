@@ -53,3 +53,32 @@ RUN ./manage.py collectstatic --noinput
 
 FROM base as web
 CMD ./manage.py migrate && uwsgi --master --http :8000 --module app.wsgi --workers 2 --threads 2 --harakiri 25 --max-requests 1000 --log-x-forwarded-for
+
+
+ENV _CELERY_APP=app.celery
+FROM base as worker
+
+ENV DD_SERVICE=astra-billing-celery-worker
+LABEL com.datadoghq.tags.service="astra-billing-celery-worker"
+LABEL com.datadoghq.ad.logs='[{"source": "celery", "service": "astra-billing-celery-worker"}]'
+
+HEALTHCHECK --interval=15s --timeout=15s --start-period=5s --retries=3 \
+  CMD celery -A ${_CELERY_APP} inspect ping -d $QUEUE@$HOSTNAME
+
+CMD celery -A ${_CELERY_APP} worker -Q $QUEUE -c ${CONCURENCY:-2} -n "${QUEUE}@%h" --max-tasks-per-child ${MAX_REQUESTS_PER_CHILD:-50} --time-limit ${TIME_LIMIT:-900} --soft-time-limit ${SOFT_TIME_LIMIT:-45}
+
+
+FROM base as scheduler
+
+ENV DD_SERVICE=astra-billing-celery-scheduler
+LABEL com.datadoghq.tags.service="astra-billing-celery-scheduler"
+LABEL com.datadoghq.ad.logs='[{"source": "celery", "service": "astra-billing-celery-scheduler"}]'
+
+ENV _SCHEDULER_DB_PATH=/var/db/scheduler
+USER root
+RUN mkdir -p ${_SCHEDULER_DB_PATH} && chown nobody ${_SCHEDULER_DB_PATH}
+VOLUME ${_SCHEDULER_DB_PATH}
+USER nobody
+
+HEALTHCHECK NONE
+CMD celery -A ${_CELERY_APP} beat --pidfile=/tmp/celerybeat.pid --schedule=${_SCHEDULER_DB_PATH}/celerybeat-schedule.db
