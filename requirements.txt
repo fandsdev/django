@@ -40,7 +40,7 @@ python-dateutil==2.9.0.post0
 python-slugify==8.0.4
 PyYAML==6.0.1
 rapidfuzz==3.8.1
-requests==2.31.0
+requests==2.32.0
 requests-toolbelt==1.0.0
 rich==13.7.1
 shellingham==1.5.4
