@@ -28,7 +28,6 @@ RUN poetry export --format=requirements.txt > requirements.txt
 #
 FROM python:${PYTHON_VERSION}-slim-bookworm as base
 LABEL maintainer="{{ cookiecutter.email }}"
-LABEL com.datadoghq.ad.logs='[{"service": "django", "source": "uwsgi"}]'
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV PYTHONUNBUFFERED 1
@@ -58,21 +57,13 @@ CMD ./manage.py migrate && uwsgi --master --http :8000 --module app.wsgi --worke
 ENV _CELERY_APP=app.celery
 FROM base as worker
 
-ENV DD_SERVICE=astra-billing-celery-worker
-LABEL com.datadoghq.tags.service="astra-billing-celery-worker"
-LABEL com.datadoghq.ad.logs='[{"source": "celery", "service": "astra-billing-celery-worker"}]'
-
 HEALTHCHECK --interval=15s --timeout=15s --start-period=5s --retries=3 \
-  CMD celery -A ${_CELERY_APP} inspect ping -d $QUEUE@$HOSTNAME
+  CMD celery -A ${_CELERY_APP} inspect ping -d celery@$HOSTNAME
 
-CMD celery -A ${_CELERY_APP} worker -Q $QUEUE -c ${CONCURENCY:-2} -n "${QUEUE}@%h" --max-tasks-per-child ${MAX_REQUESTS_PER_CHILD:-50} --time-limit ${TIME_LIMIT:-900} --soft-time-limit ${SOFT_TIME_LIMIT:-45}
+CMD celery -A ${_CELERY_APP} worker -c ${CONCURENCY:-2} -n "celery@%h" --max-tasks-per-child ${MAX_REQUESTS_PER_CHILD:-50} --time-limit ${TIME_LIMIT:-900} --soft-time-limit ${SOFT_TIME_LIMIT:-45}
 
 
 FROM base as scheduler
-
-ENV DD_SERVICE=astra-billing-celery-scheduler
-LABEL com.datadoghq.tags.service="astra-billing-celery-scheduler"
-LABEL com.datadoghq.ad.logs='[{"source": "celery", "service": "astra-billing-celery-scheduler"}]'
 
 ENV _SCHEDULER_DB_PATH=/var/db/scheduler
 USER root

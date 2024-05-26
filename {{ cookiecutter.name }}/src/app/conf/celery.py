@@ -5,4 +5,4 @@ CELERY_BROKER_URL = env("CELERY_BROKER_URL", cast=str, default="redis://localhos
 CELERY_TASK_ALWAYS_EAGER = env("CELERY_TASK_ALWAYS_EAGER", cast=bool, default=env("DEBUG"))
 CELERY_TIMEZONE = TIME_ZONE
 CELERY_ENABLE_UTC = False
-CELERY_TASK_DEFAULT_QUEUE = "default_queue"
+CELERY_TASK_ACKS_LATE = True
