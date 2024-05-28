@@ -2,6 +2,7 @@
 
 APPS = [
     "a12n",
+    "app",
     "users",
 ]
 
