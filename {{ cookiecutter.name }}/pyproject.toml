@@ -57,7 +57,7 @@ isort = "^5.12.0"
 jedi = "^0.19.1"
 mixer = {extras = ["django"], version = "^7.2.2"}
 mypy = "^1.10.0"
-pymarkdownlnt = "^0.9.19"
+pymarkdownlnt = "^0.9.20"
 pytest-deadfixtures = "^2.2.1"
 pytest-django = "^4.7.0"
 pytest-env = "^1.1.1"
