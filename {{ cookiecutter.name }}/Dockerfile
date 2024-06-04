@@ -54,9 +54,9 @@ FROM base as web
 CMD ./manage.py migrate && uwsgi --master --http :8000 --module app.wsgi --workers 2 --threads 2 --harakiri 25 --max-requests 1000 --log-x-forwarded-for
 
 
-ENV _CELERY_APP=app.celery
 FROM base as worker
 
+ENV _CELERY_APP=app.celery
 HEALTHCHECK --interval=15s --timeout=15s --start-period=5s --retries=3 \
   CMD celery -A ${_CELERY_APP} inspect ping -d celery@$HOSTNAME
 
