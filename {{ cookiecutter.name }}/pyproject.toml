@@ -28,7 +28,7 @@ drf-spectacular = {extras = ["sidecar"], version = "^0.27.2"}
 pillow = "^10.1.0"
 psycopg2-binary = "^2.9.9"
 python = "~3.11"
-redis = "^5.0.5"
+redis = "^5.0.6"
 sentry-sdk = "^2.5.1"
 whitenoise = "^6.6.0"
 
