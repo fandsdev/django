@@ -30,7 +30,7 @@ psycopg2-binary = "^2.9.9"
 python = "~3.11"
 redis = "^5.0.6"
 sentry-sdk = "^2.6.0"
-whitenoise = "^6.6.0"
+whitenoise = "^6.7.0"
 
 [tool.poetry.group.dev.dependencies]
 autoflake = "^2.2.1"
