@@ -38,13 +38,10 @@ jobs:
         ports:
           - 5432:5432
 
-      rabbitmq:
-        image: rabbitmq:3.13-alpine
-        env:
-          RABBITMQ_DEFAULT_USER: guest
-          RABBITMQ_DEFAULT_PASS: guest
+      redis:
+        image: redis:7.2.3-alpine
         ports:
-          - 5672:5672
+          - 6379:6379
 
     steps:
       - name: checkout
