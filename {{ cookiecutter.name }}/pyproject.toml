@@ -30,7 +30,7 @@ pillow = "^10.1.0"
 psycopg2-binary = "^2.9.9"
 python = "~3.11"
 redis = "^5.0.7"
-sentry-sdk = "^2.6.0"
+sentry-sdk = "^2.7.1"
 whitenoise = "^6.7.0"
 
 [tool.poetry.group.dev.dependencies]
@@ -53,12 +53,12 @@ flake8-pyproject = "^1.2.3"
 flake8-variables-names = "^0.0.6"
 flake8-walrus = "^1.2.0"
 freezegun = "^1.5.1"
-ipython = "^8.24.0"
+ipython = "^8.26.0"
 isort = "^5.12.0"
 jedi = "^0.19.1"
 mixer = {extras = ["django"], version = "^7.2.2"}
 mypy = "^1.10.1"
-pymarkdownlnt = "^0.9.20"
+pymarkdownlnt = "^0.9.21"
 pytest-deadfixtures = "^2.2.1"
 pytest-django = "^4.7.0"
 pytest-env = "^1.1.1"
@@ -71,6 +71,11 @@ types-freezegun = "^1.1.10"
 types-pillow = "^10.2.0.20240520"
 
 [tool.black]
+exclude = '''
+/(
+  | migrations
+)/
+'''
 line_length = 160
 
 [tool.flake8]
@@ -79,7 +84,7 @@ ignore = [
     "E203",  # whitespace before ':'
     "E265",  # block comment should start with '#'
     "E501",  # line too long ({} > {} characters)
-    "E704",  # Multiple statements on one line (def)
+    "E704",  # multiple statements on one line (def)
     "F811",  # redefinition of unused name from line {}
     "PT001",  # use @pytest.fixture() over @pytest.fixture
     "SIM102",  # use a single if-statement instead of nested if-statements
@@ -91,6 +96,9 @@ inline-quotes = '"'
 include_trailing_comma = true
 line_length = 160
 multi_line_output = 3
+skip = [
+    "migrations",
+]
 src_paths = ["src", "tests"]
 use_parentheses = true
 
