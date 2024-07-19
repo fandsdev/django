@@ -27,7 +27,7 @@ RUN poetry export --format=requirements.txt > requirements.txt
 # Base image with django dependecines
 #
 FROM python:${PYTHON_VERSION}-slim-bookworm as base
-LABEL maintainer="{{ cookiecutter.email }}"
+LABEL maintainer="fedor@borshev.com"
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV PYTHONUNBUFFERED 1
@@ -71,5 +71,6 @@ RUN mkdir -p ${_SCHEDULER_DB_PATH} && chown nobody ${_SCHEDULER_DB_PATH}
 VOLUME ${_SCHEDULER_DB_PATH}
 USER nobody
 
+ENV _CELERY_APP=app.celery
 HEALTHCHECK NONE
 CMD celery -A ${_CELERY_APP} beat --pidfile=/tmp/celerybeat.pid --schedule=${_SCHEDULER_DB_PATH}/celerybeat-schedule.db
