@@ -3,17 +3,17 @@ build-backend = "poetry.core.masonry.api"
 requires = ["poetry-core"]
 
 [tool.poetry]
-authors = ["{{ cookiecutter.author }} <{{ cookiecutter.email }}>"]
-description = "{{ cookiecutter.description }}"
-name = "{{ cookiecutter.name }}"
+authors = ["Fedor Borshev <fedor@borshev.com>"]
+description = ""
+name = "testproject"
 package-mode = false
 readme = "README.md"
 version = "0.0.0-dev"
 
 [tool.poetry.dependencies]
 bcrypt = "^4.1.3"
-django = "^4.2.14"
 celery = "5.4.0"
+django = "^4.2.14"
 django-axes = "^6.5.1"
 django-behaviors = "^0.5.1"
 django-environ = "^0.11.2"
