@@ -13,3 +13,36 @@ services:
     image: redis:6-alpine
     ports:
       - 6379:6379
+
+  backend:
+    build:
+      context: .
+      target: web
+      args: &default-build-args
+        PYTHON_VERSION: "3.11.6"
+    environment: &default-environment
+      DATABASE_URL: postgres://postgres@postgres:5432/postgres
+      CELERY_BROKER_URL: redis://redis:6379/0
+    ports:
+      - 8000:8000
+    depends_on: &default-depends_on
+      - postgres
+      - redis
+
+  worker:
+    build:
+      context: .
+      target: worker
+      args: *default-build-args
+    environment: *default-environment
+    depends_on: *default-depends_on
+
+
+  scheduler:
+    build:
+      context: .
+      target: scheduler
+      args: *default-build-args
+    environment: *default-environment
+    depends_on: *default-depends_on
+

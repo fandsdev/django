@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - main
   pull_request:
 
 jobs:
@@ -81,14 +82,53 @@ jobs:
       - name: setup buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: make sure docker image is buildable
-        uses: docker/build-push-action@v5
+      - name: Generate image identifier
+        id: image-identifier
+        uses: ASzc/change-string-case-action@v6
         with:
+          string: ${{ github.repository_owner }}
+
+      - name: Build web backend image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          target: web
+          push: false
+          tags: |
+            ghcr.io/${{ steps.image-identifier.outputs.lowercase }}-backend:latest
+            ghcr.io/${{ steps.image-identifier.outputs.lowercase }}-backend:${{ github.sha }}
           build-args: |
             PYTHON_VERSION=${{ env.python-version }}
+            RELEASE=${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Build web worker image
+        uses: docker/build-push-action@v6
+        with:
           context: .
-          # make sure you log to the container registry before pushing
-          # see https://github.com/docker/login-action
+          target: worker
           push: false
+          tags: |
+            ghcr.io/${{ steps.image-identifier.outputs.lowercase }}-worker:latest
+            ghcr.io/${{ steps.image-identifier.outputs.lowercase }}-worker:${{ github.sha }}
+          build-args: |
+            PYTHON_VERSION=${{ env.python-version }}
+            RELEASE=${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build web scheduler image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          target: scheduler
+          push: false
+          tags: |
+            ghcr.io/${{ steps.image-identifier.outputs.lowercase }}-scheduler:latest
+            ghcr.io/${{ steps.image-identifier.outputs.lowercase }}-scheduler:${{ github.sha }}
+          build-args: |
+            PYTHON_VERSION=${{ env.python-version }}
+            RELEASE=${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

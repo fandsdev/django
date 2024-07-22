@@ -10,4 +10,5 @@ poetry run python src/manage.py startapp some_app
 poetry run python src/manage.py makemigrations -n "initial"
 poetry run python src/manage.py migrate
 
+make lint
 make test

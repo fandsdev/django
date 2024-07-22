@@ -27,8 +27,7 @@ RUN poetry export --format=requirements.txt > requirements.txt
 # Base image with django dependecines
 #
 FROM python:${PYTHON_VERSION}-slim-bookworm as base
-LABEL maintainer="{{ cookiecutter.email }}"
-LABEL com.datadoghq.ad.logs='[{"service": "django", "source": "uwsgi"}]'
+LABEL maintainer="fedor@borshev.com"
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV PYTHONUNBUFFERED 1
@@ -53,3 +52,25 @@ RUN ./manage.py collectstatic --noinput
 
 FROM base as web
 CMD ./manage.py migrate && uwsgi --master --http :8000 --module app.wsgi --workers 2 --threads 2 --harakiri 25 --max-requests 1000 --log-x-forwarded-for
+
+
+FROM base as worker
+
+ENV _CELERY_APP=app.celery
+HEALTHCHECK --interval=15s --timeout=15s --start-period=5s --retries=3 \
+  CMD celery -A ${_CELERY_APP} inspect ping -d celery@$HOSTNAME
+
+CMD celery -A ${_CELERY_APP} worker -c ${CONCURENCY:-2} -n "celery@%h" --max-tasks-per-child ${MAX_REQUESTS_PER_CHILD:-50} --time-limit ${TIME_LIMIT:-900} --soft-time-limit ${SOFT_TIME_LIMIT:-45}
+
+
+FROM base as scheduler
+
+ENV _SCHEDULER_DB_PATH=/var/db/scheduler
+USER root
+RUN mkdir -p ${_SCHEDULER_DB_PATH} && chown nobody ${_SCHEDULER_DB_PATH}
+VOLUME ${_SCHEDULER_DB_PATH}
+USER nobody
+
+ENV _CELERY_APP=app.celery
+HEALTHCHECK NONE
+CMD celery -A ${_CELERY_APP} beat --pidfile=/tmp/celerybeat.pid --schedule=${_SCHEDULER_DB_PATH}/celerybeat-schedule.db
