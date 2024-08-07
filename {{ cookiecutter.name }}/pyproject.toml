@@ -11,7 +11,7 @@ readme = "README.md"
 version = "0.0.0-dev"
 
 [tool.poetry.dependencies]
-bcrypt = "^4.1.3"
+bcrypt = "^4.2.0"
 celery = "5.4.0"
 django = "^4.2.15"
 django-axes = "^6.5.1"
