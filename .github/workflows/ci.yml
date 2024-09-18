@@ -47,7 +47,7 @@ jobs:
         with:
           name: generated
           path: testproject
-
+          include-hidden-files: true
 
   build-docker-image:
     needs: bootstrap
