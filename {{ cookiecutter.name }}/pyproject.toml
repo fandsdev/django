@@ -62,7 +62,7 @@ pymarkdownlnt = "^0.9.21"
 pytest-deadfixtures = "^2.2.1"
 pytest-django = "^4.7.0"
 pytest-env = "^1.1.1"
-pytest-freezegun = "^0.4.2"
+pytest-freezer = "^0.4.8"
 pytest-mock = "^3.12.0"
 pytest-randomly = "^3.15.0"
 pytest-xdist = "^3.6.1"
@@ -119,10 +119,6 @@ env = [
 ]
 filterwarnings = [
     "ignore:.*'rest_framework_jwt.blacklist' defines default_app_config.*You can remove default_app_config.::django",
-    "ignore:distutils Version classes are deprecated. Use packaging.version instead.:DeprecationWarning:pytest_freezegun:17",
-]
-markers = [
-    "freeze_time: freezing time marker (pytest-freezegun does not register it)",
 ]
 python_files = ["test*.py"]
 pythonpath = ". src"
