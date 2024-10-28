@@ -774,36 +774,36 @@ sftp = ["paramiko (>=1.15)"]
 
 [[package]]
 name = "django-stubs"
-version = "5.0.2"
+version = "5.1.1"
 description = "Mypy stubs for Django"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "django_stubs-5.0.2-py3-none-any.whl", hash = "sha256:cb0c506cb5c54c64612e4a2ee8d6b913c6178560ec168009fe847c09747c304b"},
-    {file = "django_stubs-5.0.2.tar.gz", hash = "sha256:236bc5606e5607cb968f92b648471f9edaa461a774bc013bf9e6bff8730f6bdf"},
+    {file = "django_stubs-5.1.1-py3-none-any.whl", hash = "sha256:c4dc64260bd72e6d32b9e536e8dd0d9247922f0271f82d1d5132a18f24b388ac"},
+    {file = "django_stubs-5.1.1.tar.gz", hash = "sha256:126d354bbdff4906c4e93e6361197f6fbfb6231c3df6def85a291dae6f9f577b"},
 ]
 
 [package.dependencies]
 asgiref = "*"
 django = "*"
-django-stubs-ext = ">=5.0.2"
+django-stubs-ext = ">=5.1.1"
 types-PyYAML = "*"
 typing-extensions = ">=4.11.0"
 
 [package.extras]
-compatible-mypy = ["mypy (>=1.10.0,<1.11.0)"]
+compatible-mypy = ["mypy (>=1.12,<1.14)"]
 oracle = ["oracledb"]
 redis = ["redis"]
 
 [[package]]
 name = "django-stubs-ext"
-version = "5.0.4"
+version = "5.1.1"
 description = "Monkey-patching and extensions for django-stubs"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "django_stubs_ext-5.0.4-py3-none-any.whl", hash = "sha256:910cbaff3d1e8e806a5c27d5ddd4088535aae8371ea921b7fd680fdfa5f14e30"},
-    {file = "django_stubs_ext-5.0.4.tar.gz", hash = "sha256:85da065224204774208be29c7d02b4482d5a69218a728465c2fbe41725fdc819"},
+    {file = "django_stubs_ext-5.1.1-py3-none-any.whl", hash = "sha256:3907f99e178c93323e2ce908aef8352adb8c047605161f8d9e5e7b4efb5a6a9c"},
+    {file = "django_stubs_ext-5.1.1.tar.gz", hash = "sha256:db7364e4f50ae7e5360993dbd58a3a57ea4b2e7e5bab0fbd525ccdb3e7975d1c"},
 ]
 
 [package.dependencies]
@@ -2676,4 +2676,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.11"
-content-hash = "a2d51724f5fc453445be0bb6d40b7c4eae7e4c972e87ccffb8f826ef351de9dc"
+content-hash = "acd805924e87e17a30a48ca9962a5f39b116301d7083970c8fe2b54b7425b081"
