@@ -1,5 +1,6 @@
 from app.conf.environ import env
 
+
 # Django REST Framework
 # https://www.django-rest-framework.org/api-guide/settings/
 
