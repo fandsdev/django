@@ -1,4 +1,4 @@
-from typing import Any, Optional, Protocol, Type
+from typing import Any, Protocol
 
 from rest_framework import mixins, status
 from rest_framework.mixins import CreateModelMixin, UpdateModelMixin
@@ -6,6 +6,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.serializers import BaseSerializer
 from rest_framework.viewsets import GenericViewSet
+
 
 __all__ = ["DefaultModelViewSet"]
 
@@ -101,8 +102,8 @@ class ResponseWithRetrieveSerializerMixin:
 
     def get_serializer_class(
         self: BaseGenericViewSet,
-        action: Optional[str] = None,
-    ) -> Type[BaseSerializer]:
+        action: str | None = None,
+    ) -> type[BaseSerializer]:
         if action is None:
             action = self.action  # type: ignore
 
