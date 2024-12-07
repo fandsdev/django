@@ -2,6 +2,7 @@ import environ  # type: ignore[import-untyped]
 
 from app.conf.boilerplate import BASE_DIR
 
+
 env = environ.Env(
     DEBUG=(bool, False),
     CI=(bool, False),

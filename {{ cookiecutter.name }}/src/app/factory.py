@@ -4,6 +4,7 @@ from faker import Faker
 from app.testing import register
 from app.testing.types import FactoryProtocol
 
+
 faker = Faker()
 
 

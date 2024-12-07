@@ -4,10 +4,11 @@ from behaviors.behaviors import Timestamped  # type: ignore
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
+
 __all__ = [
-    "models",
     "DefaultModel",
     "TimestampedModel",
+    "models",
 ]
 
 
