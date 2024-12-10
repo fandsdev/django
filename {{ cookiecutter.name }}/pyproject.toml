@@ -1,6 +1,7 @@
 [build-system]
 build-backend = "poetry.core.masonry.api"
 requires = ["poetry-core"]
+requires-python = ">=3.11,<3.12"
 
 [tool.poetry]
 authors = ["Fedor Borshev <fedor@borshev.com>"]
@@ -28,7 +29,6 @@ drf-jwt = "^1.19.2"
 drf-spectacular = {extras = ["sidecar"], version = "^0.27.2"}
 pillow = "^10.1.0"
 psycopg2-binary = "^2.9.9"
-python = "~3.11"
 redis = "^5.0.7"
 sentry-sdk = "^2.11.0"
 whitenoise = "^6.7.0"
@@ -80,7 +80,6 @@ pythonpath = ". src"
 exclude = ["__pycache__", "migrations"]
 line-length = 160
 src = ["src"]
-target-version = "py311"
 
 [tool.ruff.lint]
 ignore = [
