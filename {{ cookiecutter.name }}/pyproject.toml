@@ -1,7 +1,9 @@
 [build-system]
 build-backend = "poetry.core.masonry.api"
 requires = ["poetry-core"]
-requires-python = ">=3.11,<3.12"
+
+[project]
+requires-python = "~=3.11"
 
 [tool.poetry]
 authors = ["Fedor Borshev <fedor@borshev.com>"]
@@ -29,6 +31,7 @@ drf-jwt = "^1.19.2"
 drf-spectacular = {extras = ["sidecar"], version = "^0.27.2"}
 pillow = "^10.1.0"
 psycopg2-binary = "^2.9.9"
+python = "~3.11"
 redis = "^5.0.7"
 sentry-sdk = "^2.11.0"
 whitenoise = "^6.7.0"
@@ -91,10 +94,7 @@ ignore = [
     "ARG005",  # unused lambda argument: `{}`
     "B018",  # found useless expression. Either assign it to a variable or remove it
     "B904",  # within an `except` clause, raise exceptions with [...]
-    "B904",  # use `raise from` to specify exception cause
     "C408",  # unnecessary `dict` call (rewrite as a literal)
-    "COM812",  # trailing comma missing
-    "COM819",  # trailing comma prohibited
     "D100",  # missing docstring in public module
     "D101",  # missing docstring in public class
     "D102",  # missing docstring in public method
@@ -115,18 +115,15 @@ ignore = [
     "D401",  # first line of docstring should be in imperative mood: "{}"
     "D404",  # first word of the docstring should not be "This"
     "D415",  # first line should end with a period, question mark, or exclamation point
-    "DJ007",  # do not use `__all__` with `ModelForm`, use `fields` instead
     "DTZ001",  # the use of `datetime.datetime()` without `tzinfo` argument is not allowed
     "E501",  # line too long ({} > {})
     "EM101",  # exception must not use a string literal, assign to variable first
     "EM102",  # expection must not use an f-string literal, assign to variable first
-    "F811",  # redefinition of unused `{}` from line {}
     "FBT001",  # boolean-typed position argument in function definition
     "FBT002",  # boolean default position argument in function definition
     "FBT003",  # boolean positional value in function call
     "INP001",  # file `{}` is part of an implicit namespace package. Add an `__init__.py`
     "INT001",  # f-string is resolved before function call; consider `_("string %s") % arg`
-    "ISC001",  # implicitly concatenated string literals on one line
     "N802",  # function name `{}` should be lowercase
     "N803",  # argument name `{}` should be lowercase
     "N804",  # first argument of a class method should be named `cls`
@@ -137,42 +134,18 @@ ignore = [
     "PERF401",  # use a list comprehension to create a transformed list
     "PGH003",  # use specific rule codes when ignoring type issues
     "PGH004",  # use specific rule codes when using `noqa`
-    "PLR0913",  # too many arguments in function definition ({} > {})
-    "PLR2004",  # magic value used in comparison, consider replacing {} with constant variable
-    "PLR5501",  # use `elif` instead of `else` then `if` to reduce indentation
-    "PLW0603",  # using the global statement to update `{}` is discouraged
-    "PLW2901",  # `for` loop variable `{}` overwritten by assignment target
     "PT001",  # use `@pytest.fixture()` over `@pytest.fixture`
-    "PT006",  # wrong name(s) type in `@pytest.mark.parametrize`, expected `{}`
-    "PTH118",  # `os.path.join()` should be replaced by `Path` with `/` operator
-    "PTH119",  # `os.path.basename()` should be replaced by `Path.name`
-    "PTH120",  # `os.path.dirname()` should be replaced by `Path.parent`
-    "PTH122",  # `os.path.splitext()` should be replaced by `Path.suffix`, [...]
-    "PTH123",  # `open()` should be replaced by `Path.open()`
-    "Q000",  # single quotes found but double quotes preferred
     "RET501",  # do not explicitly `return None` in function if it is the only possible return value
     "RET502",  # do not implicitly `return None` in function able to return non-`None` value
     "RET503",  # missing explicit `return` at the end of function able to return non-`None` value
-    "RET504",  # unnecessary assignment to `{}` before `return` statement
-    "RET505",  # unnecessary `else` after `return` statement
-    "RSE102",  # unnecessary parentheses on raised exception
-    "RUF001",  # string contains ambiguous `{}` [...]
-    "RUF002",  # docstring contains ambiguous `{}` [...]
-    "RUF005",  # consider iterable unpacking instead of concatenation"
-    "RUF009",  # do not perform function call `{}` in dataclass defaults
     "RUF012",  # mutable class attributes should be annotated with `typing.ClassVar`
     "RUF015",  # prefer next({iterable}) over single element slice
-    "RUF100",  # unused `noqa` directive (unknown: `{}`)
     "S101",  # use of `assert` detected
-    "S105",  # possible hardcoded password assigned to: "{}"
-    "S106",  # possible hardcoded password assigned to argument: "{}"
-    "S308",  # use of `mark_safe` may expose cross-site scripting vulnerabilities
     "S311",  # standart pseudo-random generators are not suitable for cryptographic purposes
     "S324",  # probable use of insecure hash functions in `{}`: `{}`
     "SIM102",  # use a single `if` statement instead of nested `if` statements
     "SIM108",  # use ternary operator `{}` instead of `if`-`else`-block
-    "SIM300",  # yoda conditions are discouraged, use `{}` instead
-    "SLF001",  # private member accessed: `{}`
+    "SIM113",  # use enumerate instead of manually incrementing a counter
     "TC001",  # move application import `{}` into a type-checking block
     "TC002",  # move third-party import `{}` into a type-checking block
     "TC003",  # move standart library import `{}` into a type-checking block
@@ -207,6 +180,7 @@ lines-after-imports = 2
 "*/tests/*" = [
     "ANN",  # flake8-annotations
     "ARG001",
+    "PLR2004",
 ]
 "src/app/conf/*" = [
     "ANN",  # flake8-annotations
@@ -214,6 +188,7 @@ lines-after-imports = 2
 "src/app/testing/*" = [
     "ANN",  # flake8-annotations
     "ARG001",
+    "PLR2004",
 ]
 
 [tool.tomlsort]

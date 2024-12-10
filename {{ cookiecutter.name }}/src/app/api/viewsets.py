@@ -54,7 +54,7 @@ class DefaultUpdateModelMixin(UpdateModelMixin):
         if getattr(instance, "_prefetched_objects_cache", None):
             # If 'prefetch_related' has been applied to a queryset, we need to
             # forcibly invalidate the prefetch cache on the instance.
-            instance._prefetched_objects_cache = {}
+            instance._prefetched_objects_cache = {}  # noqa: SLF001
 
         return self.get_response(instance, status.HTTP_200_OK)
 
