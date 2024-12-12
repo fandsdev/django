@@ -1,4 +1,4 @@
-from typing import Any, Optional, Protocol, Type
+from typing import Any, Protocol
 
 from rest_framework import mixins, status
 from rest_framework.mixins import CreateModelMixin, UpdateModelMixin
@@ -6,6 +6,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.serializers import BaseSerializer
 from rest_framework.viewsets import GenericViewSet
+
 
 __all__ = ["DefaultModelViewSet"]
 
@@ -53,7 +54,7 @@ class DefaultUpdateModelMixin(UpdateModelMixin):
         if getattr(instance, "_prefetched_objects_cache", None):
             # If 'prefetch_related' has been applied to a queryset, we need to
             # forcibly invalidate the prefetch cache on the instance.
-            instance._prefetched_objects_cache = {}
+            instance._prefetched_objects_cache = {}  # noqa: SLF001
 
         return self.get_response(instance, status.HTTP_200_OK)
 
@@ -101,8 +102,8 @@ class ResponseWithRetrieveSerializerMixin:
 
     def get_serializer_class(
         self: BaseGenericViewSet,
-        action: Optional[str] = None,
-    ) -> Type[BaseSerializer]:
+        action: str | None = None,
+    ) -> type[BaseSerializer]:
         if action is None:
             action = self.action  # type: ignore
 

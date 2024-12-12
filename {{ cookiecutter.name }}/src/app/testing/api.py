@@ -105,8 +105,7 @@ class ApiClient(DRFAPIClient):
 
         if self.is_json(response):
             return json.loads(content)
-        else:
-            return content
+        return content
 
     @staticmethod
     def is_json(response: Response) -> bool:

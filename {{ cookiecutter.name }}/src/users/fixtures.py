@@ -4,6 +4,7 @@ import pytest
 
 from users.models import User
 
+
 if TYPE_CHECKING:
     from app.testing.factory import FixtureFactory
 

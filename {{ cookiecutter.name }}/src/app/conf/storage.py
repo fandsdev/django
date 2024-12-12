@@ -1,5 +1,6 @@
 from app.conf.environ import env
 
+
 STORAGES = {
     "default": {
         "BACKEND": env(

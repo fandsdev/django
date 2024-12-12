@@ -46,7 +46,7 @@ make test  # run tests
 ### Style
 
 * Obey [django's style guide](https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style/#model-style).
-* Configure your IDE to use [flake8](https://pypi.python.org/pypi/flake8) for checking your python code. To run our linters manualy, do `make lint`.
+* Configure your IDE to use [ruff](https://pypi.org/project/ruff) for checking your Python code. To run our linters manually, do `make lint`. Feel free to [adjust](https://docs.astral.sh/ruff/configuration/) ruff [rules](https://docs.astral.sh/ruff/rules/) in `pyproject.toml` section `tool.ruff.lint` for your needs.
 * Prefer English over your native language in comments and commit messages.
 * Commit messages should contain the unique id of issue they are linked to (refs #100500).
 * Every model, service and model method should have a docstring.

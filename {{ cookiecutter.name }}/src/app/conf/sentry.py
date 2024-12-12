@@ -1,5 +1,6 @@
 from app.conf.environ import env
 
+
 # Sentry
 # https://sentry.io/for/django/
 

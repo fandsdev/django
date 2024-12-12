@@ -2,6 +2,9 @@
 build-backend = "poetry.core.masonry.api"
 requires = ["poetry-core"]
 
+[project]
+requires-python = "~=3.11"
+
 [tool.poetry]
 authors = ["Fedor Borshev <fedor@borshev.com>"]
 description = ""
@@ -34,27 +37,11 @@ sentry-sdk = "^2.11.0"
 whitenoise = "^6.7.0"
 
 [tool.poetry.group.dev.dependencies]
-autoflake = "^2.2.1"
-black = "^24.4.2"
 django-stubs = "^5.1.1"
 djangorestframework-stubs = "^3.15.0"
 dotenv-linter = "^0.5.0"
-flake8-absolute-import = "^1.0.0.2"
-flake8-bugbear = "^24.4.26"
-flake8-cognitive-complexity = "^0.1.0"
-flake8-django = "^1.4"
-flake8-eradicate = "^1.5.0"
-flake8-fixme = "^1.1.1"
-flake8-pep3101 = "^2.1.0"
-flake8-pie = "^0.16.0"
-flake8-print = "^5.0.0"
-flake8-printf-formatting = "^1.1.2"
-flake8-pyproject = "^1.2.3"
-flake8-variables-names = "^0.0.6"
-flake8-walrus = "^1.2.0"
 freezegun = "^1.5.1"
 ipython = "^8.26.0"
-isort = "^5.12.0"
 jedi = "^0.19.1"
 mixer = {extras = ["django"], version = "^7.2.2"}
 mypy = "^1.11.0"
@@ -66,41 +53,10 @@ pytest-freezer = "^0.4.8"
 pytest-mock = "^3.12.0"
 pytest-randomly = "^3.15.0"
 pytest-xdist = "^3.6.1"
+ruff = "^0.8.0"
 toml-sort = "^0.23.1"
 types-freezegun = "^1.1.10"
 types-pillow = "^10.2.0.20240520"
-
-[tool.black]
-exclude = '''
-/(
-  | migrations
-)/
-'''
-line_length = 160
-
-[tool.flake8]
-exclude = ["__pycache__", "migrations"]
-ignore = [
-    "E203",  # whitespace before ':'
-    "E265",  # block comment should start with '#'
-    "E501",  # line too long ({} > {} characters)
-    "E704",  # multiple statements on one line (def)
-    "F811",  # redefinition of unused name from line {}
-    "PT001",  # use @pytest.fixture() over @pytest.fixture
-    "SIM102",  # use a single if-statement instead of nested if-statements
-    "SIM113",  # use enumerate instead of manually incrementing a counter
-]
-inline-quotes = '"'
-
-[tool.isort]
-include_trailing_comma = true
-line_length = 160
-multi_line_output = 3
-skip = [
-    "migrations",
-]
-src_paths = ["src", "tests"]
-use_parentheses = true
 
 [tool.pymarkdown.plugins.md013]
 enabled = false
@@ -122,6 +78,118 @@ filterwarnings = [
 ]
 python_files = ["test*.py"]
 pythonpath = ". src"
+
+[tool.ruff]
+exclude = ["__pycache__", "migrations"]
+line-length = 160
+src = ["src"]
+
+[tool.ruff.lint]
+ignore = [
+    "A001",  # variable `{}` is shadowing a Python builtin
+    "A002",  # argument `{}` is shadowing a Python builtin
+    "A003",  # class attribute `{}` is shadowing a Python builtin
+    "ANN401",  # dynamically typed expressions (typing.Any) are disallowed in `{}`
+    "ARG002",  # unused method argument: `{}`
+    "ARG005",  # unused lambda argument: `{}`
+    "B018",  # found useless expression. Either assign it to a variable or remove it
+    "B904",  # within an `except` clause, raise exceptions with [...]
+    "C408",  # unnecessary `dict` call (rewrite as a literal)
+    "D100",  # missing docstring in public module
+    "D101",  # missing docstring in public class
+    "D102",  # missing docstring in public method
+    "D103",  # missing docstring in public function
+    "D104",  # missing docstring in public package
+    "D105",  # missing docstring in magic method
+    "D106",  # missing docstring in public nested class
+    "D107",  # missing docstring in `__init__`
+    "D200",  # one-line docstring should fit on one line
+    "D202",  # no blank lines allowed after function docstring (found {})
+    "D203",  # 1 blank line required before class docstring
+    "D205",  # 1 blank line required between summary line and description
+    "D209",  # multi-line docstring closing quotes should be on a separate line
+    "D210",  # no whitespaces allowed surrounding docstring text
+    "D212",  # multi-line docstring summary should start at the first line
+    "D213",  # multi-line docstring summary should start at the second line
+    "D400",  # first line should end with a period
+    "D401",  # first line of docstring should be in imperative mood: "{}"
+    "D404",  # first word of the docstring should not be "This"
+    "D415",  # first line should end with a period, question mark, or exclamation point
+    "DTZ001",  # the use of `datetime.datetime()` without `tzinfo` argument is not allowed
+    "E501",  # line too long ({} > {})
+    "EM101",  # exception must not use a string literal, assign to variable first
+    "EM102",  # expection must not use an f-string literal, assign to variable first
+    "FBT001",  # boolean-typed position argument in function definition
+    "FBT002",  # boolean default position argument in function definition
+    "FBT003",  # boolean positional value in function call
+    "INP001",  # file `{}` is part of an implicit namespace package. Add an `__init__.py`
+    "INT001",  # f-string is resolved before function call; consider `_("string %s") % arg`
+    "N802",  # function name `{}` should be lowercase
+    "N803",  # argument name `{}` should be lowercase
+    "N804",  # first argument of a class method should be named `cls`
+    "N806",  # variable `{}` in function should be lowercase
+    "N812",  # lowercase `{}` imported as non-lowercase `{}`
+    "N818",  # exception name `{}` should be named with an Error suffix
+    "N999",  # invalid module name: '{}'
+    "PERF401",  # use a list comprehension to create a transformed list
+    "PGH003",  # use specific rule codes when ignoring type issues
+    "PGH004",  # use specific rule codes when using `noqa`
+    "PT001",  # use `@pytest.fixture()` over `@pytest.fixture`
+    "RET501",  # do not explicitly `return None` in function if it is the only possible return value
+    "RET502",  # do not implicitly `return None` in function able to return non-`None` value
+    "RET503",  # missing explicit `return` at the end of function able to return non-`None` value
+    "RUF012",  # mutable class attributes should be annotated with `typing.ClassVar`
+    "RUF015",  # prefer next({iterable}) over single element slice
+    "S101",  # use of `assert` detected
+    "S311",  # standart pseudo-random generators are not suitable for cryptographic purposes
+    "S324",  # probable use of insecure hash functions in `{}`: `{}`
+    "SIM102",  # use a single `if` statement instead of nested `if` statements
+    "SIM108",  # use ternary operator `{}` instead of `if`-`else`-block
+    "SIM113",  # use enumerate instead of manually incrementing a counter
+    "TC001",  # move application import `{}` into a type-checking block
+    "TC002",  # move third-party import `{}` into a type-checking block
+    "TC003",  # move standart library import `{}` into a type-checking block
+    "TRY003",  # avoid specifying long messages outside the exception class
+    "TRY300",  # consider moving this statement to an `else` block
+]
+select = ["ALL"]
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+known-first-party = ["src"]
+lines-after-imports = 2
+
+[tool.ruff.lint.per-file-ignores]
+"*/factory.py" = [
+    "ANN",  # flake8-annotations
+    "ARG001",
+]
+"*/fixtures.py" = [
+    "ANN",  # flake8-annotations
+    "ARG001",
+]
+"*/management/*" = [
+    "ANN",  # flake8-annotations
+]
+"*/migrations/*" = [
+    "ANN",  # flake8-annotations
+]
+"*/tests/*" = [
+    "ANN",  # flake8-annotations
+    "ARG001",
+    "PLR2004",
+]
+"src/app/conf/*" = [
+    "ANN",  # flake8-annotations
+]
+"src/app/testing/*" = [
+    "ANN",  # flake8-annotations
+    "ARG001",
+    "PLR2004",
+]
 
 [tool.tomlsort]
 all = true
