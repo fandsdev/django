@@ -69,7 +69,7 @@ DJANGO_SETTINGS_MODULE = "app.settings"
 addopts = ["--reuse-db"]
 env = [
     "AXES_ENABLED = False",
-    "CELERY_ALWAYS_EAGER = True",
+    "CELERY_TASK_ALWAYS_EAGER = True",
     "CI = 1",
     "DISABLE_THROTTLING = True",
 ]
