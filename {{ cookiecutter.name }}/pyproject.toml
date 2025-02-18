@@ -3,12 +3,13 @@ build-backend = "poetry.core.masonry.api"
 requires = ["poetry-core"]
 
 [project]
+name = "{{ cookiecutter.name }}"
 requires-python = "~=3.11"
 
 [tool.poetry]
-authors = ["Fedor Borshev <fedor@borshev.com>"]
-description = ""
-name = "testproject"
+authors = ["{{ cookiecutter.author }} <{{ cookiecutter.email }}>"]
+description = "{{ cookiecutter.description }}"
+name = "{{ cookiecutter.name }}"
 package-mode = false
 readme = "README.md"
 version = "0.0.0-dev"
