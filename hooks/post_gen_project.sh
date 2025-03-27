@@ -6,7 +6,6 @@ poetry lock --no-update
 poetry install
 
 poetry run python src/manage.py collectstatic
-poetry run python src/manage.py startapp some_app
 poetry run python src/manage.py makemigrations -n "initial"
 poetry run python src/manage.py migrate
 
