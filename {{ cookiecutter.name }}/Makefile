@@ -26,5 +26,6 @@ lint:
 	uv run dotenv-linter src/app/.env.ci
 
 test:
+	@mkdir -p src/static
 	uv run pytest --dead-fixtures
 	uv run pytest --create-db --exitfirst --numprocesses ${SIMULTANEOUS_TEST_JOBS}
