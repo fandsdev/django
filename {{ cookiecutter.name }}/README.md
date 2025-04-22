@@ -21,7 +21,7 @@ Python 3.11 is required (uv will install it automatically).
 Install requirements:
 
 ```bash
-uv venv
+uv venv  # also install python if needed
 source .venv/bin/activate  # or any similar command if using different shell or OS
 make
 ```
