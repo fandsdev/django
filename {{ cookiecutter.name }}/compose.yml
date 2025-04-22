@@ -49,4 +49,3 @@ services:
       args: *default-build-args
     environment: *default-environment
     depends_on: *default-depends_on
-

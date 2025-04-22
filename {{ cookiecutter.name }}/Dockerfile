@@ -15,19 +15,25 @@ RUN wget -O uwsgi-${_UWSGI_VERSION}.tar.gz https://github.com/unbit/uwsgi/archiv
   && rm -Rf uwsgi-*
 
 #
-# Build poetry and export compiled dependecines as plain requirements.txt
+# Build dependencies with uv
+# https://github.com/astral-sh/uv-docker-example/blob/main/multistage.Dockerfile
 #
 FROM python:${PYTHON_VERSION}-slim-bookworm AS deps-compile
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy UV_PYTHON_DOWNLOADS=0
 
-WORKDIR /
-COPY poetry.lock pyproject.toml /
-
-# Version is taken from poetry.lock, assuming it is generated with up-to-date version of poetry
-RUN pip install --no-cache-dir poetry==$(cat poetry.lock |head -n1|awk -v FS='(Poetry |and)' '{print $2}')
-RUN poetry export --format=requirements.txt > requirements.txt
+WORKDIR /app
+RUN --mount=type=cache,target=/root/.cache/uv \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --frozen --no-install-project --no-dev
+ADD . /app
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --frozen --no-dev
 
 #
-# Base image with django dependecines
+# Base image with django dependencies
+# It is important to use the image that matches the deps-compile image
 #
 FROM python:${PYTHON_VERSION}-slim-bookworm AS base
 LABEL maintainer="{{ cookiecutter.email }}"
@@ -41,15 +47,12 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 COPY --from=uwsgi-compile /uwsgi /usr/local/bin/
-COPY --from=deps-compile /requirements.txt /
+COPY --from=deps-compile --chown=app:app /app/src /app/src
+COPY --from=deps-compile --chown=app:app /app/.venv /app/.venv
+ENV PATH="/app/.venv/bin:$PATH"
 
-RUN pip install --no-cache-dir --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+WORKDIR /app/src
 
-WORKDIR /src
-COPY src /src
-
-RUN chmod +x ./manage.py
 RUN ./manage.py compilemessages
 RUN ./manage.py collectstatic --noinput
 
@@ -61,7 +64,7 @@ FROM base AS web
 HEALTHCHECK --interval=15s --timeout=15s --start-period=15s --retries=3 \
   CMD wget --quiet --tries=1 --spider http://localhost:8000/api/v1/healthchecks/
 
-CMD ./manage.py migrate && uwsgi --master --http :8000 --module app.wsgi --workers 2 --threads 2 --harakiri 25 --max-requests 1000 --log-x-forwarded-for
+CMD ./manage.py migrate && uwsgi --master --http :8000 --venv /app/.venv/ --module app.wsgi --workers 2 --threads 2 --harakiri 25 --max-requests 1000 --log-x-forwarded-for
 
 
 FROM base AS worker
