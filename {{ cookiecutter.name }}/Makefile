@@ -1,6 +1,13 @@
 SIMULTANEOUS_TEST_JOBS = 4
+MANAGE = uv run python src/manage.py
 
-manage = uv run python src/manage.py
+.DEFAULT_GOAL := install-dev-deps
+
+install-dev-deps:
+	uv sync --locked
+
+install-deps:
+	uv sync --locked --no-dev
 
 fmt:
 	uv run ruff check src --fix --unsafe-fixes
@@ -8,8 +15,8 @@ fmt:
 	uv run toml-sort pyproject.toml
 
 lint:
-	$(manage) check
-	$(manage) makemigrations --check --dry-run --no-input
+	$(MANAGE) check
+	$(MANAGE) makemigrations --check --dry-run --no-input
 
 	uv run ruff check src
 	uv run ruff format --check src
