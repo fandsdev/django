@@ -22,12 +22,13 @@
 
 ## Installation
 
-You need python 3.11, [poetry](https://python-poetry.org) and [cookiecutter](https://www.cookiecutter.io/).
+You need python 3.11, [poetry<2](https://python-poetry.org) and [cookiecutter](https://www.cookiecutter.io/).
+The poetry sticks to poetry v1.x as the project plans to migrate to [uv](https://github.com/astral-sh/uv) package manager.
 
 We only support PostgreSQL as the database backend, so make sure it runs on `localhost:5432` before installing the project.
 
 ```bash
-pipx install poetry
+pipx install 'poetry<2'
 pipx install cookiecutter
 
 cookiecutter gh:fandsdev/django
