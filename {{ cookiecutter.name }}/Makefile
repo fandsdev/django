@@ -1,5 +1,4 @@
 SIMULTANEOUS_TEST_JOBS = 4
-MANAGE = uv run python src/manage.py
 
 .DEFAULT_GOAL := help
 
@@ -15,8 +14,8 @@ fmt:
 	uv run toml-sort pyproject.toml
 
 lint:
-	$(MANAGE) check
-	$(MANAGE) makemigrations --check --dry-run --no-input
+	uv run python src/manage.py check
+	uv run python src/manage.py makemigrations --check --dry-run --no-input
 
 	uv run ruff check src
 	uv run ruff format --check src
