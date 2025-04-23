@@ -15,7 +15,7 @@ Also, feel free to add as much django apps as you want.
 
 ## Installing on a local machine
 
-The project dependencies are managed by [uv (version >0.6.0)](https://docs.astral.sh/uv/).
+The project dependencies are managed by [uv (version >0.6.0)](https://docs.astral.sh/uv/), (how to install [link](https://docs.astral.sh/uv/getting-started/installation/)).
 Python 3.11 is required (uv will install it automatically).
 
 Install requirements:
