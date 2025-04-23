@@ -29,7 +29,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
-      - name: setup uv
+      - name: setup uv  # let uv handle python setup, like on developers machine
         uses: astral-sh/setup-uv@v5
         with:
           pyproject-file: "{{ cookiecutter.name }}/pyproject.toml"
@@ -66,7 +66,7 @@ jobs:
           enable-cache: true
           cache-dependency-glob: 'uv.lock'
 
-      - name: get python version  # python not needed, just to get the latest version compatible with the project
+      - name: get python version  # python itself not needed, just to get the latest compatible version with project
         uses: actions/setup-python@v5
         id: setup-python
         with:
