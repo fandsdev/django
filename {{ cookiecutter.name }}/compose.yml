@@ -1,4 +1,14 @@
-version: '2'
+---
+x-default-build-args: &default-build-args
+  PYTHON_VERSION: "3.11.12"
+
+x-default-environment: &default-environment
+  DATABASE_URL: postgres://postgres@postgres:5432/postgres
+  CELERY_BROKER_URL: redis://redis:6379/0
+
+x-default-depends_on: &default-depends_on
+  - postgres
+  - redis
 
 services:
   postgres:
@@ -18,16 +28,11 @@ services:
     build:
       context: .
       target: web
-      args: &default-build-args
-        PYTHON_VERSION: "3.11.6"
-    environment: &default-environment
-      DATABASE_URL: postgres://postgres@postgres:5432/postgres
-      CELERY_BROKER_URL: redis://redis:6379/0
+      args: *default-build-args
+    environment: *default-environment
     ports:
       - 8000:8000
-    depends_on: &default-depends_on
-      - postgres
-      - redis
+    depends_on: *default-depends_on
 
   worker:
     build:
