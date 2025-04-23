@@ -47,12 +47,13 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 COPY --from=uwsgi-compile /uwsgi /usr/local/bin/
-COPY --from=deps-compile --chown=app:app /app/src /app/src
-COPY --from=deps-compile --chown=app:app /app/.venv /app/.venv
+COPY --from=deps-compile /app/src /app/src
+COPY --from=deps-compile /app/.venv /app/.venv
 ENV PATH="/app/.venv/bin:$PATH"
 
 WORKDIR /app/src
 
+RUN chmod +x ./manage.py
 RUN ./manage.py compilemessages
 RUN ./manage.py collectstatic --noinput
 

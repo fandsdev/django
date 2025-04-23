@@ -9,7 +9,7 @@ runs:
   using: composite
 
   steps:
-    - name: Setup uv
+    - name: setup uv
       uses: astral-sh/setup-uv@v5
       with:
         pyproject-file: "pyproject.toml"
