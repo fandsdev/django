@@ -50,7 +50,12 @@ RUN chmod +x ./manage.py
 RUN ./manage.py compilemessages
 RUN ./manage.py collectstatic --noinput
 
-FROM base as web
+
+FROM base AS web
+HEALTHCHECK --interval=15s --timeout=15s --start-period=15s --retries=3 \
+  CMD wget --quiet --tries=1 --spider http://localhost:8000/api/v1/healthchecks/
+
+SHELL ["/bin/bash", "-c"]
 CMD ./manage.py migrate && uwsgi --master --http :8000 --module app.wsgi --workers 2 --threads 2 --harakiri 25 --max-requests 1000 --log-x-forwarded-for
 
 

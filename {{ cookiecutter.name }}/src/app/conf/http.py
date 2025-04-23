@@ -1,7 +1,7 @@
 from app.conf.environ import env
 
 
-ALLOWED_HOSTS = ["*"]  # host validation is not necessary in 2020
+ALLOWED_HOSTS = ["*"]  # host validation is not necessary in 2020+
 CSRF_TRUSTED_ORIGINS = [
     "http://your.app.origin",
 ]
