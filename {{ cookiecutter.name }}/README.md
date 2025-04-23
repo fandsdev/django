@@ -23,7 +23,7 @@ Install requirements:
 ```bash
 uv venv  # also install python if needed
 source .venv/bin/activate  # or any similar command if using different shell or OS
-make
+make install-dev-deps
 ```
 
 Run the server:

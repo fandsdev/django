@@ -1,7 +1,7 @@
 SIMULTANEOUS_TEST_JOBS = 4
 MANAGE = uv run python src/manage.py
 
-.DEFAULT_GOAL := install-dev-deps
+.DEFAULT_GOAL := help
 
 install-dev-deps:
 	uv sync --locked
@@ -29,3 +29,14 @@ test:
 	@mkdir -p src/static
 	uv run pytest --dead-fixtures
 	uv run pytest --create-db --exitfirst --numprocesses ${SIMULTANEOUS_TEST_JOBS}
+
+help:
+	@echo "Makefile for {{ cookiecutter.name }}"
+	@echo ""
+	@echo "Usage:"
+	@echo "  make install-dev-deps   Install development dependencies"
+	@echo "  make install-deps       Install production dependencies"
+	@echo "  make fmt                Format code"
+	@echo "  make lint               Lint code"
+	@echo "  make test               Run tests"
+	@echo "  make help               Show this help message"
