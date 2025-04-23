@@ -11,10 +11,13 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
 
-JWT_AUTH = {
-    "JWT_EXPIRATION_DELTA": timedelta(days=14),
-    "JWT_REFRESH_EXPIRATION_DELTA": timedelta(days=21),
-    "JWT_ALLOW_REFRESH": True,
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=21),
+    "AUTH_HEADER_TYPES": ("Bearer",),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "TOKEN_OBTAIN_SERIALIZER": "a12n.api.serializers.TokenObtainPairWithProperMessageSerializer",
 }
 
 

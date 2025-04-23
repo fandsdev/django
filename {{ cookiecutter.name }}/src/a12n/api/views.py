@@ -1,11 +1,11 @@
-from rest_framework_jwt import views as jwt
+from rest_framework_simplejwt import views as jwt
 
 from a12n.api.throttling import AuthAnonRateThrottle
 
 
-class ObtainJSONWebTokenView(jwt.ObtainJSONWebTokenView):
+class TokenObtainPairView(jwt.TokenObtainPairView):
     throttle_classes = [AuthAnonRateThrottle]
 
 
-class RefreshJSONWebTokenView(jwt.RefreshJSONWebTokenView):
+class TokenRefreshView(jwt.TokenRefreshView):
     throttle_classes = [AuthAnonRateThrottle]
