@@ -21,15 +21,13 @@ Python 3.11 is required (uv will install it automatically).
 Install requirements:
 
 ```bash
-uv venv  # also install python if needed
-source .venv/bin/activate  # or any similar command if using different shell or OS
-make install-dev-deps
+make install-dev-deps  # calls `uv sync` internally — it also creates a virtualenv (.venv) and installs python if needed
 ```
 
 Run the server:
 
 ```bash
-source .venv/bin/activate
+source .venv/bin/activate  # or any similar command if using different shell
 python src/manage.py migrate
 python src/manage.py createsuperuser
 python src/manage.py runserver

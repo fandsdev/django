@@ -22,14 +22,15 @@ FROM python:${PYTHON_VERSION}-slim-bookworm AS deps-compile
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy UV_PYTHON_DOWNLOADS=0
 
-WORKDIR /app
+WORKDIR /code
+
+COPY pyproject.toml uv.lock /code/
 RUN --mount=type=cache,target=/root/.cache/uv \
-    --mount=type=bind,source=uv.lock,target=uv.lock \
-    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-    uv sync --frozen --no-install-project --no-dev
-ADD . /app
+  uv sync --frozen --no-install-project --no-dev
+
+COPY . /code
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --frozen --no-dev
+  uv sync --frozen --no-dev
 
 #
 # Base image with django dependencies
@@ -47,11 +48,11 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 COPY --from=uwsgi-compile /uwsgi /usr/local/bin/
-COPY --from=deps-compile /app/src /app/src
-COPY --from=deps-compile /app/.venv /app/.venv
-ENV PATH="/app/.venv/bin:$PATH"
+COPY --from=deps-compile /code/src /code/src
+COPY --from=deps-compile /code/.venv /code/.venv
+ENV PATH="/code/.venv/bin:$PATH"
 
-WORKDIR /app/src
+WORKDIR /code/src
 
 RUN chmod +x ./manage.py
 RUN ./manage.py compilemessages
@@ -65,7 +66,7 @@ FROM base AS web
 HEALTHCHECK --interval=15s --timeout=15s --start-period=15s --retries=3 \
   CMD wget --quiet --tries=1 --spider http://localhost:8000/api/v1/healthchecks/
 
-CMD ./manage.py migrate && uwsgi --master --http :8000 --venv /app/.venv/ --module app.wsgi --workers 2 --threads 2 --harakiri 25 --max-requests 1000 --log-x-forwarded-for
+CMD ./manage.py migrate && uwsgi --master --http :8000 --venv /code/.venv/ --module app.wsgi --workers 2 --threads 2 --harakiri 25 --max-requests 1000 --log-x-forwarded-for
 
 
 FROM base AS worker
