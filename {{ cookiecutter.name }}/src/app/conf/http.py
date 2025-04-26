@@ -1,7 +1,7 @@
 from app.conf.environ import env
 
 
-ALLOWED_HOSTS = ["*"]  # host validation is not necessary in 2020+
+ALLOWED_HOSTS = ["*"]  # Wildcard disables Host header validation, so pls do NOT rely on the Host header in your code with this setting enabled.
 CSRF_TRUSTED_ORIGINS = [
     "http://your.app.origin",
 ]
