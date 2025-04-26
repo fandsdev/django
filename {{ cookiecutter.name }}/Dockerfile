@@ -15,20 +15,16 @@ RUN wget -O uwsgi-${_UWSGI_VERSION}.tar.gz https://github.com/unbit/uwsgi/archiv
   && rm -Rf uwsgi-*
 
 #
-# Build dependencies with uv
+# Build dependencies with uv (install in .venv as a virtualenv)
 # https://github.com/astral-sh/uv-docker-example/blob/main/multistage.Dockerfile
 #
 FROM python:${PYTHON_VERSION}-slim-bookworm AS deps-compile
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/
 ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy UV_PYTHON_DOWNLOADS=0
 
 WORKDIR /code
 
 COPY pyproject.toml uv.lock /code/
-RUN --mount=type=cache,target=/root/.cache/uv \
-  uv sync --frozen --no-install-project --no-dev
-
-COPY . /code
 RUN --mount=type=cache,target=/root/.cache/uv \
   uv sync --frozen --no-dev
 
@@ -48,8 +44,8 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 COPY --from=uwsgi-compile /uwsgi /usr/local/bin/
-COPY --from=deps-compile /code/src /code/src
 COPY --from=deps-compile /code/.venv /code/.venv
+COPY src /code/src
 ENV PATH="/code/.venv/bin:$PATH"
 
 WORKDIR /code/src
