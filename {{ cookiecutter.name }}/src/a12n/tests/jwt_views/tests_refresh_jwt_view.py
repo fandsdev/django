@@ -8,20 +8,6 @@ pytestmark = [
 ]
 
 
-@pytest.fixture
-def refresh_tokens(as_anon):
-    def _refresh_tokens(token, expected_status=200):
-        return as_anon.post(
-            "/api/v1/auth/token/refresh/",
-            {
-                "refresh": token,
-            },
-            expected_status=expected_status,
-        )
-
-    return _refresh_tokens
-
-
 def test_refresh_token_endpoint_token_pair(initial_token_pair, refresh_tokens):
     refreshed_token_pair = refresh_tokens(initial_token_pair["refresh"])
 
