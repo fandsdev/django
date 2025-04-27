@@ -92,7 +92,7 @@ class ResponseWithRetrieveSerializerMixin:
         headers: Any = None,
     ) -> Response:
         retrieve_serializer_class = self.get_serializer_class(action="retrieve")
-        context = self.get_serializer_context()  # type: ignore
+        context = self.get_serializer_context()  # type: ignore[attr-defined]
         retrieve_serializer = retrieve_serializer_class(instance, context=context)
         return Response(
             retrieve_serializer.data,
@@ -105,10 +105,10 @@ class ResponseWithRetrieveSerializerMixin:
         action: str | None = None,
     ) -> type[BaseSerializer]:
         if action is None:
-            action = self.action  # type: ignore
+            action = self.action  # type: ignore[attr-defined]
 
         try:
-            return self.serializer_action_classes[action]  # type: ignore
+            return self.serializer_action_classes[action]  # type: ignore[attr-defined]
         except (KeyError, AttributeError):
             return super().get_serializer_class()  # type: ignore[safe-super]
 

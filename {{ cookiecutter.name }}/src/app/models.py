@@ -1,6 +1,6 @@
 from typing import Any
 
-from behaviors.behaviors import Timestamped  # type: ignore
+from behaviors.behaviors import Timestamped  # type: ignore[import-untyped]
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
