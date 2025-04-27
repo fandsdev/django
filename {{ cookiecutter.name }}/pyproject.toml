@@ -76,7 +76,6 @@ env = [
     "DISABLE_THROTTLING = True",
 ]
 filterwarnings = [
-    "ignore:.*'rest_framework_jwt.blacklist' defines default_app_config.*You can remove default_app_config.::django",
 ]
 python_files = ["test*.py"]
 pythonpath = ". src"
@@ -97,6 +96,7 @@ ignore = [
     "B018",  # found useless expression. Either assign it to a variable or remove it
     "B904",  # within an `except` clause, raise exceptions with [...]
     "C408",  # unnecessary `dict` call (rewrite as a literal)
+    "COM812",  # trailing comma missing; may not be compatible with ruff formatter
     "D100",  # missing docstring in public module
     "D101",  # missing docstring in public class
     "D102",  # missing docstring in public method
@@ -120,12 +120,13 @@ ignore = [
     "DTZ001",  # the use of `datetime.datetime()` without `tzinfo` argument is not allowed
     "E501",  # line too long ({} > {})
     "EM101",  # exception must not use a string literal, assign to variable first
-    "EM102",  # expection must not use an f-string literal, assign to variable first
+    "EM102",  # exception must not use an f-string literal, assign to variable first
     "FBT001",  # boolean-typed position argument in function definition
     "FBT002",  # boolean default position argument in function definition
     "FBT003",  # boolean positional value in function call
     "INP001",  # file `{}` is part of an implicit namespace package. Add an `__init__.py`
     "INT001",  # f-string is resolved before function call; consider `_("string %s") % arg`
+    "ISC001",  # implicitly concatenated string literals on one line; may not be compatible with ruff formatter
     "N802",  # function name `{}` should be lowercase
     "N803",  # argument name `{}` should be lowercase
     "N804",  # first argument of a class method should be named `cls`
@@ -134,23 +135,20 @@ ignore = [
     "N818",  # exception name `{}` should be named with an Error suffix
     "N999",  # invalid module name: '{}'
     "PERF401",  # use a list comprehension to create a transformed list
-    "PGH003",  # use specific rule codes when ignoring type issues
-    "PGH004",  # use specific rule codes when using `noqa`
-    "PT001",  # use `@pytest.fixture()` over `@pytest.fixture`
     "RET501",  # do not explicitly `return None` in function if it is the only possible return value
     "RET502",  # do not implicitly `return None` in function able to return non-`None` value
     "RET503",  # missing explicit `return` at the end of function able to return non-`None` value
     "RUF012",  # mutable class attributes should be annotated with `typing.ClassVar`
     "RUF015",  # prefer next({iterable}) over single element slice
     "S101",  # use of `assert` detected
-    "S311",  # standart pseudo-random generators are not suitable for cryptographic purposes
+    "S311",  # standard pseudo-random generators are not suitable for cryptographic purposes
     "S324",  # probable use of insecure hash functions in `{}`: `{}`
     "SIM102",  # use a single `if` statement instead of nested `if` statements
     "SIM108",  # use ternary operator `{}` instead of `if`-`else`-block
     "SIM113",  # use enumerate instead of manually incrementing a counter
     "TC001",  # move application import `{}` into a type-checking block
     "TC002",  # move third-party import `{}` into a type-checking block
-    "TC003",  # move standart library import `{}` into a type-checking block
+    "TC003",  # move standard library import `{}` into a type-checking block
     "TRY003",  # avoid specifying long messages outside the exception class
     "TRY300",  # consider moving this statement to an `else` block
 ]

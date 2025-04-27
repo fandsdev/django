@@ -18,4 +18,4 @@ class AppConfig(BaseAppConfig):
     def ready(self) -> None:
         """Import a module with handlers if it exists to avoid boilerplate code."""
         with contextlib.suppress(ModuleNotFoundError):
-            importlib.import_module(".signals.handlers", self.module.__name__)  # type: ignore
+            importlib.import_module(".signals.handlers", self.module.__name__)  # type: ignore[union-attr]
