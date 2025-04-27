@@ -42,7 +42,6 @@ services:
     environment: *default-environment
     depends_on: *default-depends_on
 
-
   scheduler:
     build:
       context: .
