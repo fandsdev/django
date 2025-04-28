@@ -2,7 +2,7 @@
 
 cp src/app/.env.ci src/app/.env
 
-uv sync --frozen
+uv sync --locked
 
 uv run python src/manage.py collectstatic
 uv run python src/manage.py makemigrations --name "initial"
