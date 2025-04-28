@@ -34,7 +34,7 @@ jobs:
         with:
           pyproject-file: "{{ cookiecutter.name }}/pyproject.toml"
           enable-cache: true
-          cache-dependency-glob: '{{ cookiejutter.name }}/uv.lock'
+          cache-dependency-glob: "{{ cookiecutter.name }}/uv.lock"
 
       - name: bootstrap
         run: |
@@ -64,7 +64,7 @@ jobs:
         with:
           pyproject-file: "{{ cookiecutter.name }}/pyproject.toml"
           enable-cache: true
-          cache-dependency-glob: 'uv.lock'
+          cache-dependency-glob: "{{ cookiecutter.name }}/uv.lock"
 
       - name: get python version  # python itself not needed, just to get the latest compatible version with project
         uses: actions/setup-python@v5
