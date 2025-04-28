@@ -15,7 +15,7 @@ RUN wget -O uwsgi-${_UWSGI_VERSION}.tar.gz https://github.com/unbit/uwsgi/archiv
   && rm -Rf uwsgi-*
 
 #
-# Build dependencies with uv (install in .venv as a virtualenv)
+# Build virtual environment with dependencies
 # https://github.com/astral-sh/uv-docker-example/blob/main/multistage.Dockerfile
 #
 FROM python:${PYTHON_VERSION}-slim-bookworm AS deps-compile
