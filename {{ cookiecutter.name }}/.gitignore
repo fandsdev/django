@@ -110,6 +110,7 @@ dmypy.json
 .idea
 
 venv
+.venv
 static
 .env
 db.sqlite

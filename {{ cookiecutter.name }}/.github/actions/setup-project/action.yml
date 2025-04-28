@@ -1,0 +1,32 @@
+name: setup-project
+description: 'Setup uv, python, install and cache deps, set default env variables'
+outputs:
+  python-version:
+    description: 'Python version'
+    value: ${{ steps.setup-python.outputs.python-version }}
+
+runs:
+  using: composite
+
+  steps:
+    - name: setup uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        pyproject-file: "pyproject.toml"
+        enable-cache: true
+        cache-dependency-glob: 'uv.lock'
+
+    - name: setup python
+      uses: actions/setup-python@v5
+      id: setup-python
+      with:
+        python-version-file: pyproject.toml
+
+    - name: install dev dependencies
+      run: |
+        make install-dev-deps
+      shell: bash
+
+    - name: restore default environment
+      run: cp src/app/.env.ci src/app/.env
+      shell: bash

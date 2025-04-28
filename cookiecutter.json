@@ -4,7 +4,7 @@
     "email": "fedor@borshev.com",
     "name": "testproject",
     "_copy_without_render": [
-	".github/actions/build/action.yml",
+	".github/actions/setup-project/action.yml",
 	".github/workflows/ci.yml",
 	"src/.django-app-template"
     ]

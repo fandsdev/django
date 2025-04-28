@@ -5,6 +5,7 @@ on:
     branches:
       - master
   pull_request:
+  workflow_dispatch:
 
 jobs:
   bootstrap:
@@ -28,17 +29,19 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
-      - name: build
-        uses: ./.github/actions/build
+      - name: setup uv  # let uv handle python setup, like on developers machine
+        uses: astral-sh/setup-uv@v5
+        with:
+          pyproject-file: "{{ cookiecutter.name }}/pyproject.toml"
+          enable-cache: true
+          cache-dependency-glob: '{{ cookiejutter.name }}/uv.lock'
 
       - name: bootstrap
         run: |
-          . venv/bin/activate
           make bootstrap
 
       - name: lint the generated project
         run: |
-          . venv/bin/activate
           cd testproject
           make lint
 
@@ -56,8 +59,18 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
-      - name: build
-        uses: ./.github/actions/build
+      - name: setup uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          pyproject-file: "{{ cookiecutter.name }}/pyproject.toml"
+          enable-cache: true
+          cache-dependency-glob: 'uv.lock'
+
+      - name: get python version  # python itself not needed, just to get the latest compatible version with project
+        uses: actions/setup-python@v5
+        id: setup-python
+        with:
+          python-version-file: "{{ cookiecutter.name }}/pyproject.toml"
 
       - name: download build artifact
         uses: actions/download-artifact@v4
@@ -75,7 +88,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           build-args: |
-            PYTHON_VERSION=${{ env.python-version }}
+            PYTHON_VERSION=${{ steps.setup-python.outputs.python-version }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           context: testproject

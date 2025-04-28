@@ -15,20 +15,30 @@ Also, feel free to add as much django apps as you want.
 
 ## Installing on a local machine
 
-This project requires python 3.11. Deps are managed by [poetry](https://python-poetry.org).
+The project dependencies are managed by [uv (version >0.6.0)](https://docs.astral.sh/uv/), (how to install [link](https://docs.astral.sh/uv/getting-started/installation/)).
+Python 3.11 is required (uv will install it automatically).
 
 Install requirements:
 
 ```bash
-poetry install
+make install-dev-deps  # calls `uv sync` internally — it also creates a virtualenv (.venv) and installs python if needed
 ```
 
 Run the server:
 
 ```bash
-poetry run python src/manage.py migrate
-poetry run python src/manage.py createsuperuser
-poetry run python src/manage.py runserver
+source .venv/bin/activate  # or any similar command if using different shell
+python src/manage.py migrate
+python src/manage.py createsuperuser
+python src/manage.py runserver
+```
+
+or the same but without activation of the virtualenv:
+
+```bash
+uv run python src/manage.py migrate
+uv run python src/manage.py createsuperuser
+uv run python src/manage.py runserver
 ```
 
 Useful commands
