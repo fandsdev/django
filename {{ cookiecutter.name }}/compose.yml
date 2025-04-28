@@ -1,6 +1,6 @@
 ---
 x-default-build-args: &default-build-args
-  PYTHON_VERSION: "3.11.12"
+  PYTHON_VERSION: "3.12"
 
 x-default-environment: &default-environment
   DATABASE_URL: postgres://postgres@postgres:5432/postgres
