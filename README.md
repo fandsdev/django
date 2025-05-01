@@ -18,14 +18,12 @@
 * [Whitenoise](http://whitenoise.evans.io) for effortless static files hosting.
 * Cloudflare ready with [django-ipware](https://github.com/un33k/django-ipware).
 * Sentry. Set `SENTRY_DSN` env var if you need it.
-* Postgres.
+* Postgres ready.
 
 ## Installation
 
 You need [uv](https://docs.astral.sh/uv/), version >=0.6.0 (how to install [link](https://docs.astral.sh/uv/getting-started/installation/)).
-It will install python 3.11 automatically if you don't have it yet.
-
-We only support PostgreSQL as the database backend, so make sure it runs on `localhost:5432` before installing the project.
+It will install python 3.12 automatically if you don't have it yet.
 
 ```bash
 uvx cookiecutter gh:fandsdev/django
