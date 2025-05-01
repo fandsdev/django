@@ -73,8 +73,9 @@ env = [
 # Example: `ignore:.*regex of the warning message.*:DeprecationWarning:rest_framework_jwt:`
 filterwarnings = [
 ]
+pythonpath = ["src"]
+testpaths = ["src"]
 python_files = ["test*.py"]
-pythonpath = ". src"
 
 [tool.ruff]
 exclude = ["__pycache__", "migrations"]
