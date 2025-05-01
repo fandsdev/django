@@ -187,6 +187,51 @@ lines-after-imports = 2
     "PLR2004",
 ]
 
+[tool.mypy]
+python_version = "3.12"
+mypy_path = "src"
+files = "src"
+namespace_packages = true
+explicit_package_bases = true
+warn_no_return = false
+warn_unused_configs = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+no_implicit_optional = true
+no_implicit_reexport = true
+strict_equality = true
+warn_unreachable = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+exclude = "migrations/"
+plugins = [
+    "mypy_django_plugin.main",
+    "mypy_drf_plugin.main",
+]
+
+[[tool.mypy.overrides]]
+module = [
+    "*.management.*",
+    "*.tests.*",
+    "app.testing.api.*",
+]
+disallow_untyped_defs = false
+
+[[tool.mypy.overrides]]
+module = [
+    "axes.*",
+    "celery.*",
+    "django_filters.*",
+    "djangorestframework_camel_case.*",
+    "ipware.*",
+    "mixer.*",
+]
+ignore_missing_imports = true
+
+[tool.django-stubs]
+django_settings_module = "app.settings"
+strict_settings = false
+
 [tool.tomlsort]
 in_place = true
 no_sort_tables = true  # preserves the manual order of tables (like [project], [dependency-groups], etc.)
