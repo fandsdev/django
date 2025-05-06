@@ -32,6 +32,10 @@ REST_FRAMEWORK = {
     "EXCEPTION_HANDLER": "app.exceptions.app_service_exception_handler",
 }
 
+JSON_CAMEL_CASE = {
+    "RENDERER_CLASS": "drf_orjson_renderer.renderers.ORJSONRenderer",
+}
+
 # Adding session auth and browsable API at the developer machine
 if env("DEBUG", cast=bool, default=False):
     REST_FRAMEWORK["DEFAULT_AUTHENTICATION_CLASSES"].append("rest_framework.authentication.SessionAuthentication")
