@@ -19,6 +19,7 @@ dependencies = [
     "djangorestframework-camel-case>=1.4.2",
     "djangorestframework-simplejwt[crypto]>=5.5.0",
     "djangorestframework>=3.15.2",
+    "drf-orjson-renderer>=1.7.3",
     "drf-spectacular[sidecar]>=0.28.0",
     "pillow>=11.2.1",
     "psycopg[binary]>=3.2.6",
@@ -224,6 +225,7 @@ module = [
     "celery.*",
     "django_filters.*",
     "djangorestframework_camel_case.*",
+    "drf_orjson_renderer.*",
     "ipware.*",
     "mixer.*",
 ]
