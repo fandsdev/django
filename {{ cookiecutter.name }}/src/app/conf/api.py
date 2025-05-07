@@ -18,7 +18,7 @@ REST_FRAMEWORK = {
         "app.api.renderers.AppJSONRenderer",
     ],
     "DEFAULT_PARSER_CLASSES": [
-        "djangorestframework_camel_case.parser.CamelCaseJSONParser",
+        "app.api.parsers.AppJSONParser",
         "djangorestframework_camel_case.parser.CamelCaseMultiPartParser",
         "djangorestframework_camel_case.parser.CamelCaseFormParser",
     ],
@@ -30,10 +30,6 @@ REST_FRAMEWORK = {
     },
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "EXCEPTION_HANDLER": "app.exceptions.app_service_exception_handler",
-}
-
-JSON_CAMEL_CASE = {
-    "RENDERER_CLASS": "drf_orjson_renderer.renderers.ORJSONRenderer",
 }
 
 # Adding session auth and browsable API at the developer machine

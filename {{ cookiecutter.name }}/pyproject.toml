@@ -225,6 +225,7 @@ module = [
     "celery.*",
     "django_filters.*",
     "djangorestframework_camel_case.*",
+    "drf_orjson_renderer.*",
     "ipware.*",
     "mixer.*",
 ]
