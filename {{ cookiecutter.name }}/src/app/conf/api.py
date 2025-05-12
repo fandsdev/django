@@ -18,7 +18,7 @@ REST_FRAMEWORK = {
         "app.api.renderers.AppJSONRenderer",
     ],
     "DEFAULT_PARSER_CLASSES": [
-        "djangorestframework_camel_case.parser.CamelCaseJSONParser",
+        "app.api.parsers.AppJSONParser",
         "djangorestframework_camel_case.parser.CamelCaseMultiPartParser",
         "djangorestframework_camel_case.parser.CamelCaseFormParser",
     ],
