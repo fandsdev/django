@@ -37,7 +37,7 @@ LABEL maintainer="{{ cookiecutter.email }}"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
-ENV STATIC_ROOT=/var/lib/django-static
+ENV STATIC_ROOT=/code/static
 # Define user ids to ensure consistent permissions, e.g., for mounted volumes
 ENV UID=999 GID=999
 
@@ -55,10 +55,9 @@ ENV PATH="/code/.venv/bin:$PATH"
 
 WORKDIR /code/src
 
+USER web
 RUN python manage.py compilemessages
 RUN python manage.py collectstatic --noinput
-
-USER web
 
 # Also to mark that when CMD is used in shell form, it is a conscious decision
 SHELL ["/bin/bash", "-c"]
