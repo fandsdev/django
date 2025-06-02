@@ -111,7 +111,7 @@ dmypy.json
 
 venv
 .venv
-static
 .env
 db.sqlite
+/static
 /media
