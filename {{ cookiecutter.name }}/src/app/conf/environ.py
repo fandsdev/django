@@ -8,7 +8,7 @@ env = environ.Env(
     CI=(bool, False),
 )
 
-envpath = BASE_DIR / ".env"
+envpath = BASE_DIR / "app" / ".env"
 
 if envpath.exists():
     env.read_env(envpath)

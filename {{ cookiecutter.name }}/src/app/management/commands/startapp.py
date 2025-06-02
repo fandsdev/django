@@ -7,14 +7,14 @@ class Command(BaseCommand):
 
     def handle(self, **options):
         if "directory" not in options or options["directory"] is None:
-            directory = settings.BASE_DIR.parent / options["name"]
+            directory = settings.BASE_DIR / options["name"]
 
             directory.mkdir(exist_ok=True)
 
             options["directory"] = str(directory)
 
         if "template" not in options or options["template"] is None:
-            template = settings.BASE_DIR.parent / ".django-app-template"
+            template = settings.BASE_DIR / ".django-app-template"
 
             options["template"] = str(template)
 

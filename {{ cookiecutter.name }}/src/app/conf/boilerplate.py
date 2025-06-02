@@ -1,7 +1,7 @@
 from pathlib import Path
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent  # src directory
 
 ROOT_URLCONF = "app.urls"
 
