@@ -1,7 +1,10 @@
 from pathlib import Path
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent  # src directory
+# Repository root directory
+BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
+
+SRC_DIR = BASE_DIR / "src"
 
 ROOT_URLCONF = "app.urls"
 

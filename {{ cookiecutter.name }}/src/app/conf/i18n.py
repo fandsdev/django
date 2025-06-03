@@ -1,10 +1,10 @@
-from app.conf.boilerplate import BASE_DIR
+from app.conf.boilerplate import SRC_DIR
 
 
 LANGUAGE_CODE = "ru"
 
 LOCALE_PATHS = [
-    BASE_DIR / ".locale",
+    SRC_DIR / ".locale",
 ]
 
 USE_i18N = True

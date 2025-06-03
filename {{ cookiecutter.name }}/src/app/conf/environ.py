@@ -1,6 +1,6 @@
 import environ  # type: ignore[import-untyped]
 
-from app.conf.boilerplate import BASE_DIR
+from app.conf.boilerplate import SRC_DIR
 
 
 env = environ.Env(
@@ -8,7 +8,7 @@ env = environ.Env(
     CI=(bool, False),
 )
 
-envpath = BASE_DIR / "app" / ".env"
+envpath = SRC_DIR / "app" / ".env"
 
 if envpath.exists():
     env.read_env(envpath)

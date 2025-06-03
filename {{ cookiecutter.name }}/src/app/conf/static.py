@@ -6,4 +6,4 @@ from app.conf.environ import env
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = "/static/"
-STATIC_ROOT = env.path("STATIC_ROOT", default=BASE_DIR.parent / "static")
+STATIC_ROOT = env.path("STATIC_ROOT", default=BASE_DIR / "static")
