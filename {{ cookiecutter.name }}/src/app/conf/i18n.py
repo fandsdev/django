@@ -1,10 +1,10 @@
-from pathlib import Path
-
-from app.conf.boilerplate import BASE_DIR
+from app.conf.boilerplate import SRC_DIR
 
 
 LANGUAGE_CODE = "ru"
 
-LOCALE_PATHS = [Path(BASE_DIR).parent / ".locale"]
+LOCALE_PATHS = [
+    SRC_DIR / ".locale",
+]
 
 USE_i18N = True
