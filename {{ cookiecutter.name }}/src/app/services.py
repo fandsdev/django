@@ -40,5 +40,4 @@ class BaseService[T](metaclass=ABCMeta):
             validator()
 
     @abstractmethod
-    def act(self) -> T:
-        raise NotImplementedError("Please implement in the service class")
+    def act(self) -> T: ...
