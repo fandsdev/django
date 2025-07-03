@@ -1,9 +1,8 @@
 from abc import ABCMeta, abstractmethod
 from collections.abc import Callable
-from typing import Any
 
 
-class BaseService(metaclass=ABCMeta):
+class BaseService[T](metaclass=ABCMeta):
     """This is a template of a a base service.
     All services in the app should follow this rules:
       * Input variables should be done at the __init__ phase
@@ -11,9 +10,9 @@ class BaseService(metaclass=ABCMeta):
 
     This is ok:
       @dataclass
-      class UserCreator(BaseService):
+      class UserCreator(BaseService[User]):
         first_name: str
-        last_name: Optional[str]
+        last_name: str | None
 
         def act(self) -> User:
           return User.objects.create(first_name=self.first_name, last_name=self.last_name)
@@ -22,13 +21,13 @@ class BaseService(metaclass=ABCMeta):
 
     This is not ok:
       class UserCreator:
-        def __call__(self, first_name: str, last_name: Optional[str]) -> User:
+        def __call__(self, first_name: str, last_name: str | None) -> User:
           return User.objects.create(first_name=self.first_name, last_name=self.last_name)
 
     For more implementation examples, check out https://github.com/tough-dev-school/education-backend/blob/master/src/apps/orders/services/order_course_changer.py
     """
 
-    def __call__(self) -> Any:
+    def __call__(self) -> T:
         self.validate()
         return self.act()
 
@@ -41,5 +40,5 @@ class BaseService(metaclass=ABCMeta):
             validator()
 
     @abstractmethod
-    def act(self) -> Any:
+    def act(self) -> T:
         raise NotImplementedError("Please implement in the service class")
