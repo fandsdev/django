@@ -27,17 +27,15 @@ class DefaultModel(models.Model):
     @classmethod
     def get_contenttype(cls) -> ContentType:
         return ContentType.objects.get_for_model(cls)
-
-    def update_from_kwargs(self, **kwargs: dict[str, Any]) -> None:
-        """A shortcut method to update model instance from the kwargs."""
+        
+    def update(self, **kwargs: "Any") -> "models.Model":  # type: ignore[misc]
         for key, value in kwargs.items():
             setattr(self, key, value)
 
-    def setattr_and_save(self, key: str, value: Any) -> None:
-        """Shortcut for testing -- set attribute of the model and save"""
-        setattr(self, key, value)
-        self.save()
+        self.save(update_fields=kwargs.keys())
 
+        return self
+        
     @classmethod
     def get_label(cls) -> str:
         """Get a unique within the app model label"""
