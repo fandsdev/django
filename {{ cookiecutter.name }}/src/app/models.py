@@ -27,7 +27,7 @@ class DefaultModel(models.Model):
     @classmethod
     def get_contenttype(cls) -> ContentType:
         return ContentType.objects.get_for_model(cls)
-        
+
     def update(self, **kwargs: "Any") -> "models.Model":  # type: ignore[misc]
         for key, value in kwargs.items():
             setattr(self, key, value)
@@ -35,7 +35,7 @@ class DefaultModel(models.Model):
         self.save(update_fields=kwargs.keys())
 
         return self
-        
+
     @classmethod
     def get_label(cls) -> str:
         """Get a unique within the app model label"""
