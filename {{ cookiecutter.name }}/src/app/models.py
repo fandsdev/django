@@ -28,7 +28,7 @@ class DefaultModel(models.Model):
     def get_contenttype(cls) -> ContentType:
         return ContentType.objects.get_for_model(cls)
 
-    def update(self, **kwargs: "Any") -> "models.Model":  # type: ignore[misc]
+    def update(self, **kwargs: "Any") -> "models.Model":
         for key, value in kwargs.items():
             setattr(self, key, value)
 
