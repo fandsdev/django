@@ -9,7 +9,7 @@ ARG PYTHON_VERSION=python-version-not-set
 FROM python:${PYTHON_VERSION}-slim-bookworm AS uwsgi-compile
 ENV _UWSGI_VERSION=2.0.29
 RUN apt-get update && apt-get --no-install-recommends install -y build-essential wget && rm -rf /var/lib/apt/lists/*
-RUN wget -O uwsgi-${_UWSGI_VERSION}.tar.gz https://github.com/unbit/uwsgi/archive/${_UWSGI_VERSION}.tar.gz \
+RUN wget --progress=dot:giga -O uwsgi-${_UWSGI_VERSION}.tar.gz https://github.com/unbit/uwsgi/archive/${_UWSGI_VERSION}.tar.gz \
   && tar zxvf uwsgi-*.tar.gz \
   && UWSGI_BIN_NAME=/uwsgi make -C uwsgi-${_UWSGI_VERSION} \
   && rm -Rf uwsgi-*
@@ -56,8 +56,8 @@ ENV PATH="/code/.venv/bin:$PATH"
 WORKDIR /code/src
 
 USER web
-RUN python manage.py compilemessages
-RUN python manage.py collectstatic --noinput
+RUN python manage.py compilemessages \
+  && python manage.py collectstatic --noinput
 
 # Also to mark that when CMD is used in shell form, it is a conscious decision
 SHELL ["/bin/bash", "-c"]
@@ -67,17 +67,7 @@ FROM base AS web
 HEALTHCHECK --interval=15s --timeout=15s --start-period=15s --retries=3 \
   CMD wget --quiet --tries=1 --spider http://localhost:8000/api/v1/healthchecks/
 
-CMD python manage.py migrate \
-  && uwsgi \
-    --master \
-    --http=:8000 \
-    --venv=/code/.venv/ \
-    --wsgi=app.wsgi \
-    --workers=2 \
-    --threads=2 \
-    --harakiri=25 \
-    --max-requests=1000 \
-    --log-x-forwarded-for
+CMD ["sh", "-c", "python manage.py migrate && uwsgi --master --http=:8000 --venv=/code/.venv/ --wsgi=app.wsgi --workers=2 --threads=2 --harakiri=25 --max-requests=1000 --log-x-forwarded-for"]
 
 FROM base AS worker
 
@@ -85,14 +75,7 @@ ENV _CELERY_APP=app.celery
 HEALTHCHECK --interval=15s --timeout=15s --start-period=5s --retries=3 \
   CMD celery --app=${_CELERY_APP} inspect ping --destination=celery@$HOSTNAME
 
-CMD celery \
-  --app=${_CELERY_APP} \
-  worker \
-  --concurrency=${CONCURENCY:-2} \
-  --hostname="celery@%h" \
-  --max-tasks-per-child=${MAX_REQUESTS_PER_CHILD:-50} \
-  --time-limit=${TIME_LIMIT:-900} \
-  --soft-time-limit=${SOFT_TIME_LIMIT:-45}
+CMD ["celery", "--app=${_CELERY_APP}", "worker", "--concurrency=${CONCURENCY:-2}", "--hostname=celery@%h", "--max-tasks-per-child=${MAX_REQUESTS_PER_CHILD:-50}", "--time-limit=${TIME_LIMIT:-900}", "--soft-time-limit=${SOFT_TIME_LIMIT:-45}"]
 
 
 FROM base AS scheduler
@@ -105,8 +88,4 @@ VOLUME ${_SCHEDULER_DB_PATH}
 
 ENV _CELERY_APP=app.celery
 HEALTHCHECK NONE
-CMD celery \
-  --app=${_CELERY_APP} \
-  beat \
-  --pidfile=/tmp/celerybeat.pid \
-  --schedule=${_SCHEDULER_DB_PATH}/celerybeat-schedule.db
+CMD ["celery", "--app=${_CELERY_APP}", "beat", "--pidfile=/tmp/celerybeat.pid", "--schedule=${_SCHEDULER_DB_PATH}/celerybeat-schedule.db"]

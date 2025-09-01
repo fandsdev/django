@@ -22,13 +22,16 @@ jobs:
       - name: lint
         run: make lint
 
+      - name: Lint the Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+
   test:
     needs: lint
     runs-on: ubuntu-latest
 
     services:
       postgres:
-        image: postgres:16.1-alpine
+        image: postgres:16.2-alpine
         env:
           POSTGRES_PASSWORD: secret
         options: >-
