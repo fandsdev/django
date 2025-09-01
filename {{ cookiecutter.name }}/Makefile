@@ -13,7 +13,7 @@ fmt:
 	uv run ruff format src
 	uv run toml-sort pyproject.toml
 
-lint: lint-sources lint-dockerfile
+lint: lint-sources lint-dockerfile lint-yaml
 	uv run toml-sort --check pyproject.toml
 	uv run pymarkdown scan README.md
 	uv run dotenv-linter src/app/.env.ci
@@ -32,6 +32,14 @@ lint-dockerfile:
 		hadolint Dockerfile; \
 	else \
 		echo "hadolint not found, skipping Dockerfile linting"; \
+	fi
+
+lint-yaml:
+	@if command -v yamllint >/dev/null 2>&1; then \
+		echo Running yamllint...; \
+		yamllint .; \
+	else \
+		echo "yamllint not found, skipping YAML files linting"; \
 	fi
 
 test:
