@@ -16,7 +16,7 @@ fmt:
 lint:
 	uv run python src/manage.py check
 	uv run python src/manage.py makemigrations --check --dry-run --no-input
-
+	uv run python src/manage.py spectacular --api-version v1 --fail-on-warn > /dev/null
 	uv run ruff check src
 	uv run ruff format --check src
 	uv run mypy src
