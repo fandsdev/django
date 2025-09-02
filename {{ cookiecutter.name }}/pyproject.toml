@@ -213,6 +213,7 @@ plugins = [
 
 [[tool.mypy.overrides]]
 module = [
+    "*.fixtures",
     "*.management.*",
     "*.tests.*",
     "app.testing.api.*",
