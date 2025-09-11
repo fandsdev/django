@@ -1,8 +1,8 @@
 from typing import Any
 
-from behaviors.behaviors import Timestamped  # type: ignore[import-untyped]
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.utils import timezone
 
 
 __all__ = [
@@ -42,11 +42,19 @@ class DefaultModel(models.Model):
         return cls._meta.label_lower.split(".")[-1]
 
 
-class TimestampedModel(DefaultModel, Timestamped):
+class TimestampedModel(DefaultModel):
     """
     Default app model that has `created` and `updated` attributes.
-    Currently based on https://github.com/audiolion/django-behaviors
+    Custom implementation replacing django-behaviors dependency.
     """
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         abstract = True
+
+    def save(self, *args: Any, **kwargs: Any) -> Any:
+        if self.pk:
+            self.updated = timezone.now()
+        return super().save(*args, **kwargs)
