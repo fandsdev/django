@@ -1,7 +1,9 @@
+from collections.abc import Iterable
 from typing import Any
 
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.db.models.base import ModelBase
 from django.utils import timezone
 
 
@@ -44,17 +46,28 @@ class DefaultModel(models.Model):
 
 class TimestampedModel(DefaultModel):
     """
-    Default app model that has `created` and `updated` attributes.
-    Custom implementation replacing django-behaviors dependency.
+    Default app model that has `created` and `modified` attributes.
     """
 
     created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         abstract = True
 
-    def save(self, *args: Any, **kwargs: Any) -> Any:
+    def save(
+        self,
+        *,
+        force_insert: bool | tuple[ModelBase, ...] = False,
+        force_update: bool = False,
+        using: str | None = None,
+        update_fields: Iterable[str] | None = None,
+    ) -> None:
         if self.pk:
-            self.updated = timezone.now()
-        return super().save(*args, **kwargs)
+            self.modified = timezone.now()
+        return super().save(
+            force_insert=force_insert,
+            force_update=force_update,
+            using=using,
+            update_fields=update_fields,
+        )
