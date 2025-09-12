@@ -8,7 +8,6 @@ dependencies = [
     "bcrypt>=4.3.0",
     "celery==5.4.0",
     "django-axes>=7.0.2",
-    "django-behaviors>=0.5.1",
     "django-environ>=0.12.0",
     "django-filter>=25.1",
     "django-healthchecks>=1.5.0",
