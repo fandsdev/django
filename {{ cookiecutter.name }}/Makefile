@@ -43,6 +43,7 @@ lint-yaml:
 	fi
 
 test:
+	@mkdir -p static  # be sure dir for static files exists
 	uv run pytest --dead-fixtures
 	uv run pytest --create-db --exitfirst --numprocesses ${SIMULTANEOUS_TEST_JOBS}
 
