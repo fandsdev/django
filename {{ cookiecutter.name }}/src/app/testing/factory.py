@@ -1,7 +1,8 @@
 from collections.abc import Callable
 from functools import partial
 
-from app.testing.mixer import mixer
+from faker import Faker
+from model_bakery import baker
 
 
 def register(method: Callable) -> Callable:
@@ -31,7 +32,8 @@ class CycleFixtureFactory:
 
 class FixtureFactory:
     def __init__(self) -> None:
-        self.mixer = mixer
+        self.baker = baker  # imported module
+        self.faker = Faker()
         self.registry = FixtureRegistry()
 
     def __getattr__(self, name: str) -> Callable:

@@ -1,10 +1,12 @@
+from types import ModuleType
 from typing import Protocol
 
-from mixer.backend.django import mixer
+from faker import Faker
 
 
 class FactoryProtocol(Protocol):
-    mixer: mixer
+    baker: ModuleType
+    faker: Faker
 
 
 __all__ = [

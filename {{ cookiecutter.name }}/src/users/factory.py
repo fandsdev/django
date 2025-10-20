@@ -7,7 +7,7 @@ from users.models import User
 
 @register
 def user(self: FactoryProtocol, **kwargs: dict) -> User:
-    return self.mixer.blend("users.User", **kwargs)
+    return self.baker.make("users.User", **kwargs)
 
 
 @register

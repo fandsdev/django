@@ -8,7 +8,6 @@ dependencies = [
     "bcrypt>=4.3.0",
     "celery==5.4.0",
     "django-axes>=7.0.2",
-    "django-behaviors>=0.5.1",
     "django-environ>=0.12.0",
     "django-filter>=25.1",
     "django-healthchecks>=1.5.0",
@@ -33,10 +32,11 @@ dev = [
     "django-stubs>=5.2.0",
     "djangorestframework-stubs>=3.16.0",
     "dotenv-linter>=0.7.0",
+    "faker>=37.8.0",
     "freezegun>=1.5.1",
     "ipython>=9.2.0",
     "jedi>=0.19.2",
-    "mixer>=7.2.2",
+    "model-bakery>=1.20.5",
     "mypy>=1.15.0",
     "pymarkdownlnt>=0.9.29",
     "pytest-deadfixtures>=2.2.1",
@@ -160,6 +160,9 @@ combine-as-imports = true
 known-first-party = ["src"]
 lines-after-imports = 2
 
+[tool.ruff.lint.mccabe]
+max-complexity = 6
+
 [tool.ruff.lint.per-file-ignores]
 "*/factory.py" = [
     "ANN",  # flake8-annotations
@@ -228,7 +231,6 @@ module = [
     "djangorestframework_camel_case.*",
     "drf_orjson_renderer.*",
     "ipware.*",
-    "mixer.*",
 ]
 ignore_missing_imports = true
 
