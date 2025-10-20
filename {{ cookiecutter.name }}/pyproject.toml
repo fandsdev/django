@@ -160,6 +160,9 @@ combine-as-imports = true
 known-first-party = ["src"]
 lines-after-imports = 2
 
+[tool.ruff.lint.mccabe]
+max-complexity = 6
+
 [tool.ruff.lint.per-file-ignores]
 "*/factory.py" = [
     "ANN",  # flake8-annotations
