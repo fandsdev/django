@@ -1,7 +1,8 @@
 version: 2
 updates:
 - package-ecosystem: uv
-  directory: "/{{ cookiecutter.name }}"
+  directories:
+    - "{{ cookiecutter.name }}"
   schedule:
     interval: daily
     time: "02:00"
