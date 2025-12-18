@@ -36,7 +36,10 @@ FROM python:${PYTHON_VERSION}-slim-bookworm AS base
 LABEL maintainer="{{ cookiecutter.email }}"
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUTF8=1
 ENV PYTHONUNBUFFERED=1
+ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
+    
 ENV STATIC_ROOT=/code/static
 # Define user ids to ensure consistent permissions, e.g., for mounted volumes
 ENV UID=999 GID=999
