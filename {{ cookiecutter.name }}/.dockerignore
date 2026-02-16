@@ -1,7 +1,6 @@
 venv/
 .venv/
 static/
-.circleci/
-db.sqlite
+.github/
 .env
 __pycache__/
