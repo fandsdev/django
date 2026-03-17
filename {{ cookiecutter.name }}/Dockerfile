@@ -79,7 +79,7 @@ FROM base AS worker
 
 ENV _CELERY_APP=app.celery
 HEALTHCHECK --interval=15s --timeout=15s --start-period=5s --retries=3 \
-  CMD celery --app=${_CELERY_APP} inspect ping --destination=celery@$HOSTNAME
+  CMD celery --app=${_CELERY_APP} inspect ping --destination=$QUEUE@$HOSTNAME
 
 CMD ["sh", "-c", "celery --app=${_CELERY_APP} worker --concurrency=${CONCURRENCY:-2} --hostname=celery@%h --max-tasks-per-child=${MAX_REQUESTS_PER_CHILD:-50} --time-limit=${TIME_LIMIT:-900} --soft-time-limit=${SOFT_TIME_LIMIT:-45}"]
 
