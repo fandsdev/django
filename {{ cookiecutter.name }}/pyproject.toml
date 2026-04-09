@@ -63,7 +63,7 @@ enabled = false
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "app.settings"
-addopts = ["--reuse-db"]
+addopts = ["--reuse-db", "--import-mode=importlib"]
 env = [
     "AXES_ENABLED = False",
     "CELERY_TASK_ALWAYS_EAGER = True",
