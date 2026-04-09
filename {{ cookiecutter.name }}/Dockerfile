@@ -70,7 +70,7 @@ FROM base AS web
 HEALTHCHECK --interval=15s --timeout=15s --start-period=15s --retries=3 \
   CMD wget --quiet --tries=1 --spider http://localhost:8000/api/v1/healthchecks/
 
-CMD ["sh", "-c", "python manage.py migrate && uwsgi --master --http=:8000 --venv=/code/.venv/ --wsgi=app.wsgi --workers=2 --threads=2 --harakiri=25 --max-requests=1000 --log-x-forwarded-for"]
+CMD ["sh", "-c", "python manage.py migrate && uwsgi --master --http=:8000 --venv=/code/.venv/ --wsgi=app.wsgi --workers=2 --threads=2 --harakiri=25 --max-requests=1000 --log-x-forwarded-for --logformat '%(addr) - - [%(ltime)] \"%(method) %(uri) %(proto)\" %(status) %(size) \"%(referer)\" \"%(uagent)\"'"]
 
 #
 # worker image
