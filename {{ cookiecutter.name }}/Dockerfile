@@ -45,7 +45,7 @@ ENV STATIC_ROOT=/code/static
 ENV UID=999 GID=999
 
 RUN apt-get update \
-  && apt-get --no-install-recommends install -y gettext locales-all tzdata git wait-for-it wget \
+  && apt-get --no-install-recommends install -y gettext locales-all tzdata git wait-for-it wget tini \
   && rm -rf /var/lib/apt/lists/*
 
 RUN groupadd --system --gid=${GID} "web" \
@@ -61,6 +61,8 @@ WORKDIR /code/src
 USER web
 RUN python manage.py compilemessages \
   && python manage.py collectstatic --noinput
+
+ENTRYPOINT ["tini", "--"]
 
 
 #
