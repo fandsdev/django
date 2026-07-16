@@ -1,14 +1,31 @@
+from collections.abc import Iterable, Mapping
+from decimal import Decimal
 from typing import Any
+from uuid import UUID
 
-from djangorestframework_camel_case.util import camelize
-from drf_orjson_renderer.renderers import ORJSONRenderer
+import orjson
+from django.utils.functional import Promise
+from rest_framework.renderers import BaseRenderer
+
+from app.api.case_converters import camelize_keys
 
 
-class AppJSONRenderer(ORJSONRenderer):
-    """Combination of CamelCaseJSONRenderer and ORJSONRenderer"""
+def to_serializable(value: object) -> object:
+    if isinstance(value, Promise | UUID | Decimal):
+        return str(value)
+    if isinstance(value, bytes | bytearray):
+        raise TypeError(f"Type is not JSON serializable: {type(value).__name__}")
+    if isinstance(value, Iterable):
+        return camelize_keys(list(value))
+    raise TypeError(f"Type is not JSON serializable: {type(value).__name__}")
 
-    charset = "utf-8"  # force DRF to add charset header to the content-type
-    json_underscoreize = {"no_underscore_before_number": True}  # https://github.com/vbabiy/djangorestframework-camel-case#underscoreize-options
 
-    def render(self, data: Any, *args: Any, **kwargs: Any) -> bytes:
-        return super().render(camelize(data, **self.json_underscoreize), *args, **kwargs)
+class AppJSONRenderer(BaseRenderer):
+    media_type = "application/json"
+    format = "json"
+    charset = "utf-8"  # force DRF to add charset to the content-type header
+
+    def render(self, data: Any, accepted_media_type: str | None = None, renderer_context: Mapping[str, Any] | None = None) -> bytes:
+        if data is None:
+            return b""
+        return orjson.dumps(camelize_keys(data), default=to_serializable)
