@@ -1,5 +1,5 @@
 from collections.abc import Iterable
-from typing import Any
+from typing import Any, Self
 
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
@@ -30,7 +30,7 @@ class DefaultModel(models.Model):
     def get_contenttype(cls) -> ContentType:
         return ContentType.objects.get_for_model(cls)
 
-    def update(self, **kwargs: "Any") -> "models.Model":
+    def update(self, **kwargs: Any) -> Self:
         for key, value in kwargs.items():
             setattr(self, key, value)
 

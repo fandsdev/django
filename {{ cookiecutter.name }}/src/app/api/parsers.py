@@ -1,21 +1,29 @@
+from collections.abc import Mapping
 from typing import IO, Any
 
-from djangorestframework_camel_case.settings import api_settings
-from djangorestframework_camel_case.util import underscoreize
-from drf_orjson_renderer.parsers import ORJSONParser
+import orjson
 from rest_framework.exceptions import ParseError
+from rest_framework.parsers import BaseParser, DataAndFiles, FormParser, MultiPartParser
+
+from app.api.case_converters import snakeize_keys, snakeize_query_dict
 
 
-class AppJSONParser(ORJSONParser):
-    """Combination of ORJSONParser and CamelCaseJSONParser"""
+class AppJSONParser(BaseParser):
+    media_type = "application/json"
 
-    # djangorestframework_camel_case parameter
-    # details: https://github.com/vbabiy/djangorestframework-camel-case?tab=readme-ov-file#underscoreize-options
-    json_underscoreize = api_settings.JSON_UNDERSCOREIZE
-
-    def parse(self, stream: IO[Any], media_type: Any = None, parser_context: Any = None) -> Any:
+    def parse(self, stream: IO[Any], media_type: str | None = None, parser_context: Mapping[str, Any] | None = None) -> Any:
         try:
-            data = super().parse(stream, media_type, parser_context)
-            return underscoreize(data, **self.json_underscoreize)
-        except ValueError as exc:
-            raise ParseError(f"JSON parse error - {exc}")
+            return snakeize_keys(orjson.loads(stream.read()))
+        except orjson.JSONDecodeError as exc:
+            raise ParseError(f"JSON parse error - {exc}") from exc
+
+
+class AppFormParser(FormParser):
+    def parse(self, stream: IO[Any], media_type: str | None = None, parser_context: Mapping[str, Any] | None = None) -> Any:
+        return snakeize_query_dict(super().parse(stream, media_type, parser_context))
+
+
+class AppMultiPartParser(MultiPartParser):
+    def parse(self, stream: IO[Any], media_type: str | None = None, parser_context: Mapping[str, Any] | None = None) -> DataAndFiles:
+        result = super().parse(stream, media_type, parser_context)
+        return DataAndFiles(snakeize_query_dict(result.data), snakeize_query_dict(result.files))
