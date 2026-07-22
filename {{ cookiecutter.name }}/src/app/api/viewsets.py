@@ -109,7 +109,7 @@ class ResponseWithRetrieveSerializerMixin:
 
         try:
             return self.serializer_action_classes[action]  # type: ignore[attr-defined]
-        except (KeyError, AttributeError):
+        except KeyError, AttributeError:
             return super().get_serializer_class()  # type: ignore[safe-super]
 
 
