@@ -19,8 +19,8 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_PARSER_CLASSES": [
         "app.api.parsers.AppJSONParser",
-        "djangorestframework_camel_case.parser.CamelCaseMultiPartParser",
-        "djangorestframework_camel_case.parser.CamelCaseFormParser",
+        "app.api.parsers.AppMultiPartParser",
+        "app.api.parsers.AppFormParser",
     ],
     "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.NamespaceVersioning",
     "DEFAULT_PAGINATION_CLASS": "app.api.pagination.AppPagination",
@@ -43,6 +43,6 @@ SPECTACULAR_SETTINGS = {
     "CAMELIZE_NAMES": True,
     "POSTPROCESSING_HOOKS": [
         "drf_spectacular.hooks.postprocess_schema_enums",
-        "drf_spectacular.contrib.djangorestframework_camel_case.camelize_serializer_fields",
+        "app.api.spectacular.camelize_serializer_fields",
     ],
 }

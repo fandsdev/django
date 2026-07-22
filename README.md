@@ -23,7 +23,7 @@
 ## Installation
 
 You need [uv](https://docs.astral.sh/uv/), version >=0.6.0 (how to install [link](https://docs.astral.sh/uv/getting-started/installation/)).
-It will install python 3.12 automatically if you don't have it yet.
+It will install python 3.14 automatically if you don't have it yet.
 
 ```bash
 uvx cookiecutter gh:fandsdev/django

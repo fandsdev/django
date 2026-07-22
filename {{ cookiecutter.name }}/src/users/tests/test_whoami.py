@@ -9,6 +9,8 @@ def test_ok(as_user, user):
 
     assert result["id"] == user.pk
     assert result["username"] == user.username
+    assert result["firstName"] == user.first_name
+    assert result["lastName"] == user.last_name
 
 
 def test_anon(as_anon):
