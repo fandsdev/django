@@ -13,18 +13,48 @@ fmt:
 	uv run ruff format src
 	uv run toml-sort pyproject.toml
 
-lint: lint-sources lint-dockerfile lint-yaml
-	uv run toml-sort --check pyproject.toml
-	uv run pymarkdown scan README.md
-	uv run dotenv-linter src/app/.env.ci
+LINT_TARGETS = \
+	lint-django-checks \
+	lint-django-migrations \
+	lint-openapi-schema \
+	lint-ruff-check \
+	lint-ruff-format \
+	lint-mypy \
+	lint-dockerfile \
+	lint-yaml \
+	lint-toml \
+	lint-markdown \
+	lint-dotenv
 
-lint-sources:
+lint:
+	@$(MAKE) --no-print-directory -j $(LINT_TARGETS)
+
+lint-django-checks:
 	uv run python src/manage.py check
+
+lint-django-migrations:
 	uv run python src/manage.py makemigrations --check --dry-run --no-input
+
+lint-openapi-schema:
 	uv run python src/manage.py spectacular --api-version v1 --fail-on-warn > /dev/null
+
+lint-ruff-check:
 	uv run ruff check src
+
+lint-ruff-format:
 	uv run ruff format --check src
-	uv run mypy src
+
+lint-mypy:
+	uv run mypy -n 4 src
+
+lint-toml:
+	uv run toml-sort --check pyproject.toml
+
+lint-markdown:
+	uv run pymarkdown scan README.md
+
+lint-dotenv:
+	uv run dotenv-linter src/app/.env.ci
 
 lint-dockerfile:
 	@if command -v hadolint >/dev/null 2>&1; then \
