@@ -37,6 +37,8 @@ REST_FRAMEWORK = {
 SPECTACULAR_SETTINGS = {
     "TITLE": "Our fancy API",
     "DESCRIPTION": "So great, needs no docs",
+    "OAS_VERSION": "3.1.0",
+    "COMPONENT_SPLIT_REQUEST": True,  # request and response schemas rarely match: read-only fields, write-only fields, file uploads
     "SWAGGER_UI_DIST": "SIDECAR",
     "SWAGGER_UI_FAVICON_HREF": "SIDECAR",
     "REDOC_DIST": "SIDECAR",
