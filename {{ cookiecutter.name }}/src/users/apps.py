@@ -5,5 +5,5 @@ from app.base_config import AppConfig as BaseAppConfig
 
 class AppConfig(BaseAppConfig):
     default = True
-    name = "app"
-    verbose_name = _("Application")
+    name = "users"
+    verbose_name = _("Users")

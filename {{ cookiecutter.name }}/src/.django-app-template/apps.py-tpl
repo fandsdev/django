@@ -2,4 +2,5 @@ from app.base_config import AppConfig
 
 
 class {{ camel_case_app_name }}Config(AppConfig):
+    default = True
     name = "{{ app_name }}"
