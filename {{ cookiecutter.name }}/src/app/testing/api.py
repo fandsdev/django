@@ -17,7 +17,7 @@ class ApiClient(DRFAPIClient):
     Client is available as two fixtures: `as_anon` and `as_user`. Use it like this:
 
         def test(as_anon):
-            as_anon.get("/api/v1/healthchecks/db/")  # fetch endpoint anonymously
+            as_anon.get("/api/v1/healthchecks/")  # fetch endpoint anonymously
 
 
         def test_whoami(as_user, user):
