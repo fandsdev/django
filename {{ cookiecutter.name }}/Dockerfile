@@ -72,7 +72,19 @@ FROM base AS web
 HEALTHCHECK --interval=15s --timeout=15s --start-period=15s --retries=3 \
   CMD wget --quiet --tries=1 --spider http://localhost:8000/api/v1/healthchecks/
 
-CMD ["sh", "-c", "python manage.py migrate && uwsgi --master --http=:8000 --venv=/code/.venv/ --wsgi=app.wsgi --workers=2 --threads=2 --harakiri=25 --max-requests=1000 --log-x-forwarded-for --logformat '%(addr) - - [%(ltime)] \"%(method) %(uri) %(proto)\" %(status) %(size) \"%(referer)\" \"%(uagent)\"'"]
+CMD ["sh", "-c", "python manage.py migrate \
+  && exec uwsgi \
+  --master \
+  --die-on-term \
+  --http=:8000 \
+  --venv=/code/.venv/ \
+  --wsgi=app.wsgi \
+  --workers=2 \
+  --threads=2 \
+  --harakiri=25 \
+  --max-requests=1000 \
+  --log-x-forwarded-for \
+  --logformat '%(addr) - - [%(ltime)] \"%(method) %(uri) %(proto)\" %(status) %(size) \"%(referer)\" \"%(uagent)\"'"]
 
 #
 # worker image
@@ -81,9 +93,17 @@ FROM base AS worker
 
 ENV _CELERY_APP=app.celery
 HEALTHCHECK --interval=15s --timeout=15s --start-period=5s --retries=3 \
-  CMD celery --app=${_CELERY_APP} inspect ping --destination=$QUEUE@$HOSTNAME
+  CMD celery --app=${_CELERY_APP} inspect ping --destination=${WORKER_NAME:-celery}@$HOSTNAME
 
-CMD ["sh", "-c", "celery --app=${_CELERY_APP} worker --concurrency=${CONCURRENCY:-2} --hostname=celery@%h --max-tasks-per-child=${MAX_REQUESTS_PER_CHILD:-50} --time-limit=${TIME_LIMIT:-900} --soft-time-limit=${SOFT_TIME_LIMIT:-45}"]
+CMD ["sh", "-c", "exec celery \
+  --app=${_CELERY_APP} \
+  worker \
+  --queues=${QUEUES:-celery} \
+  --hostname=${WORKER_NAME:-celery}@%h \
+  --concurrency=${CONCURRENCY:-2} \
+  --max-tasks-per-child=${MAX_REQUESTS_PER_CHILD:-50} \
+  --time-limit=${TIME_LIMIT:-900} \
+  --soft-time-limit=${SOFT_TIME_LIMIT:-45}"]
 
 #
 # scheduler image
@@ -98,4 +118,8 @@ VOLUME ${_SCHEDULER_DB_PATH}
 
 ENV _CELERY_APP=app.celery
 HEALTHCHECK NONE
-CMD ["sh", "-c", "celery --app=${_CELERY_APP} beat --pidfile=/tmp/celerybeat.pid --schedule=${_SCHEDULER_DB_PATH}/celerybeat-schedule.db"]
+CMD ["sh", "-c", "exec celery \
+  --app=${_CELERY_APP} \
+  beat \
+  --pidfile=/tmp/celerybeat.pid \
+  --schedule=${_SCHEDULER_DB_PATH}/celerybeat-schedule.db"]
