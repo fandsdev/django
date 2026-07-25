@@ -61,14 +61,10 @@ jobs:
           packages: locales-all gettext
           version: 1
 
-      - name: get number of cpu cores
-        uses: SimenB/github-actions-cpu-cores@v2.0.0
-        id: cpu-cores
-
       - name: test
         env:
           DATABASE_URL: postgres://postgres:secret@localhost:5432/postgres
-        run: make test -e SIMULTANEOUS_TEST_JOBS=${{ steps.cpu-cores.outputs.count }}
+        run: make test
 
   build-docker-image:
     needs: test

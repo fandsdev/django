@@ -1287,6 +1287,11 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/ca/31/d4e37e9e550c2b92a9cbc2e4d0b7420a27224968580b5a447f420847c975/pytest_xdist-3.8.0-py3-none-any.whl", hash = "sha256:202ca578cfeb7370784a8c33d6d05bc6e13b4f25b5053c30a152269fd10f0b88", size = 46396, upload-time = "2025-07-01T13:30:56.632Z" },
 ]
 
+[package.optional-dependencies]
+psutil = [
+    { name = "psutil" },
+]
+
 [[package]]
 name = "python-dateutil"
 version = "2.9.0.post0"
@@ -1540,7 +1545,7 @@ dev = [
     { name = "pytest-freezer" },
     { name = "pytest-mock" },
     { name = "pytest-randomly" },
-    { name = "pytest-xdist" },
+    { name = "pytest-xdist", extra = ["psutil"] },
     { name = "ruff" },
     { name = "toml-sort" },
     { name = "types-freezegun" },
@@ -1588,7 +1593,7 @@ dev = [
     { name = "pytest-freezer", specifier = ">=0.4.9" },
     { name = "pytest-mock", specifier = ">=3.15.1" },
     { name = "pytest-randomly", specifier = ">=4.1.0" },
-    { name = "pytest-xdist", specifier = ">=3.8.0" },
+    { name = "pytest-xdist", extras = ["psutil"], specifier = ">=3.8.0" },
     { name = "ruff", specifier = ">=0.15.22" },
     { name = "toml-sort", specifier = ">=0.24.4" },
     { name = "types-freezegun", specifier = ">=1.1.10" },
