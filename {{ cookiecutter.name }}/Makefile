@@ -45,7 +45,7 @@ lint-ruff-format:
 	uv run ruff format --check src
 
 lint-mypy:
-	uv run mypy -n 4 src
+	uv run mypy --num-workers 4 src
 
 lint-toml:
 	uv run toml-sort --check pyproject.toml
