@@ -20,7 +20,6 @@ include(
     "conf/boilerplate.py",
     "conf/db.py",
     "conf/celery.py",
-    "conf/healthchecks.py",
     "conf/http.py",
     "conf/i18n.py",
     "conf/installed_apps.py",
