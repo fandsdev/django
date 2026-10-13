@@ -80,12 +80,6 @@ jobs:
         id: setup-project
         uses: ./.github/actions/setup-project
 
-      - name: install locale stuff
-        uses: awalsh128/cache-apt-pkgs-action@v1
-        with:
-          packages: locales-all gettext
-          version: 1
-
       - name: test
         env:
           DATABASE_URL: postgres://postgres:secret@localhost:5432/postgres
