@@ -20,10 +20,10 @@ jobs:
           POSTGRES_PASSWORD: secret
         image: postgres:16.2-alpine
         options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-retries 5
-          --health-timeout 5s
+          --health-cmd "pg_isready -h 127.0.0.1"
+          --health-interval 1s
+          --health-retries 30
+          --health-timeout 2s
         ports:
           - 5432:5432
 
