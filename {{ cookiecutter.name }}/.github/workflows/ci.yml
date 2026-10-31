@@ -7,13 +7,38 @@ on:
       - main
   pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   lint:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      image-build-affected: ${{ steps.image-build-affected.outputs.result }}
 
     steps:
       - name: checkout
         uses: actions/checkout@v4
+
+      - name: Check whether the pull request can affect the image build
+        id: image-build-affected
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          changed=$(gh api --paginate "/repos/$REPO/pulls/$PR_NUMBER/files" --jq '.[].filename')
+          if grep -qxE 'Dockerfile|uv\.lock|pyproject\.toml|\.dockerignore' <<< "$changed"; then
+            echo "result=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "result=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: setup project
         id: setup-project
@@ -35,10 +60,10 @@ jobs:
         env:
           POSTGRES_PASSWORD: secret
         options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          --health-cmd "pg_isready -h 127.0.0.1"
+          --health-interval 1s
+          --health-timeout 2s
+          --health-retries 30
         ports:
           - 5432:5432
 
@@ -55,19 +80,14 @@ jobs:
         id: setup-project
         uses: ./.github/actions/setup-project
 
-      - name: install locale stuff
-        uses: awalsh128/cache-apt-pkgs-action@v1
-        with:
-          packages: locales-all gettext
-          version: 1
-
       - name: test
         env:
           DATABASE_URL: postgres://postgres:secret@localhost:5432/postgres
         run: make test
 
   build-docker-image:
-    needs: test
+    needs: [lint, test]
+    if: github.event_name != 'pull_request' || needs.lint.outputs.image-build-affected == 'true'
     runs-on: ubuntu-latest
 
     steps:

@@ -9,6 +9,6 @@ SRC_DIR = BASE_DIR / "src"
 ROOT_URLCONF = "app.urls"
 
 # Disable built-in ./manage.py test command in favor of pytest
-TEST_RUNNER = "app.test.disable_test_command_runner.DisableTestCommandRunner"
+TEST_RUNNER = "app.testing.runner.DisableTestCommandRunner"
 
 WSGI_APPLICATION = "app.wsgi.application"

@@ -19,6 +19,7 @@ dependencies = [
     "drf-spectacular[sidecar]>=0.30.0",
     "orjson>=3.11.9",
     "pillow>=12.3.0",
+    "polib>=1.2.0",
     "psycopg[binary]>=3.3.4",
     "redis>=8.0.1",
     "sentry-sdk>=2.66.0",
@@ -48,6 +49,7 @@ dev = [
     "toml-sort>=0.24.4",
     "types-freezegun>=1.1.10",
     "types-pillow>=10.2.0.20240822",
+    "types-polib>=1.2.0.20260518",
 ]
 
 [tool.uv]

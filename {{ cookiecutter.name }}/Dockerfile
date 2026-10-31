@@ -45,7 +45,7 @@ ENV STATIC_ROOT=/code/static
 ENV UID=999 GID=999
 
 RUN apt-get update \
-  && apt-get --no-install-recommends install -y gettext locales-all tzdata git wait-for-it wget tini \
+  && apt-get --no-install-recommends install -y locales-all tzdata git wait-for-it wget tini \
   && rm -rf /var/lib/apt/lists/*
 
 RUN groupadd --system --gid=${GID} "web" \
