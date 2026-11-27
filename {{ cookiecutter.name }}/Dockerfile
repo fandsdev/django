@@ -59,7 +59,9 @@ ENV PATH="/code/.venv/bin:$PATH"
 WORKDIR /code/src
 
 USER web
-RUN python manage.py compilemessages \
+# Both commands only need the settings module to import; real values come from the container environment at runtime.
+RUN export SECRET_KEY=build-time-only DATABASE_URL=sqlite:///:memory: \
+  && python manage.py compilemessages \
   && python manage.py collectstatic --noinput
 
 ENTRYPOINT ["tini", "--"]
