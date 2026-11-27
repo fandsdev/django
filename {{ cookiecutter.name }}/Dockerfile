@@ -58,6 +58,9 @@ ENV PATH="/code/.venv/bin:$PATH"
 
 WORKDIR /code/src
 
+ARG RELEASE=""
+ENV RELEASE=$RELEASE
+
 USER web
 RUN python manage.py compilemessages \
   && python manage.py collectstatic --noinput
