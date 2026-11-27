@@ -72,7 +72,7 @@ ENTRYPOINT ["tini", "--"]
 #
 FROM base AS web
 HEALTHCHECK --interval=15s --timeout=15s --start-period=15s --retries=3 \
-  CMD wget --quiet --tries=1 --spider http://localhost:8000/api/v1/healthchecks/
+  CMD wget --quiet --tries=1 --output-document=/dev/null http://localhost:8000/api/v1/healthchecks/
 
 CMD ["sh", "-c", "python manage.py migrate \
   && exec uwsgi \
