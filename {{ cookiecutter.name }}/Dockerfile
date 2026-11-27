@@ -82,6 +82,7 @@ CMD ["sh", "-c", "python manage.py migrate \
   --workers=2 \
   --threads=2 \
   --harakiri=25 \
+  --buffer-size=32768 \
   --max-requests=1000 \
   --log-x-forwarded-for \
   --logformat '%(addr) - - [%(ltime)] \"%(method) %(uri) %(proto)\" %(status) %(size) \"%(referer)\" \"%(uagent)\"'"]
