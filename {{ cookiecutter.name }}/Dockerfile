@@ -58,6 +58,9 @@ ENV PATH="/code/.venv/bin:$PATH"
 
 WORKDIR /code/src
 
+ARG RELEASE=""
+ENV RELEASE=$RELEASE
+
 USER web
 # Both commands only need the settings module to import; real values come from the container environment at runtime.
 RUN export SECRET_KEY=build-time-only DATABASE_URL=sqlite:///:memory: \

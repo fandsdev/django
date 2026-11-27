@@ -13,4 +13,5 @@ if not env("DEBUG") and len(SENTRY_DSN):
     sentry_sdk.init(
         dsn=SENTRY_DSN,
         integrations=[DjangoIntegration()],
+        release=env("RELEASE", cast=str, default="") or None,
     )
