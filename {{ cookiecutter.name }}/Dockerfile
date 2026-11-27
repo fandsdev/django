@@ -6,7 +6,7 @@ ARG PYTHON_VERSION=python-version-not-set
 #
 # Compile custom uwsgi, cuz debian's one is weird
 #
-FROM python:${PYTHON_VERSION}-slim-bookworm AS uwsgi-compile
+FROM python:${PYTHON_VERSION}-slim-trixie AS uwsgi-compile
 ENV _UWSGI_VERSION=2.0.31
 RUN apt-get update && apt-get --no-install-recommends install -y build-essential wget && rm -rf /var/lib/apt/lists/*
 RUN wget --progress=dot:giga -O uwsgi-${_UWSGI_VERSION}.tar.gz https://github.com/unbit/uwsgi/archive/${_UWSGI_VERSION}.tar.gz \
@@ -18,7 +18,7 @@ RUN wget --progress=dot:giga -O uwsgi-${_UWSGI_VERSION}.tar.gz https://github.co
 # Build virtual environment with dependencies
 # https://github.com/astral-sh/uv-docker-example/blob/main/multistage.Dockerfile
 #
-FROM python:${PYTHON_VERSION}-slim-bookworm AS deps-compile
+FROM python:${PYTHON_VERSION}-slim-trixie AS deps-compile
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/
 ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy UV_PYTHON_DOWNLOADS=0
 
@@ -32,7 +32,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 # Base image with django dependencies
 # It is important to use the image that matches the deps-compile image
 #
-FROM python:${PYTHON_VERSION}-slim-bookworm AS base
+FROM python:${PYTHON_VERSION}-slim-trixie AS base
 LABEL maintainer="{{ cookiecutter.email }}"
 
 ENV DEBIAN_FRONTEND=noninteractive
